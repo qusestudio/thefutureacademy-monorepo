@@ -1,6 +1,7 @@
 {
   "name": "thefutureacademy",
   "version": "0.0.1",
+  "packageManager": "npm@10.9.2",
   "private": true,
   "scripts": {
     "build": "turbo build",
