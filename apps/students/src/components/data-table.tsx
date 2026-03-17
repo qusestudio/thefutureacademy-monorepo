@@ -39,7 +39,7 @@ import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
 import { toast } from "sonner"
 import { z } from "zod"
 
-import { useIsMobile } from "@/hooks/use-mobile"
+
 import { Badge } from "@workspace/ui/components/badge"
 import { Button } from "@workspace/ui/components/button"
 import {
@@ -94,6 +94,7 @@ import {
 } from "@workspace/ui/components/tabs"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { DragDropVerticalIcon, CheckmarkCircle01Icon, Loading03Icon, MoreVerticalCircle01Icon, LeftToRightListBulletIcon, ArrowDown01Icon, Add01Icon, ArrowLeftDoubleIcon, ArrowLeft01Icon, ArrowRight01Icon, ArrowRightDoubleIcon, ChartUpIcon } from "@hugeicons/core-free-icons"
+import { useIsMobile } from "@workspace/ui/hooks/use-mobile"
 
 export const schema = z.object({
   id: z.number(),
@@ -675,7 +676,6 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
   const isMobile = useIsMobile()
   return (
     <Drawer direction={isMobile ? "bottom" : "right"}>
-      <DrawerTrigger render={<Button variant="link" className="w-fit px-0 text-left text-foreground" />}>{item.header}</DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="gap-1">
           <DrawerTitle>{item.header}</DrawerTitle>
@@ -851,7 +851,6 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
         </div>
         <DrawerFooter>
           <Button>Submit</Button>
-          <DrawerClose render={<Button variant="outline" />}></DrawerClose>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>

@@ -16,23 +16,12 @@ import {
 } from "@workspace/ui/components/sidebar"
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
-  DashboardSquare01Icon,
-  Menu01Icon,
-  ChartHistogramIcon,
-  Folder01Icon,
-  UserGroupIcon,
-  Camera01Icon,
-  File01Icon,
+
   Settings05Icon,
   HelpCircleIcon,
   SearchIcon,
-  Database01Icon,
-  Analytics01Icon,
-  CommandIcon,
-  Desk01Icon,
-  Books01Icon,
-  BooksIcon,
   Book02Icon,
+  DashboardSquare02Icon,
 } from "@hugeicons/core-free-icons"
 
 const data = {
@@ -45,29 +34,31 @@ const data = {
     {
       title: "Dashboard",
       url: "/dashboard",
-      icon: <HugeiconsIcon icon={DashboardSquare01Icon} strokeWidth={2} />,
+      icon: (
+        <HugeiconsIcon size={25} icon={DashboardSquare02Icon} strokeWidth={2} />
+      ),
     },
     {
       title: "My Learning",
       url: "/dashboard/mylearning",
-      icon: <HugeiconsIcon icon={Book02Icon} strokeWidth={2} />,
+      icon: <HugeiconsIcon size={25} icon={Book02Icon} strokeWidth={2} />,
     },
   ],
   navSecondary: [
     {
       title: "Settings",
       url: "/dashboard/settings",
-      icon: <HugeiconsIcon icon={Settings05Icon} strokeWidth={2} />,
+      icon: <HugeiconsIcon size={25} icon={Settings05Icon} strokeWidth={2} />,
     },
     {
       title: "Get Help",
-      url: "#",
-      icon: <HugeiconsIcon icon={HelpCircleIcon} strokeWidth={2} />,
+      url: "/help",
+      icon: <HugeiconsIcon size={25} icon={HelpCircleIcon} strokeWidth={2} />,
     },
     {
       title: "Search",
       url: "#",
-      icon: <HugeiconsIcon icon={SearchIcon} strokeWidth={2} />,
+      icon: <HugeiconsIcon size={25} icon={SearchIcon} strokeWidth={2} />,
     },
   ],
 }
@@ -78,11 +69,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
-              className="data-[slot=sidebar-menu-button]:p-1.5! bg-transparent"
-              render={<a href="#" />}
+              className="data-[slot=sidebar-menu-button]:p-1.5! mb-10 bg-transparent"
+              render={<a href="/" />}
             >
-              <span className="font-chillax uppercase text-xs font-semibold">
-                The Future Academy
+              <span className="font-chillax text-xl tracking-wide uppercase">
+                Learning Space
               </span>
             </SidebarMenuButton>
           </SidebarMenuItem>

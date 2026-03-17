@@ -1,18 +1,22 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import { ChartAreaInteractive } from "@/components/chart-area-interactive"
-import { DataTable } from "@/components/data-table"
-import { SectionCards } from "@/components/section-cards"
-import { SiteHeader } from "@/components/site-header"
-import { SidebarInset, SidebarProvider } from "@workspace/ui/components/sidebar"
-
-import data from "./data.json"
+import React from "react"
+import { Separator } from "@workspace/ui/components/separator"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { LockedIcon } from "@hugeicons/core-free-icons"
+import SectionLocker from "@/components/section-locker"
 
 export default function Page() {
   return (
-    <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-      <section>
-
-      </section>
+    <div>
+      <div className="@container/main flex flex-1 flex-col gap-5 max-md:px-0 p-5 lg:p-15 pb-10 font-chillax">
+        <h1 className="text-4xl md:text-5xl lg:text-8xl">My Dashboard</h1>
+        <p className="font-sans  text-accent-foreground text-sm tracking-wider md:text-xl lg:text-lg">
+          Track your learning progress and manage all your courses in one place.
+          Stay updated with upcoming lessons, tasks, and important
+          announcements.
+        </p>
+      </div>
+      <Separator />
+      <SectionLocker />
     </div>
   )
 }

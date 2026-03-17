@@ -31,9 +31,9 @@ export function NavMain({
           <SidebarMenuItem className="flex items-center gap-2 pb-5">
             <Link
               href={"/"}
-              className="flex gap-x-2 rounded-full border border-white p-2 group-data-[collapsible=icon]:opacity-0"
+              className="flex gap-x-2 rounded-full border-foreground border-2 p-2 group-data-[collapsible=icon]:opacity-0"
             >
-              <HugeiconsIcon icon={Home01Icon} strokeWidth={2} /> Home
+              <HugeiconsIcon  icon={Home01Icon} strokeWidth={2} /> Home
               <span className="sr-only">Home</span>
             </Link>
           </SidebarMenuItem>
@@ -46,14 +46,13 @@ export function NavMain({
                 className={`${isActive ? "border" : ""} border-foreground`}
                 key={item.title}
               >
-                <SidebarMenuButton
-                  className="cursor-pointer"
-                  tooltip={item.title}
+                <button
+                  className="cursor-pointer flex gap-x-2 p-4"
                   onClick={() => router.push(item.url)}
                 >
                   {item.icon}
                   <span>{item.title}</span>
-                </SidebarMenuButton>
+                </button>
               </SidebarMenuItem>
             )
           })}

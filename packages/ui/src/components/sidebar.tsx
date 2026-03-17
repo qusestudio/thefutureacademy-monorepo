@@ -260,21 +260,20 @@ function SidebarTrigger({
   const { toggleSidebar } = useSidebar()
 
   return (
-    <Button
+    <button
       data-sidebar="trigger"
       data-slot="sidebar-trigger"
-      variant="ghost"
-      size="icon-sm"
+
       className={cn(className)}
       onClick={(event) => {
-        onClick?.(event)
+        // onClick?.(event)
         toggleSidebar()
       }}
       {...props}
     >
-      <HugeiconsIcon icon={SidebarLeftIcon} strokeWidth={2} />
+      <HugeiconsIcon size={25} icon={SidebarLeftIcon} strokeWidth={2} />
       <span className="sr-only">Toggle Sidebar</span>
-    </Button>
+    </button>
   )
 }
 
