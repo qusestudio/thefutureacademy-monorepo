@@ -33,8 +33,7 @@ export function Header() {
     { link: "/", icon: ArrowUpRight01Icon, label: "Features" },
     { link: "/", icon: ArrowUpRight01Icon, label: "Subjects" },
     { link: "/", icon: ArrowUpRight01Icon, label: "For Students" },
-    { link: "/", icon: ArrowUpRight01Icon, label: "For Instructors" },
-    { link: "/", icon: ArrowUpRight01Icon, label: "Pricing" },
+    { link: "/", icon: ArrowUpRight01Icon, label: "Plans & Pricing" },
   ]
 
   return (
@@ -47,8 +46,7 @@ export function Header() {
           <Link href={"/"}>Features</Link>
           <Link href={"/"}>Subjects</Link>
           <Link href={"/"}>For Students</Link>
-          <Link href={"/"}>For Instructors</Link>
-          <Link href={"/"}>Pricing</Link>
+          <Link href={"/"}>Plans & Pricing</Link>
         </nav>
         <Link
           href={"/signin"}

@@ -30,12 +30,12 @@ const Home = () => {
                   className="flex dark:bg-[#FFF] bg-black dark:text-black text-white rounded-xs px-10 font-semibold py-2 text-xs gap-x-5 uppercase">
               Join the academy
             </Link>
-            <div className="text-xs w-full max-w-xl text-center gap-x-1 items-center flex h-5 leading-tight">
-              <span className="w-full">CAPS-Aligned Curriculum</span>
-              <Separator className="dark:bg-white bg-black" orientation={"vertical"} />
-              <span className="w-full">Grade 10 - 12</span>
-              <Separator className="dark:bg-white bg-black" orientation={"vertical"} />
-              <span className="w-full">University Readiness</span>
+            <div className="text-sm w-full grid grid-cols-3 max-w-xl text-center gap-x-1 items-center flex h-5 leading-tight">
+              <span className="">CAPS-Aligned Curriculum</span>
+
+              <span className="border-x">Grade 10 - 12</span>
+
+              <span className="">University Readiness</span>
             </div>
           </div>
           {/*    */}
@@ -53,7 +53,7 @@ const Home = () => {
             We invest in the potential of our students.
           </p>
 
-          <button className="text-black font-medium border rounded-full">
+          <button className="text-black cursor-pointer p-5 font-medium border rounded-full">
             Get started
           </button>
         </div>
@@ -70,7 +70,7 @@ const Home = () => {
             24/7 Access to On-Demand Video Lessons
           </div>
           <div className="border-4 dark:border-white flex items-end pt-20  rounded-xl p-5 text-2xl sm:text-3xl  lg:text-4xl xl:text-5xl">
-            Curriculum-Aligned, Grade-Specific Content
+            CAPS-Aligned, Grade-Specific Content
           </div>
           <div className="border-4 dark:border-white flex items-end pt-20 rounded-xl p-5 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl">
             Instructor-Created Subjects & Lessons
