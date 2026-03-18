@@ -16,13 +16,14 @@ import {
 } from "@workspace/ui/components/sidebar"
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
-
   Settings05Icon,
   HelpCircleIcon,
   SearchIcon,
   Book02Icon,
   DashboardSquare02Icon,
+  Logout01Icon,
 } from "@hugeicons/core-free-icons"
+import LogoutDialog from "@/components/logout-dialog"
 
 const data = {
   user: {
@@ -55,11 +56,6 @@ const data = {
       url: "/help",
       icon: <HugeiconsIcon size={25} icon={HelpCircleIcon} strokeWidth={2} />,
     },
-    {
-      title: "Search",
-      url: "#",
-      icon: <HugeiconsIcon size={25} icon={SearchIcon} strokeWidth={2} />,
-    },
   ],
 }
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -69,7 +65,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
-              className="data-[slot=sidebar-menu-button]:p-1.5! mb-10 bg-transparent"
+              className="mb-10 bg-transparent data-[slot=sidebar-menu-button]:p-1.5!"
               render={<a href="/" />}
             >
               <span className="font-chillax text-xl tracking-wide uppercase">
@@ -79,7 +75,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className='font-chillax'>
+      <SidebarContent className="font-chillax">
         <NavMain items={data.navMain} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>

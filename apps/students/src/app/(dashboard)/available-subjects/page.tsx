@@ -50,7 +50,7 @@ const AvailableSubjects = () => {
           Subscription
         </Link>
       </header>
-      <section className="flex w-full flex-7 flex-col gap-y-10 py-[5%] md:max-w-[70%]">
+      <section className="flex w-full flex-7 flex-col gap-y-10 py-[2%] md:max-w-[70%]">
         <h1 className="mb-10 font-chillax text-4xl max-sm:text-3xl">
           Your future starts here. Explore the subjects designed to get you
           there.

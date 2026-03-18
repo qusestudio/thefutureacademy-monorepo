@@ -22,6 +22,7 @@ import {
 } from "@workspace/ui/components/sidebar"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { MoreVerticalCircle01Icon, UserCircle02Icon, CreditCardIcon, Notification03Icon, Logout01Icon } from "@hugeicons/core-free-icons"
+import LogoutDialog from "@/components/logout-dialog"
 
 export function NavUser({
   user,
@@ -34,7 +35,7 @@ export function NavUser({
 }) {
   const { isMobile } = useSidebar()
   return (
-    <SidebarMenu>
+    <SidebarMenu className="font-chillax">
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger
@@ -55,7 +56,7 @@ export function NavUser({
             <HugeiconsIcon icon={MoreVerticalCircle01Icon} strokeWidth={2} className="ml-auto size-4" />
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            className="min-w-56"
+            className="min-w-56 font-chillax"
             side={isMobile ? "bottom" : "right"}
             align="end"
             sideOffset={4}
@@ -92,10 +93,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <HugeiconsIcon icon={Logout01Icon} strokeWidth={2} />
-              Log out
-            </DropdownMenuItem>
+
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>

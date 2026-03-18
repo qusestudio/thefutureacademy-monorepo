@@ -10,6 +10,9 @@ import {
   SidebarMenuItem,
 } from "@workspace/ui/components/sidebar"
 import Link from "next/link"
+import { HugeiconsIcon } from "@hugeicons/react"
+import LogoutDialog from "@/components/logout-dialog"
+import { Logout01Icon } from "@hugeicons/core-free-icons"
 
 export function NavSecondary({
   items,
@@ -27,12 +30,18 @@ export function NavSecondary({
         <SidebarMenu>
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
-              <Link className="flex text-lg gap-x-2 hover:bg-sidebar-accent items-center p-4" href={item.url}>
+              <Link
+                className="flex items-center gap-x-2 p-4 text-lg hover:bg-sidebar-accent"
+                href={item.url}
+              >
                 {item.icon}
                 <span>{item.title}</span>
               </Link>
             </SidebarMenuItem>
           ))}
+          <SidebarMenuItem className="flex cursor-pointer text-lg hover:bg-accent">
+            <LogoutDialog />
+          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>

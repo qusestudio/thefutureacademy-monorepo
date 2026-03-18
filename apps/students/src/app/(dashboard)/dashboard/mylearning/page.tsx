@@ -7,7 +7,7 @@ import SectionLocker from "@/components/section-locker"
 const MyLearning = () => {
   return (
     <div>
-      <div className="@container/main flex flex-1 flex-col gap-5 p-5 pb-10 font-chillax max-md:px-0 lg:p-15">
+      <div className="@container/main flex flex-1 flex-col gap-5 p-5 pb-10 font-chillax max-md:px-0 ">
         <h1 className="text-4xl md:text-5xl lg:text-8xl">My Learning</h1>
         <p className="font-sans text-sm font-medium md:text-xl lg:text-xl">
           View your active subjects and track your learning journey. Stay
