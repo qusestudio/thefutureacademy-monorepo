@@ -52,7 +52,7 @@ export function Header() {
         </nav>
         <Link
           href={"/signin"}
-          className="flex gap-x-5 rounded-xs bg-[#4F6357] px-10 py-2 text-xs font-medium text-white uppercase"
+          className="flex gap-x-5 rounded-xs bg-primary px-10 py-2 text-xs font-medium text-white uppercase"
         >
           Log in
         </Link>
