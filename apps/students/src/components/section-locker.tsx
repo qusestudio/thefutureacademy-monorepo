@@ -4,14 +4,14 @@ import { LockedIcon } from "@hugeicons/core-free-icons"
 
 const SectionLocker = () => {
   return (
-    <section className="flex h-full w-full flex-col items-center justify-center py-[5%]">
+    <section className="flex  w-full flex-col items-center justify-center py-[5%]">
       <div className="flex flex-col items-center gap-y-4">
         <HugeiconsIcon
           className="size-80 stroke-[1px] text-accent"
           strokeWidth={1}
           icon={LockedIcon}
         />
-        <button className="rounded-xs cursor-pointer bg-sidebar-primary p-3 px-10 text-xl text-white max-md:text-lg">
+        <button className="rounded-xs cursor-pointer bg-sidebar-primary p-3 px-10 text-lg text-white ">
           Activate plan
         </button>
       </div>
