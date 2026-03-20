@@ -50,8 +50,8 @@ const AvailableSubjects = () => {
           Subscription
         </Link>
       </header>
-      <section className="flex w-full flex-7 flex-col gap-y-10 py-[2%] md:max-w-[70%]">
-        <h1 className="mb-10 font-chillax text-4xl max-sm:text-3xl">
+      <section className="flex w-full flex-7 flex-col gap-y-5 py-[2%] md:max-w-[70%]">
+        <h1 className="font-chillax text-4xl max-sm:text-3xl">
           Your future starts here. Explore the subjects designed to get you
           there.
         </h1>
@@ -75,9 +75,9 @@ const AvailableSubjects = () => {
               <p className="font-chillax text-2xl font-normal">
                 {subject.title}
               </p>
-              <button className="border border-foreground hover:bg-accent cursor-pointer bg-background p-4 font-chillax text-xl tracking-wide text-foreground">
+              <Link href={"/available-subjects/preview"} className="border text-center border-foreground hover:bg-accent cursor-pointer bg-background p-4 font-chillax text-xl tracking-wide text-foreground">
                 Preview
-              </button>
+              </Link>
             </div>
           ))}
         </div>

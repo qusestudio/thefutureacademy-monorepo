@@ -40,8 +40,8 @@ const HomePage = () => {
   // fetch subscription information from the server
   // display components based on the state
   return (
-    <div className="flex h-screen w-full flex-col items-center bg-accent py-5 dark:bg-background">
-      <header className="flex w-full max-w-[80%] items-center justify-center gap-x-2 rounded-full bg-background py-1 font-chillax text-xl dark:bg-accent">
+    <div className="flex h-screen w-full flex-col items-center py-5 dark:bg-background">
+      <header className="flex w-full max-w-[80%] items-center justify-center gap-x-2 rounded-full bg-accent py-1 font-chillax text-xl dark:bg-accent">
         <Link
           href={"/settings/profile"}
           className="rounded-full p-4 transition-all duration-200 hover:bg-accent hover:font-semibold dark:hover:bg-background"
@@ -94,14 +94,14 @@ const HomePage = () => {
               />
             </button>
             <button
-              className="flex cursor-pointer items-center rounded-full bg-background p-4 font-chillax text-xl font-normal text-foreground transition-all duration-200 hover:font-semibold dark:bg-accent"
+              className="flex cursor-pointer items-center bg-accent rounded-full  p-4 font-chillax text-xl font-normal text-foreground transition-all duration-200 hover:font-semibold dark:bg-accent"
               onClick={() => router.push("/plans-and-pricing")}
             >
               Plans & Pricing
             </button>
           </div>
         </section>
-        <section className="relative flex h-full w-full flex-3 flex-col items-start justify-center gap-y-4 bg-background p-5">
+        <section className="relative flex h-full w-full flex-3 flex-col items-start justify-center gap-y-4 bg-accent p-5">
           <p className="font-chillax text-2xl">
             Your future starts here. Explore the subjects designed to get you
             there.

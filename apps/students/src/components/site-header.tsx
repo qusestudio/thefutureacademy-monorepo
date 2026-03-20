@@ -6,7 +6,7 @@ import * as React from "react"
 
 export function SiteHeader() {
   return (
-    <header className="grid h-(--header-height) shrink-0 grid-cols-3 items-center gap-2 border-b font-chillax transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
+    <header className="grid h-(--header-height) shrink-0 grid-cols-3 items-center gap-2  font-chillax transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
       <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
         <SidebarTrigger className="-ml-1" />
         <Separator
