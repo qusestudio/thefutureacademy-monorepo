@@ -2,11 +2,27 @@
 
 import React from "react"
 import { ThemeProvider } from "@workspace/ui/providers/theme-provider"
+import StoreProvider from "@/state/redux"
+import { Toaster } from "sonner"
+import { Authenticator } from "@aws-amplify/ui-react"
+import Auth from "@/app/(auth)/Auth"
+import AdminGuard from "@/app/(auth)/AdminGuard"
+
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
-
-      <ThemeProvider>{children}</ThemeProvider>
+    <StoreProvider>
+      <ThemeProvider>
+        <Authenticator.Provider>
+          <Auth>
+            <AdminGuard>
+              {children}
+              <Toaster richColors theme={"system"} position={"bottom-right"} />
+            </AdminGuard>
+          </Auth>
+        </Authenticator.Provider>
+      </ThemeProvider>
+    </StoreProvider>
   )
 }
 

@@ -39,8 +39,8 @@ const data = {
       ),
     },
     {
-      title: "My Learning",
-      url: "/dashboard/mylearning",
+      title: "Course List",
+      url: "/dashboard/course-list",
       icon: <HugeiconsIcon size={25} icon={Book02Icon} strokeWidth={2} />,
     },
   ],
@@ -62,6 +62,7 @@ const data = {
     },
   ],
 }
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="offcanvas" {...props}>
@@ -73,7 +74,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               render={<a href="/" />}
             >
               <span className="font-chillax text-xl tracking-wide uppercase">
-                Learning Space
+                the future studio
               </span>
             </SidebarMenuButton>
           </SidebarMenuItem>

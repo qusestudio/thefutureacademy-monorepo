@@ -16,7 +16,6 @@ export default function Page() {
         </p>
       </div>
       <Separator />
-      <SectionLocker />
     </div>
   )
 }

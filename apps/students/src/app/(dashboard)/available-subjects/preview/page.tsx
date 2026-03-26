@@ -12,8 +12,13 @@ import {
   Mortarboard01Icon,
   ShoppingBag01Icon,
 } from "@hugeicons/core-free-icons"
-import { IconlyGraph, IconlyTimeSquare, IconlyVolumeUp } from "@/components/iconly-icons"
+
 import { CollapsibleTopic } from "@/components/preview/collapsible-content"
+import {
+  IconlyGraph,
+  IconlyTimeSquare,
+  IconlyVolumeUp,
+} from "@workspace/ui/components/iconly-icons"
 
 const availableSubjects = [
   {
