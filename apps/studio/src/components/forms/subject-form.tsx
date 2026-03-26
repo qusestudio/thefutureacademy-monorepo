@@ -46,7 +46,7 @@ import { PencilEdit02Icon,  Upload03Icon } from "@hugeicons/core-free-icons"
 
 import { useCreateSubjectMutation, useGetSignedUrlMutation, useUploadToS3Mutation } from "@/state/api"
 import { CLOUDFRONT } from "@/lib/constants"
-import { FormValues } from "@/components/drawers/content-drawer"
+import type { FormValues } from "@/components/drawers/content-drawer"
 import { formSchema } from "@/types/form-schema"
 import { z } from "zod"
 import { Subject } from "@/types/models"
@@ -71,7 +71,9 @@ export function SubjectForm({initialValues, label, description}: SubjectFormProp
       image: initialValues.image || "blobs/image-placeholder.png",
       term: initialValues.term.toString() || "1",
       grade: initialValues.grade.toString() || "10",
-      description: initialValues.description || [""],
+      description: initialValues.description?.length
+        ? initialValues.description
+        : [{ value: "" }],
     },
   });
 
@@ -134,7 +136,7 @@ export function SubjectForm({initialValues, label, description}: SubjectFormProp
       term: Number(data.term),
       grade: Number(data.grade),
       image: data.image,
-      description: data.description,
+      description: data.description.map((p) => p.value),
     }
 
     await createSubject(subject);
@@ -286,7 +288,7 @@ export function SubjectForm({initialValues, label, description}: SubjectFormProp
               {fields.map((item, index) => (
                 <Controller
                   key={item.id}
-                  name={`description.${index}`}
+                  name={`description.${index}.value`}
                   control={form.control}
                   render={({ field, fieldState }) => (
                     <Field data-invalid={fieldState.invalid}>
@@ -304,7 +306,7 @@ export function SubjectForm({initialValues, label, description}: SubjectFormProp
                         />
                         <InputGroupAddon align="block-end">
                           <InputGroupText className="tabular-nums">
-                            {field.value.length}/710
+                            {(field.value?.length ?? 0)}/710
                           </InputGroupText>
                         </InputGroupAddon>
                       </InputGroup>
@@ -331,7 +333,7 @@ export function SubjectForm({initialValues, label, description}: SubjectFormProp
               {/* ADD BUTTON */}
               <button
                 type="button"
-                onClick={() => append("")}
+                onClick={() => append({ value: "" })}
                 className="mt-2 rounded-md border p-2 text-sm"
               >
                 + Add Paragraph

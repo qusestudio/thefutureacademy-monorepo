@@ -17,7 +17,7 @@ export function CreateContentDrawer() {
     image: "",
     term: "1",
     grade: "12",
-    description: [""],
+    description: [{ value: "" }],
   }
 
   return (

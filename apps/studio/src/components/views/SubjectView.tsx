@@ -19,8 +19,15 @@ import {
   ResizablePanelGroup,
 } from "@workspace/ui/components/resizable"
 import { CollapsibleTopicItem } from "@/components/collapsible-topic"
+import { Topic } from "@/types/models"
+import { CreateLessonForm } from "@/components/forms/lesson-form"
+
+
 
 const SubjectView = ({ subjectId }: { subjectId: string }) => {
+
+  type RightPane = { kind: "empty" } | { kind: "createLesson"; topic: Topic }
+  const [rightPane, setRightPane] = React.useState<RightPane>({kind: "empty"})
 
   const router = useRouter();
   const pathname = usePathname();
@@ -58,7 +65,7 @@ const SubjectView = ({ subjectId }: { subjectId: string }) => {
       >
         <ResizablePanel defaultSize="35%">
           <section className="flex flex-col">
-            <article className="flex w-full bg-primary/10 flex-col gap-x-2 p-3 font-semibold">
+            <article className="flex w-full flex-col gap-x-2 bg-primary/10 p-3 font-semibold">
               Topics
             </article>
             {topics?.length == 0 && (
@@ -70,41 +77,38 @@ const SubjectView = ({ subjectId }: { subjectId: string }) => {
               Array.from({ length: 5 }).map((_, i) => (
                 <Skeleton
                   key={i}
-                  className={` ${i%2===0? "bg-primary/10": "bg-background"} h-10  w-full`}
+                  className={` ${i % 2 === 0 ? "bg-primary/10" : "bg-background"} h-10 w-full`}
                 />
               ))}
             {topics?.map((item, i) => {
               return (
-                <CollapsibleTopicItem key={i} index={i} topic={item} />
+                <CollapsibleTopicItem
+                  key={i}
+                  index={i}
+                  topic={item}
+                  onCreateLesson={(topic) =>
+                    setRightPane({ kind: "createLesson", topic })
+                  }
+                />
               )
-              // return (
-              //   <div
-              //     className="flex w-full cursor-pointer items-center justify-between gap-x-5 border-b p-2 font-chillax text-xs font-medium tracking-widest hover:bg-primary/10"
-              //     key={i}
-              //   >
-              //     <div className="flex items-center gap-x-2">
-              //       <Button
-              //         size={"icon"}
-              //         variant={"outline"}
-              //         className="rounded-full border-none border-white"
-              //       >
-              //         {i + 1}
-              //       </Button>
-              //       <p>{item.title}</p>
-              //     </div>
-              //     <Link href={`${pathname}/${item.id}`}>
-              //       <HugeiconsIcon icon={ArrowDownIcon} />
-              //     </Link>
-              //   </div>
-              // )
             })}
           </section>
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize="65%">
-          <div className="flex h-full items-center justify-center p-6">
-            <span className="font-semibold">Content</span>
-          </div>
+          {rightPane.kind === "createLesson" ? (
+            <CreateLessonForm
+              topicId={rightPane.topic.id}
+              topicTitle={rightPane.topic.title}
+              onDone={() => setRightPane({ kind: "empty" })}
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center p-6">
+              <span className="font-semibold">
+                Select a topic, or click + to add a lesson
+              </span>
+            </div>
+          )}
         </ResizablePanel>
       </ResizablePanelGroup>
     </main>

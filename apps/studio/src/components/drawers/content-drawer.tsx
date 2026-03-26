@@ -10,7 +10,6 @@ import React from "react"
 import { SubjectForm } from "@/components/forms/subject-form"
 import { useGetSubjectQuery } from "@/state/api"
 import { Spinner } from "@workspace/ui/components/spinner"
-import { description } from "@/components/chart-area-interactive"
 interface DrawerProps {
   id: string
   icon: React.ReactNode
@@ -23,7 +22,7 @@ export type FormValues = {
   image: string
   term: string
   grade: string
-  description: string[]
+  description: { value: string }[]
 }
 
 export function ContentDrawer({ icon, id }: DrawerProps) {
@@ -35,7 +34,9 @@ export function ContentDrawer({ icon, id }: DrawerProps) {
     image: data?.image || "",
     term: data?.term.toString() || "1",
     grade: data?.grade.toString() || "12",
-    description: data?.description || [""],
+    description: (data?.description?.length ? data.description : [""]).map(
+      (value) => ({ value })
+    ),
   }
 
   return (

@@ -16,10 +16,12 @@ export const formSchema = z.object({
     .max(2, "One value is expected."),
   description: z
     .array(
-      z
-        .string()
-        .min(100, "Each paragraph must be at least 100 characters.")
-        .max(710, "Each paragraph must be at most 710 characters.")
+      z.object({
+        value: z
+          .string()
+          .min(100, "Each paragraph must be at least 100 characters.")
+          .max(710, "Each paragraph must be at most 710 characters."),
+      })
     )
     .min(1, "At least one paragraph is required."),
 })
