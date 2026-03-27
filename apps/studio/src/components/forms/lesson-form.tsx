@@ -122,11 +122,12 @@ export function CreateLessonForm(props: {
   }
 
   return (
-    <Card className="w-full bg-background sm:max-w-md">
+    <Card className="w-full border-none bg-background sm:max-w-md">
       <CardHeader>
         <CardTitle className="text-sm">Create Lesson</CardTitle>
-        <CardDescription>
-          New lesson for: <span className="text-foreground">{props.topicTitle}</span>
+        <CardDescription className="font-medium">
+          New lesson for:{" "}
+          <span className="text-foreground text-lg font-normal">{props.topicTitle}</span>
         </CardDescription>
       </CardHeader>
 
@@ -142,7 +143,7 @@ export function CreateLessonForm(props: {
             className={[
               "group relative aspect-video w-full overflow-hidden rounded-lg border-2 border-dashed bg-muted/50 transition-colors",
               videoInvalid
-                ? "border-destructive/60 ring-2 ring-destructive/60 ring-offset-2 ring-offset-background"
+                ? " ring-offset-background"
                 : "border-muted-foreground/20 hover:border-primary/50",
             ].join(" ")}
           >
@@ -174,7 +175,9 @@ export function CreateLessonForm(props: {
                 ) : (
                   <>
                     <HugeiconsIcon icon={Upload03Icon} />
-                    <span className="text-xs font-medium">Upload Lesson Video</span>
+                    <span className="text-xs font-medium">
+                      Upload Lesson Video
+                    </span>
                   </>
                 )}
               </button>
@@ -204,11 +207,14 @@ export function CreateLessonForm(props: {
                   <Input
                     {...field}
                     id="lesson-form-title"
+                    className="rounded-sm"
                     aria-invalid={fieldState.invalid}
                     placeholder="e.g. Introduction to Algebra"
                     autoComplete="off"
                   />
-                  {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
                 </Field>
               )}
             />
@@ -218,33 +224,37 @@ export function CreateLessonForm(props: {
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel className="text-lg">Lesson Description</FieldLabel>
+                  <FieldLabel className="text-lg">
+                    Lesson Description
+                  </FieldLabel>
                   <InputGroup>
                     <InputGroupTextarea
                       {...field}
                       placeholder="Write description..."
                       rows={6}
-                      className="min-h-28 resize-none"
+                      className="min-h-28 w-full rounded-sm"
                       aria-invalid={fieldState.invalid}
                     />
                     <InputGroupAddon align="block-end">
                       <InputGroupText className="tabular-nums">
-                        {(field.value?.length ?? 0)}
+                        {field.value?.length ?? 0}
                       </InputGroupText>
                     </InputGroupAddon>
                   </InputGroup>
-                  {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
                 </Field>
               )}
             />
           </FieldGroup>
         </CardContent>
 
-        <CardFooter>
+        <CardFooter className={"border-none"}>
           <Field orientation="horizontal">
             <button
               type="button"
-              className={"rounded-full bg-accent p-3 text-lg"}
+              className={"rounded-sm bg-accent px-3 py-2 text-sm font-medium"}
               onClick={() => {
                 form.reset({ title: "", description: "", videoId: "" })
                 setUploadStatus("idle")
@@ -255,7 +265,7 @@ export function CreateLessonForm(props: {
             </button>
             <button
               type="submit"
-              className="rounded-full bg-primary p-3 text-lg disabled:opacity-50"
+              className="rounded-sm bg-[#ffbb00] px-3 py-2 text-sm font-medium text-black disabled:opacity-50"
               disabled={isLoading || uploadStatus === "uploading"}
             >
               Submit

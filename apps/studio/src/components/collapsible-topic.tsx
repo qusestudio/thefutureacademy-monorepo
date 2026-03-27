@@ -7,12 +7,13 @@ import {
   CollapsibleTrigger,
 } from "@workspace/ui/components/collapsible"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { ArrowDown, ArrowUp, Plus } from "@hugeicons/core-free-icons"
+import { ArrowDown, ArrowUp, PlayIcon, Plus } from "@hugeicons/core-free-icons"
 import Link from "next/link"
 import { Button } from "@workspace/ui/components/button"
 import { Topic } from "@/types/models"
 import { useGetLessonsQuery } from "@/state/api"
 import { Skeleton } from "@workspace/ui/components/skeleton"
+import { Separator } from "@workspace/ui/components/separator"
 
 interface Props {
   index: number
@@ -33,9 +34,9 @@ export function CollapsibleTopicItem({ index, topic , onCreateLesson}: Props) {
           onOpenChange={setOpen}
           className="w-full space-y-2 rounded-md border-none data-[state=open]:bg-muted"
         >
-          <CollapsibleTrigger className="flex w-full hover:bg-primary/10">
-            <div className="flex w-full items-center gap-x-2 border-b p-3">
-              <p className="flex h-10 w-10 items-center justify-center rounded-full border-none border-white bg-accent/20">
+          <CollapsibleTrigger className="flex w-full hover:bg-[#ffbb00]/10">
+            <div className="flex w-full items-center gap-x-4 border-b p-3">
+              <p className="flex h-8.5 w-10 items-center justify-center rounded-full bg-[#ffbb00]/60 text-sm font-medium dark:border-2 dark:border-[#ffbb00]/70 dark:bg-transparent">
                 {index + 1}
               </p>
               <span
@@ -51,12 +52,12 @@ export function CollapsibleTopicItem({ index, topic , onCreateLesson}: Props) {
               />
             </div>
           </CollapsibleTrigger>
-          <CollapsibleContent className="flex flex-col items-start gap-2 gap-y-5 border-none py-5 pr-2 pl-5 text-sm text-muted-foreground">
-            <div className="flex w-full justify-center">
+          <CollapsibleContent className="flex flex-col items-start gap-2 gap-y-3 border-b py-5 text-sm text-muted-foreground">
+            <div className="flex w-full flex-col items-center justify-center gap-y-2">
               <Button
                 size={"icon"}
-                variant={"outline"}
-                className="rounded"
+                variant={"ghost"}
+                className="rounded-sm border-2 border-foreground/50"
                 aria-label={`Add lesson to ${topic.title}`}
                 onClick={(e) => {
                   e.preventDefault()
@@ -64,8 +65,9 @@ export function CollapsibleTopicItem({ index, topic , onCreateLesson}: Props) {
                   onCreateLesson?.(topic)
                 }}
               >
-                <HugeiconsIcon icon={Plus} />
+                <HugeiconsIcon className="text-foreground" icon={Plus} />
               </Button>
+              <p className="text-xs">Add lesson</p>
             </div>
 
             {isLoading && <Skeleton className="h-5 w-full rounded" />}
@@ -79,15 +81,9 @@ export function CollapsibleTopicItem({ index, topic , onCreateLesson}: Props) {
               <Link
                 key={lesson.id}
                 href="#"
-                className="flex items-center gap-x-5 text-sm font-medium"
+                className="flex w-full items-center gap-x-3 pl-15 text-sm py-2 font-medium text-foreground hover:bg-[#ffbb00]/65 dark:hover:bg-transparent dark:hover:text-[#ffbb00]"
               >
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="rounded-full border"
-                >
-                  {idx + 1}
-                </Button>
+                <HugeiconsIcon strokeWidth={2} icon={PlayIcon} />
                 {lesson.title}
               </Link>
             ))}

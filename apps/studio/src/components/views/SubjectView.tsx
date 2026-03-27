@@ -41,7 +41,7 @@ const SubjectView = ({ subjectId }: { subjectId: string }) => {
 
   return (
     <main className="flex w-full flex-col gap-y-5 p-5 max-md:p-2">
-      <section className="flex flex-col gap-x-2 gap-y-5 rounded-sm bg-primary/10 p-3">
+      <section className="flex flex-col gap-x-2 gap-y-5 rounded-sm  p-3">
         <div className="flex flex-col text-4xl">
           {subjectLoading ? (
             <div className="space-y-2">
@@ -61,11 +61,11 @@ const SubjectView = ({ subjectId }: { subjectId: string }) => {
       <Separator />
       <ResizablePanelGroup
         orientation="horizontal"
-        className="min-h-50 w-full rounded-lg border"
+        className="min-h-50 w-full rounded-lg border border-foreground"
       >
         <ResizablePanel defaultSize="35%">
           <section className="flex flex-col">
-            <article className="flex w-full flex-col gap-x-2 bg-primary/10 p-3 font-semibold">
+            <article className="flex w-full flex-col gap-x-2 justify-center p-3 font-semibold">
               Topics
             </article>
             {topics?.length == 0 && (
@@ -94,7 +94,7 @@ const SubjectView = ({ subjectId }: { subjectId: string }) => {
             })}
           </section>
         </ResizablePanel>
-        <ResizableHandle withHandle />
+        <ResizableHandle className="bg-foreground" withHandle />
         <ResizablePanel defaultSize="65%">
           {rightPane.kind === "createLesson" ? (
             <CreateLessonForm

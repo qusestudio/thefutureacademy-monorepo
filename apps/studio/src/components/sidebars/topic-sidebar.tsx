@@ -50,11 +50,6 @@ const data = {
       url: "/help",
       icon: <HugeiconsIcon size={25} icon={HelpCircleIcon} strokeWidth={2} />,
     },
-    {
-      title: "Search",
-      url: "#",
-      icon: <HugeiconsIcon size={25} icon={SearchIcon} strokeWidth={2} />,
-    },
   ],
 }
 
@@ -66,8 +61,8 @@ export function ContentSidebar({ ...props }: TopicSidebarProps) {
   const { data: subjects, isLoading } = useGetAllSubjectsQuery()
 
   return (
-    <Sidebar collapsible="offcanvas" {...props} className={"bg-primary/10"}>
-      <SidebarHeader className="bg-primary/10">
+    <Sidebar collapsible="offcanvas" {...props} className={"bg-background"}>
+      <SidebarHeader className="bg-background">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
@@ -83,7 +78,7 @@ export function ContentSidebar({ ...props }: TopicSidebarProps) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className="bg-primary/10 font-chillax">
+      <SidebarContent className="bg-background font-chillax">
         <SidebarGroup className="">
           <SidebarGroupContent className="flex flex-col gap-2 font-chillax text-lg">
             <SidebarMenu>
@@ -94,7 +89,7 @@ export function ContentSidebar({ ...props }: TopicSidebarProps) {
                   }}
                   className="flex cursor-pointer items-center gap-x-4 text-sm"
                 >
-                  <div className="rounded-sm bg-primary p-1 text-white">
+                  <div className="rounded-sm border-2 border-[#FFBB00] p-1">
                     <HugeiconsIcon icon={ArrowLeftIcon} />
                   </div>{" "}
                   <p className="underline">Back to course list</p>
@@ -108,15 +103,15 @@ export function ContentSidebar({ ...props }: TopicSidebarProps) {
           <div className="flex items-center gap-x-2 text-sm font-semibold uppercase">
             <HugeiconsIcon icon={PieChart02Icon} /> Term 1
           </div>
-          <Separator />
+          <Separator className={"bg-background"} />
         </div>
-        <div className="flex flex-col gap-y-3 px-3">
+        <div className="flex flex-col gap-y-3 px-1">
           {subjects?.map((subject, i) => {
             const activeLink = pathname == `/content/${subject.id}`
             return (
               <Link
                 href={`/content/${subject.id}`}
-                className={` ${activeLink ? "rounded border-primary bg-primary p-2 text-white" : "hover:text-chart-3"} flex w-full items-center gap-x-2 p-2 text-sm font-medium tracking-wider transition-all duration-200`}
+                className={` ${activeLink ? "border-foreground bg-[#ffbb00]/60 p-2 dark:border-[#FFBB00] dark:bg-transparent dark:text-[#FFBB00]" : "border-foreground hover:bg-[#ffbb00]/60 dark:hover:bg-[#ffbb00]/20"} flex w-full items-center gap-x-2 rounded-lg border-2 p-3 text-sm font-medium tracking-wider transition-all duration-200`}
                 key={i}
               >
                 {subject.title}
@@ -124,11 +119,10 @@ export function ContentSidebar({ ...props }: TopicSidebarProps) {
             )
           })}
         </div>
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
-      <SidebarFooter className="bg-primary/10">
-        <NavUser user={data.user} />
-      </SidebarFooter>
+      {/*<SidebarFooter className="bg-primary/10">*/}
+      {/*  <NavUser user={data.user} />*/}
+      {/*</SidebarFooter>*/}
     </Sidebar>
   )
 }
