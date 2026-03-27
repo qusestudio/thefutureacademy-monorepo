@@ -35,7 +35,7 @@ export function CollapsibleTopicItem({ index, topic , onCreateLesson}: Props) {
           className="w-full space-y-2 rounded-md border-none data-[state=open]:bg-muted"
         >
           <CollapsibleTrigger className="flex w-full hover:bg-[#ffbb00]/10">
-            <div className="flex w-full items-center gap-x-4 border-b p-3">
+            <div className="flex w-full items-center gap-x-4 border-foreground border-b p-3">
               <p className="flex h-8.5 w-10 items-center justify-center rounded-full bg-[#ffbb00]/60 text-sm font-medium dark:border-2 dark:border-[#ffbb00]/70 dark:bg-transparent">
                 {index + 1}
               </p>

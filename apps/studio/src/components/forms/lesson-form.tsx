@@ -122,12 +122,12 @@ export function CreateLessonForm(props: {
   }
 
   return (
-    <Card className="w-full border-none bg-background sm:max-w-md">
+    <Card className="w-full bg-transparent sm:max-w-xl border-none">
       <CardHeader>
         <CardTitle className="text-sm">Create Lesson</CardTitle>
         <CardDescription className="font-medium">
           New lesson for:{" "}
-          <span className="text-foreground text-lg font-normal">{props.topicTitle}</span>
+          <span className="text-foreground text-lg">{props.topicTitle}</span>
         </CardDescription>
       </CardHeader>
 
@@ -201,7 +201,7 @@ export function CreateLessonForm(props: {
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel className="text-lg" htmlFor="lesson-form-title">
+                  <FieldLabel className="text-sm font-medium" htmlFor="lesson-form-title">
                     Lesson Title
                   </FieldLabel>
                   <Input
@@ -224,7 +224,7 @@ export function CreateLessonForm(props: {
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel className="text-lg">
+                  <FieldLabel className="text-sm font-medium">
                     Lesson Description
                   </FieldLabel>
                   <InputGroup>
@@ -232,7 +232,7 @@ export function CreateLessonForm(props: {
                       {...field}
                       placeholder="Write description..."
                       rows={6}
-                      className="min-h-28 w-full rounded-sm"
+                      className="min-h-28 w-full font-medium rounded-sm"
                       aria-invalid={fieldState.invalid}
                     />
                     <InputGroupAddon align="block-end">

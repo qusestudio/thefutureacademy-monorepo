@@ -41,7 +41,7 @@ const SubjectView = ({ subjectId }: { subjectId: string }) => {
 
   return (
     <main className="flex w-full flex-col gap-y-5 p-5 max-md:p-2">
-      <section className="flex flex-col gap-x-2 gap-y-5 rounded-sm  p-3">
+      <section className="flex flex-col gap-x-2 gap-y-5 rounded-sm  p-1">
         <div className="flex flex-col text-4xl">
           {subjectLoading ? (
             <div className="space-y-2">
@@ -51,7 +51,7 @@ const SubjectView = ({ subjectId }: { subjectId: string }) => {
           ) : (
             <p className="flex flex-col font-medium">
               {subjectData?.title}
-              <span className="text-lg font-medium text-muted-foreground uppercase">
+              <span className="text-sm font-medium text-muted-foreground uppercase">
                 {subjectData?.id}
               </span>
             </p>
@@ -65,7 +65,7 @@ const SubjectView = ({ subjectId }: { subjectId: string }) => {
       >
         <ResizablePanel defaultSize="35%">
           <section className="flex flex-col">
-            <article className="flex w-full flex-col gap-x-2 justify-center p-3 font-semibold">
+            <article className="flex w-full gap-x-1 p-3 font-medium text-sm items-center">
               Topics
             </article>
             {topics?.length == 0 && (
@@ -77,7 +77,7 @@ const SubjectView = ({ subjectId }: { subjectId: string }) => {
               Array.from({ length: 5 }).map((_, i) => (
                 <Skeleton
                   key={i}
-                  className={` ${i % 2 === 0 ? "bg-primary/10" : "bg-background"} h-10 w-full`}
+                  className={` ${i % 2 === 0 ? "bg-[#ffbb00]/10" : "bg-background"} h-10 w-full`}
                 />
               ))}
             {topics?.map((item, i) => {
@@ -95,7 +95,7 @@ const SubjectView = ({ subjectId }: { subjectId: string }) => {
           </section>
         </ResizablePanel>
         <ResizableHandle className="bg-foreground" withHandle />
-        <ResizablePanel defaultSize="65%">
+        <ResizablePanel defaultSize="65%" className="w-full">
           {rightPane.kind === "createLesson" ? (
             <CreateLessonForm
               topicId={rightPane.topic.id}
