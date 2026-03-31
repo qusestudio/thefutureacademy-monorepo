@@ -6,42 +6,39 @@ import {
   DrawerTrigger,
 } from "@workspace/ui/components/drawer"
 import React from "react"
-import { SubjectForm } from "@/components/forms/subject-form"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Plus } from "@hugeicons/core-free-icons"
+import { TopicForm } from "@/components/forms/topic-form"
 
-export function CreateContentDrawer() {
+export function CreateTopicFormDrawer({subjectId}: {subjectId: string}) {
   const initialValues = {
     id: "",
+    subjectId: subjectId,
     title: "",
-    image: "",
-    term: "1",
-    grade: "12",
-    description: [{ value: "" }],
+    description: "",
   }
 
   return (
     <Drawer direction="right">
       <DrawerTrigger
         className={
-          "flex cursor-pointer gap-x-2 self-start rounded-full border-2 border-foreground p-2"
+          "flex cursor-pointer items-center gap-x-1 self-start rounded-full text-sm font-medium"
         }
         asChild
       >
-        <div>
-          <HugeiconsIcon icon={Plus} /> Create Course
-        </div>
+        <HugeiconsIcon size={20} icon={Plus} />
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
-          <DrawerTitle>Subject Form</DrawerTitle>
+          <DrawerTitle>Topic Form</DrawerTitle>
         </DrawerHeader>
         {/** Edit Subject Form */}
         <div className="no-scrollbar overflow-y-auto">
-          <SubjectForm
+          <TopicForm
             initialValues={initialValues}
-            label={"Create Course"}
-            description={"Add subject details here."}
+            label={"Add topic for subject."}
+            description={"Add topic details here."}
+            subjectId={subjectId}
           />
         </div>
       </DrawerContent>

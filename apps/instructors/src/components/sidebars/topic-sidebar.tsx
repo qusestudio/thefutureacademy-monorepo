@@ -2,13 +2,9 @@
 
 import * as React from "react"
 
-import { NavMain } from "@/components/nav-main"
-import { NavSecondary } from "@/components/nav-secondary"
-import { NavUser } from "@/components/nav-user"
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarHeader,
@@ -20,18 +16,15 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import {
   Settings05Icon,
   HelpCircleIcon,
-  SearchIcon,
-  Book02Icon,
-  DashboardSquare02Icon,
-  Home01Icon,
   ArrowLeftIcon,
   PieChart02Icon,
   ArrowDownIcon,
 } from "@hugeicons/core-free-icons"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { useGetAllSubjectsQuery, useGetTopicsBySubjectQuery } from "@/state/api"
-import { IconlyGraph } from "@workspace/ui/components/iconly-icons"
+import {
+  useGetTeachingAllocationsQuery,
+} from "@/state/api"
 import { Separator } from "@workspace/ui/components/separator"
 
 const data = {
@@ -59,7 +52,7 @@ type TopicSidebarProps = React.ComponentProps<typeof Sidebar>
 export function ContentSidebar({ ...props }: TopicSidebarProps) {
   const router = useRouter()
   const pathname = usePathname()
-  const { data: subjects, isLoading } = useGetAllSubjectsQuery()
+  const { data: subjects, isLoading } = useGetTeachingAllocationsQuery()
 
   return (
     <Sidebar collapsible="offcanvas" {...props} className={"bg-background"}>
@@ -71,9 +64,9 @@ export function ContentSidebar({ ...props }: TopicSidebarProps) {
               render={<a href="/" />}
             >
               <span className="font-chillax text-xl leading-6 font-bold tracking-wider uppercase">
-                the
+                the future
                 <br />
-                studio
+                INSTRUCTORS
               </span>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -86,14 +79,14 @@ export function ContentSidebar({ ...props }: TopicSidebarProps) {
               <SidebarMenuItem className="flex items-center gap-2 pb-5">
                 <button
                   onClick={() => {
-                    router.push("/dashboard/course-list")
+                    router.push("/dashboard/my-subjects")
                   }}
                   className="flex cursor-pointer items-center gap-x-4 text-sm"
                 >
                   <div className="rounded-sm border-2 border-foreground bg-[#ffbb00]/60 p-1 dark:border-[#FFBB00] dark:bg-transparent">
                     <HugeiconsIcon icon={ArrowLeftIcon} />
                   </div>{" "}
-                  <p className="underline">Back to course list</p>
+                  <p className="underline">Back to my subjects</p>
                 </button>
               </SidebarMenuItem>
             </SidebarMenu>
@@ -113,14 +106,14 @@ export function ContentSidebar({ ...props }: TopicSidebarProps) {
         <Separator />
         <div className="flex flex-col pt-5 gap-y-2 px-1">
           {subjects?.map((subject, i) => {
-            const activeLink = pathname == `/content/${subject.id}`
+            const activeLink = pathname == `/content/${subject.subjectId}`
             return (
               <Link
-                href={`/content/${subject.id}`}
+                href={`/content/${subject.subjectId}`}
                 className={` ${activeLink ? "border-foreground bg-[#ffbb00]/60 p-2 dark:border-[#FFBB00] dark:bg-transparent dark:text-[#FFBB00]" : "border-foreground hover:bg-[#ffbb00]/60 dark:hover:bg-[#ffbb00]/20"} flex w-full items-center gap-x-2 rounded-lg border-2 p-3 text-sm font-medium tracking-wider transition-all duration-200`}
                 key={i}
               >
-                {subject.title}
+                {subject.subjectTitle}
               </Link>
             )
           })}

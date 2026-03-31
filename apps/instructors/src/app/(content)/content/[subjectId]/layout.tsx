@@ -17,7 +17,7 @@ const ContentLayout = async ({children}: {children: React.ReactNode}) => {
       <SidebarInset>
         <SiteHeader />
         <div className="flex flex-1 flex-col">
-          <div className="@container/main flex flex-1 flex-col gap-2 p-5 font-chillax">
+          <div className="@container/main flex flex-1 flex-col gap-2 font-chillax">
             {children}
           </div>
         </div>

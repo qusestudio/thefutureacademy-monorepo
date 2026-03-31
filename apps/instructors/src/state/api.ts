@@ -2,16 +2,14 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth"
 
 import {
-  Admin,
-  Allocation,
+  Instructor,
   Lesson,
   Subject,
+  TeachingAllocation,
   Topic,
 } from "@/types/models"
 import { toast } from "sonner"
 import { createNewUserInDatabase } from "@/lib/utils"
-import { TeachingAllocation } from "@thefutureacademy/studio/src/types/models"
-import { InstructorAllocation } from "@thefutureacademy/students/src/types/models"
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
@@ -28,6 +26,7 @@ export const api = createApi({
   }),
   reducerPath: "api",
   tagTypes: [
+    "Instructors",
     "Allocations",
     "Subjects",
     "SubjectDetails",
@@ -35,6 +34,7 @@ export const api = createApi({
     "TopicDetails",
     "Lessons",
     "LessonDetails",
+    "InstructorSubjects"
   ],
   endpoints: (build) => ({
     // Authentication
@@ -47,7 +47,7 @@ export const api = createApi({
           const userRole = idToken?.payload["custom:role"] as string
           const email = idToken?.payload["email"] as string
 
-          const endpoint = `/admins/${user.userId}`
+          const endpoint = `/instructors/${user.userId}`
 
           // Check if the user exists in our server
           console.log("Checking If user exists in our server")
@@ -73,19 +73,18 @@ export const api = createApi({
           return {
             data: {
               cognitoInfo: { ...user },
-              userInfo: userDetailsResponse.data as Admin, // discrepancy
+              userInfo: userDetailsResponse.data as Instructor, // discrepancy
               userRole,
               email,
             },
           }
         } catch (error: any) {
           return {
-            error: error.message || "Could not fetch admin data",
+            error: error.message || "Could not fetch instructor data",
           }
         }
       },
     }),
-
 
     // Analytics
     getNoOfStudents: build.query<number, void>({
@@ -123,52 +122,14 @@ export const api = createApi({
     }),
 
     // All instructors
-    // getInstructor: build.query<InstructorUser, string>({
-    //   query: (instructorId) => {
-    //     return { url: `/instructors/${instructorId}` }
-    //   },
-    //   providesTags: ["Instructors"],
-    //   async onQueryStarted(_, { queryFulfilled }) {
-    //     toast.promise(queryFulfilled, {
-    //       error: "Could not fetch instructor",
-    //     })
-    //   },
-    // }),
-    // getAllInstructors: build.query<InstructorUser[], void>({
-    //   query: () => {
-    //     return { url: "/instructors" }
-    //   },
-    //   providesTags: ["Instructors"],
-    //   async onQueryStarted(_, { queryFulfilled }) {
-    //     toast.promise(queryFulfilled, {
-    //       error: "Could not fetch instructors",
-    //     })
-    //   },
-    // }),
-
-    // Allocations endpoints
-    getInstructorAllocations: build.query<InstructorAllocation[], string>({
+    getInstructor: build.query<Instructor, string>({
       query: (instructorId) => {
-        return { url: `/instructors/${instructorId}/allocations` }
+        return { url: `/instructors/${instructorId}` }
       },
-      providesTags: ["Allocations"],
-
+      providesTags: ["Instructors"],
       async onQueryStarted(_, { queryFulfilled }) {
         toast.promise(queryFulfilled, {
-          error: "Failed to fetch teaching allocations.",
-        })
-      },
-    }),
-
-    // Subjects endpoints
-    getAllSubjects: build.query<Subject[], void>({
-      query: () => {
-        return { url: `/subjects` }
-      },
-      providesTags: ["Subjects"],
-      async onQueryStarted(_, { queryFulfilled }) {
-        toast.promise(queryFulfilled, {
-          error: "Failed to fetch all subjects.",
+          error: "Could not fetch instructor",
         })
       },
     }),
@@ -177,52 +138,7 @@ export const api = createApi({
       providesTags: ["SubjectDetails"],
       async onQueryStarted(_, { queryFulfilled }) {
         toast.promise(queryFulfilled, {
-          loading: "Loading subjects...",
           error: "Failed to fetch subject.",
-        })
-      },
-    }),
-    createSubject: build.mutation<Subject, Omit<Subject, "id">>({
-      query: (subject) => {
-        return {
-          url: "/subjects",
-          method: "POST",
-          body: subject,
-        }
-      },
-
-      invalidatesTags: (result, error) => [
-        { type: "Subjects" },
-        { type: "Subjects", id: "LIST" },
-      ],
-
-      async onQueryStarted(_, { queryFulfilled }) {
-        toast.promise(queryFulfilled, {
-          loading: "Creating subject...",
-          success: "Subject created successfully!",
-          error: `Failed to create subject.`,
-        })
-      },
-    }),
-    deleteSubjects: build.mutation<
-      { rows_affected: number },
-      { ids: string[] }
-    >({
-      query: ({ ids }) => {
-        return {
-          url: "/subjects",
-          method: "DELETE",
-          body: ids,
-        }
-      },
-      invalidatesTags: ["Subjects"],
-      async onQueryStarted(_, { queryFulfilled }) {
-        const { data } = await queryFulfilled
-
-        toast.promise(queryFulfilled, {
-          loading: "Deleting subjects...",
-          success: `${data.rows_affected} row(s) affected!`,
-          error: "Failed to delete subjects.",
         })
       },
     }),
@@ -235,12 +151,12 @@ export const api = createApi({
       providesTags: ["Topics"],
       async onQueryStarted(_, { queryFulfilled }) {
         toast.promise(queryFulfilled, {
-          error: "Failed to fetch subjects.",
+          error: "Failed to fetch topics.",
         })
       },
     }),
-    createTopic: build.mutation<Topic, { topic: Topic }>({
-      query: ({ topic }) => {
+    createTopic: build.mutation<Topic, Omit<Topic, "id">>({
+      query: (topic) => {
         return {
           url: "/topics",
           method: "POST",
@@ -267,25 +183,6 @@ export const api = createApi({
       async onQueryStarted(_, { queryFulfilled }) {
         toast.promise(queryFulfilled, {
           error: "Failed to load topics details.",
-        })
-      },
-    }),
-    deleteTopics: build.mutation<{ rows_affected: number }, { ids: string[] }>({
-      query: ({ ids }) => {
-        return {
-          url: "/topics",
-          method: "DELETE",
-          body: ids,
-        }
-      },
-      invalidatesTags: ["Topics"],
-      async onQueryStarted(_, { queryFulfilled }) {
-        const { data } = await queryFulfilled
-
-        toast.promise(queryFulfilled, {
-          loading: "Deleting topics...",
-          success: `${data.rows_affected} row(s) affected!`,
-          error: "Failed to delete topics.",
         })
       },
     }),
@@ -318,12 +215,10 @@ export const api = createApi({
         method: "POST",
         body: lessonData,
       }),
-
       invalidatesTags: (result, error, { topicId }) => [
         { type: "Lessons", id: topicId },
         { type: "Lessons", id: "LIST" },
       ],
-
       async onQueryStarted(_, { queryFulfilled }) {
         toast.promise(queryFulfilled, {
           loading: "Creating Lesson...",
@@ -331,6 +226,41 @@ export const api = createApi({
           error: "Failed to create lesson.",
         })
       },
+    }),
+
+    // Classroom endpoints
+    getTeachingAllocations: build.query<TeachingAllocation[], void>({
+      queryFn: async (_, _queryApi, _extraOptions, fetchWithBQ) => {
+        try {
+          const user = await getCurrentUser();
+          if (!user) {
+            return {
+              error: { status: 401, data: "Not authenticated user found"} };
+          }
+
+          const instructorId = user.userId // or whatever field contains the student ID
+
+          const result = await fetchWithBQ(`/instructors/${instructorId}/allocations`)
+
+          if (result.error) {
+            return { error: result.error }
+          }
+
+          return { data: result.data as TeachingAllocation[] }
+
+        } catch (error: any) {
+          return {
+            error: error.message || "Could not fetch subjects",
+          }
+        }
+      },
+      providesTags: ["InstructorSubjects"],
+      async onQueryStarted(_, {queryFulfilled}) {
+        toast.promise(queryFulfilled, {
+          loading: "We are fetching your subjects.",
+          error: "We could not fetch your allocated subjects."
+        })
+      }
     }),
   }),
 })
@@ -340,7 +270,7 @@ export const s3api = createApi({
     baseUrl: process.env.NEXT_PUBLIC_HOST_URL,
     prepareHeaders: async (headers) => {
       headers.set("Content-Type", `application/json`)
-      headers.set("Origin", "https://instructors.thefutureacademy.co.za")
+      headers.set("Origin", "https://studio.thefutureacademy.co.za")
       console.log(headers.entries())
       return headers
     },
@@ -411,17 +341,15 @@ export const {
   useGetNoOfStudentsQuery,
   useGetNoOfInstructorsQuery,
   useGetAuthUserQuery,
+  useGetInstructorQuery,
   useGetSubjectQuery,
   useGetTopicsBySubjectQuery,
-  useDeleteSubjectsMutation,
   useCreateTopicMutation,
   useGetTopicQuery,
-  useDeleteTopicsMutation,
   useGetLessonsQuery,
   useGetLessonQuery,
-  useCreateSubjectMutation,
   useCreateLessonMutation,
-  useGetInstructorAllocationsQuery
+  useGetTeachingAllocationsQuery
 } = api
 
 export const { useGetSignedUrlMutation, useUploadToS3Mutation } = s3api

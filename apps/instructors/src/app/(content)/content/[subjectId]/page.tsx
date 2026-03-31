@@ -1,6 +1,5 @@
 import React from "react"
 import SubjectView from "@/components/views/SubjectView"
-import { ContentResizableView } from "@/components/views/ContentResizableView"
 
 interface Props {
   params: Promise<{ subjectId: string }>

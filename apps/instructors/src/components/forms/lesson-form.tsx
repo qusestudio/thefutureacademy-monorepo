@@ -38,7 +38,7 @@ export function CreateLessonForm(props: {
   const [uploadToS3] = useUploadToS3Mutation()
   const [createLesson, { isLoading }] = useCreateLessonMutation()
 
-  // Keep the shared lessonSchema unchanged but let this form carry `videoId` for UI/watch purposes.
+
   const lessonFormSchema = lessonSchema.extend({ videoId: z.string().optional() })
   type LessonFormFields = z.infer<typeof lessonFormSchema>
 
