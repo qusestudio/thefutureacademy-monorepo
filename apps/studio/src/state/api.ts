@@ -4,8 +4,10 @@ import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth"
 import {
   Admin,
   Allocation,
+  Instructor,
   Lesson,
   Subject,
+  TeachingAllocation,
   Topic,
 } from "@/types/models"
 import { toast } from "sonner"
@@ -26,6 +28,7 @@ export const api = createApi({
   }),
   reducerPath: "api",
   tagTypes: [
+    "Instructors",
     "Allocations",
     "Subjects",
     "SubjectDetails",
@@ -84,7 +87,6 @@ export const api = createApi({
       },
     }),
 
-
     // Analytics
     getNoOfStudents: build.query<number, void>({
       query: () => {
@@ -121,70 +123,93 @@ export const api = createApi({
     }),
 
     // All instructors
-    // getInstructor: build.query<InstructorUser, string>({
-    //   query: (instructorId) => {
-    //     return { url: `/instructors/${instructorId}` }
-    //   },
-    //   providesTags: ["Instructors"],
-    //   async onQueryStarted(_, { queryFulfilled }) {
-    //     toast.promise(queryFulfilled, {
-    //       error: "Could not fetch instructor",
-    //     })
-    //   },
-    // }),
-    // getAllInstructors: build.query<InstructorUser[], void>({
-    //   query: () => {
-    //     return { url: "/instructors" }
-    //   },
-    //   providesTags: ["Instructors"],
-    //   async onQueryStarted(_, { queryFulfilled }) {
-    //     toast.promise(queryFulfilled, {
-    //       error: "Could not fetch instructors",
-    //     })
-    //   },
-    // }),
+    getInstructor: build.query<Instructor, string>({
+      query: (instructorId) => {
+        return { url: `/instructors/${instructorId}` }
+      },
+      providesTags: ["Instructors"],
+      async onQueryStarted(_, { queryFulfilled }) {
+        toast.promise(queryFulfilled, {
+          error: "Could not fetch instructor",
+        })
+      },
+    }),
+    getAllInstructors: build.query<Instructor[], void>({
+      query: () => {
+        return { url: "/instructors" }
+      },
+      providesTags: ["Instructors"],
+      async onQueryStarted(_, { queryFulfilled }) {
+        toast.promise(queryFulfilled, {
+          error: "Could not fetch instructors",
+        })
+      },
+    }),
 
     // Allocations endpoints
-    // getTeachingAllocations: build.query<TeachingAllocation[], string>({
-    //   query: (instructorId) => {
-    //     return { url: `/instructors/${instructorId}/allocations` }
-    //   },
-    //   providesTags: ["Allocations"],
-    //
-    //   async onQueryStarted(_, { queryFulfilled }) {
-    //     await withToast(queryFulfilled, {
-    //       error: "Failed to fetch teaching allocations.",
-    //     })
-    //   },
-    // }),
-    // setTeachingAllocation: build.mutation<Allocation, Omit<Allocation, "id">>({
-    //   query: (allocation) => ({
-    //     url: "/allocations",
-    //     method: "POST",
-    //     body: allocation,
-    //   }),
-    //
-    //   invalidatesTags: ["Allocations"],
-    //
-    //   async onQueryStarted(_, { queryFulfilled }) {
-    //     toast.promise(queryFulfilled, {
-    //       loading: "Allocating...",
-    //       success: "Allocation successful!",
-    //       error: "Setting allocation failed.",
-    //     })
-    //   },
-    // }),
-    // getAllocations: build.query<Allocation[], void>({
-    //   query: () => {
-    //     return { url: "/allocations" }
-    //   },
-    //   providesTags: ["Allocations"],
-    //   async onQueryStarted(_, { queryFulfilled }) {
-    //     toast.promise(queryFulfilled, {
-    //       error: "Fetching allocations failed.",
-    //     })
-    //   },
-    // }),
+    getTeachingAllocations: build.query<TeachingAllocation[], string>({
+      query: (instructorId) => {
+        return { url: `/instructors/${instructorId}/allocations` }
+      },
+      providesTags: ["Allocations"],
+
+      async onQueryStarted(_, { queryFulfilled }) {
+        toast.promise(queryFulfilled, {
+          loading: "Loading teaching allocations.",
+          error: "Failed to fetch teaching allocations.",
+        })
+      },
+    }),
+    setTeachingAllocation: build.mutation<Allocation, Omit<Allocation, "id">>({
+      query: (allocation) => ({
+        url: "/allocations",
+        method: "POST",
+        body: allocation,
+      }),
+
+      invalidatesTags: ["Allocations"],
+
+      async onQueryStarted(_, { queryFulfilled }) {
+        toast.promise(queryFulfilled, {
+          loading: "Allocating...",
+          success: "Allocation successful!",
+          error: "Setting allocation failed.",
+        })
+      },
+    }),
+    getAllocations: build.query<Allocation[], void>({
+      query: () => {
+        return { url: "/allocations" }
+      },
+      providesTags: ["Allocations"],
+      async onQueryStarted(_, { queryFulfilled }) {
+        toast.promise(queryFulfilled, {
+          error: "Fetching allocations failed.",
+        })
+      },
+    }),
+    deleteAllocations: build.mutation<
+      { rows_affected: number },
+      { ids: string[] }
+    >({
+      query: ({ ids }) => {
+        return {
+          url: "/allocations",
+          method: "DELETE",
+          body: ids,
+        }
+      },
+      invalidatesTags: ["Allocations"],
+      async onQueryStarted(_, { queryFulfilled }) {
+        const { data } = await queryFulfilled
+
+        toast.promise(queryFulfilled, {
+          loading: "Deleting allocation(s)...",
+          success: `${data.rows_affected} row(s) affected!`,
+          error: "Failed to delete allocation(s).",
+        })
+      },
+    }),
 
     // Subjects endpoints
     getAllSubjects: build.query<Subject[], void>({
@@ -260,12 +285,12 @@ export const api = createApi({
       providesTags: ["Topics"],
       async onQueryStarted(_, { queryFulfilled }) {
         toast.promise(queryFulfilled, {
-          error: "Failed to fetch subjects.",
+          error: "Failed to fetch topics.",
         })
       },
     }),
-    createTopic: build.mutation<Topic, { topic: Topic }>({
-      query: ({ topic }) => {
+    createTopic: build.mutation<Topic, Omit<Topic, "id">>({
+      query: (topic) => {
         return {
           url: "/topics",
           method: "POST",
@@ -436,6 +461,8 @@ export const {
   useGetNoOfStudentsQuery,
   useGetNoOfInstructorsQuery,
   useGetAuthUserQuery,
+  useGetInstructorQuery,
+  useGetAllInstructorsQuery,
   useGetSubjectQuery,
   useGetAllSubjectsQuery,
   useGetTopicsBySubjectQuery,
@@ -447,6 +474,9 @@ export const {
   useGetLessonQuery,
   useCreateSubjectMutation,
   useCreateLessonMutation,
+  useGetAllocationsQuery,
+  useSetTeachingAllocationMutation,
+  useDeleteAllocationsMutation,
 } = api
 
 export const { useGetSignedUrlMutation, useUploadToS3Mutation } = s3api

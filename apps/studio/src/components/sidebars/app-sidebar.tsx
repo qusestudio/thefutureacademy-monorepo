@@ -16,12 +16,14 @@ import {
 } from "@workspace/ui/components/sidebar"
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
-
   Settings05Icon,
   HelpCircleIcon,
   SearchIcon,
   Book02Icon,
   DashboardSquare02Icon,
+  Table01Icon,
+  DeskIcon,
+  Clock03Icon,
 } from "@hugeicons/core-free-icons"
 
 const data = {
@@ -35,13 +37,18 @@ const data = {
       title: "Dashboard",
       url: "/dashboard",
       icon: (
-        <HugeiconsIcon size={25} icon={DashboardSquare02Icon} strokeWidth={2} />
+        <HugeiconsIcon size={20} icon={DashboardSquare02Icon} strokeWidth={2} />
       ),
     },
     {
       title: "Course List",
       url: "/dashboard/course-list",
-      icon: <HugeiconsIcon size={25} icon={Book02Icon} strokeWidth={2} />,
+      icon: <HugeiconsIcon size={20} icon={Book02Icon} strokeWidth={2} />,
+    },
+    {
+      title: "Allocations",
+      url: "/dashboard/allocations",
+      icon: <HugeiconsIcon size={20} icon={Clock03Icon} strokeWidth={2} />,
     },
   ],
   navSecondary: [
@@ -65,28 +72,26 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="offcanvas" {...props}>
-      <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
+    <Sidebar className={"bg-background"} collapsible="offcanvas" {...props}>
+      <SidebarHeader className="bg-background hover:bg-background">
+        <SidebarMenu className="bg-background hover:bg-background">
+          <SidebarMenuItem className="hover:bg-background">
             <SidebarMenuButton
-              className="data-[slot=sidebar-menu-button]:p-1.5! mb-10 bg-transparent"
+              className="mb-10 bg-background hover:bg-background data-[slot=sidebar-menu-button]:p-1.5!"
               render={<a href="/" />}
             >
-              <span className="font-chillax text-xl tracking-wide uppercase">
-                the future studio
+              <span className="font-chillax text-xl leading-6 font-bold tracking-wider uppercase hover:bg-none">
+                the
+                <br />
+                studio
               </span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className='font-chillax'>
+      <SidebarContent className="bg-background font-chillax">
         <NavMain items={data.navMain} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
     </Sidebar>
   )
 }

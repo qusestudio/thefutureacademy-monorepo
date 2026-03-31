@@ -90,7 +90,7 @@ export function ContentSidebar({ ...props }: TopicSidebarProps) {
                   }}
                   className="flex cursor-pointer items-center gap-x-4 text-sm"
                 >
-                  <div className="rounded-sm border-2 bg-[#ffbb00]/60 dark:bg-transparent border-foreground dark:border-[#FFBB00] p-1">
+                  <div className="rounded-sm border-2 border-foreground bg-[#ffbb00]/60 p-1 dark:border-[#FFBB00] dark:bg-transparent">
                     <HugeiconsIcon icon={ArrowLeftIcon} />
                   </div>{" "}
                   <p className="underline">Back to course list</p>
@@ -100,13 +100,18 @@ export function ContentSidebar({ ...props }: TopicSidebarProps) {
             <SidebarMenu className=""></SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-        <div className="flex flex-col gap-y-3 px-1 py-2">
-          <div className="flex items-center bg-[#ffbb00]/70 text-black self-start p-1 px-3 rounded-sm gap-x-2 text-xs font-semibold uppercase">
-            <HugeiconsIcon icon={PieChart02Icon} /> Term 1 <HugeiconsIcon size={20} strokeWidth={2} icon={ArrowDownIcon} />
+        <div className="flex gap-x-2 w-full text-foreground/90 justify-center gap-y-3 px-1 py-4 ">
+          <div className="flex cursor-pointer items-center bg-accent gap-x-2 self-start rounded-full  p-1 px-2 text-xs tracking-wider">
+            <HugeiconsIcon size={15} icon={PieChart02Icon} /> Term 1{" "}
+            <HugeiconsIcon size={15} strokeWidth={2} icon={ArrowDownIcon} />
           </div>
-          <Separator className={"bg-background"} />
+          <div className="flex cursor-pointer items-center bg-accent gap-x-2 self-start rounded-full p-1 px-2 text-xs tracking-wider">
+            <HugeiconsIcon size={15} icon={PieChart02Icon} /> Grade 12{" "}
+            <HugeiconsIcon size={15} strokeWidth={2} icon={ArrowDownIcon} />
+          </div>
         </div>
-        <div className="flex flex-col gap-y-3 px-1">
+        <Separator />
+        <div className="flex flex-col pt-5 gap-y-2 px-1">
           {subjects?.map((subject, i) => {
             const activeLink = pathname == `/content/${subject.id}`
             return (

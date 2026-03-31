@@ -30,23 +30,23 @@ export function NavMain({
           <SidebarMenuItem className="flex items-center gap-2 pb-5">
             <Link
               href={"/"}
-              className="flex gap-x-2 rounded-full border-foreground border-2 p-2 group-data-[collapsible=icon]:opacity-0"
+              className="flex gap-x-2 rounded-full border-2 dark:bg-transparent border-foreground p-2 bg-[#ffbb00]/60 group-data-[collapsible=icon]:opacity-0 dark:border-[#ffbb00] dark:text-[#ffbb00]"
             >
-              <HugeiconsIcon  icon={Home01Icon} strokeWidth={2} /> Home
+              <HugeiconsIcon icon={Home01Icon} strokeWidth={2} /> Home
               <span className="sr-only">Home</span>
             </Link>
           </SidebarMenuItem>
         </SidebarMenu>
-        <SidebarMenu className="">
+        <SidebarMenu className="gap-y-2">
           {items.map((item) => {
             const isActive = pathname === item.url
             return (
               <SidebarMenuItem
-                className={`${isActive ? "border" : ""} border-foreground`}
+                className={`${isActive ? "border-2 border-foreground dark:bg-transparent bg-[#ffbb00]/60 dark:border-[#ffbb00] dark:text-[#ffbb00]" : "border-transparent"} text-sm items-center flex rounded-lg border-2`}
                 key={item.title}
               >
                 <button
-                  className="cursor-pointer flex gap-x-2 p-4"
+                  className="flex cursor-pointer items-center text-lg gap-x-2 py-2 px-4"
                   onClick={() => router.push(item.url)}
                 >
                   {item.icon}

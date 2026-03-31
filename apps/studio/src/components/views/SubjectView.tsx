@@ -10,6 +10,7 @@ import {
   ArrowDownIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
+  Plus,
 } from "@hugeicons/core-free-icons"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
@@ -21,12 +22,15 @@ import {
 import { CollapsibleTopicItem } from "@/components/collapsible-topic"
 import { Topic } from "@/types/models"
 import { CreateLessonForm } from "@/components/forms/lesson-form"
+import { CreateTopicFormDrawer } from "@/components/drawers/create-content-drawer"
 
 
 
 const SubjectView = ({ subjectId }: { subjectId: string }) => {
 
-  type RightPane = { kind: "empty" } | { kind: "createLesson"; topic: Topic }
+  type RightPane =
+    | { kind: "empty" }
+    | { kind: "createLesson"; topic: Topic }
   const [rightPane, setRightPane] = React.useState<RightPane>({kind: "empty"})
 
   const router = useRouter();
@@ -65,8 +69,11 @@ const SubjectView = ({ subjectId }: { subjectId: string }) => {
       >
         <ResizablePanel defaultSize="35%">
           <section className="flex flex-col">
-            <article className="flex w-full gap-x-1 p-3 font-medium text-sm items-center">
-              Topics
+            <article className="flex w-full justify-between gap-x-1 p-3 font-medium text-sm items-center">
+              <p>
+                Topics
+              </p>
+              <CreateTopicFormDrawer subjectId={subjectId} />
             </article>
             {topics?.length == 0 && (
               <div className="flex flex-col items-center p-3 tracking-wide text-muted-foreground">
@@ -96,6 +103,7 @@ const SubjectView = ({ subjectId }: { subjectId: string }) => {
         </ResizablePanel>
         <ResizableHandle className="bg-foreground" withHandle />
         <ResizablePanel defaultSize="65%" className="w-full">
+
           {rightPane.kind === "createLesson" ? (
             <CreateLessonForm
               topicId={rightPane.topic.id}

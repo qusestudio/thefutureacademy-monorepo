@@ -11,29 +11,6 @@ import { useRouter } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
 
-const availableSubjects = [
-  {
-    title: "Mathematics",
-    image: "/maths_12.png",
-  },
-  {
-    title: "Physics",
-    image: "/physics_12.png",
-  },
-  {
-    title: "Chemistry",
-    image: "/chemistry_12.png",
-  },
-  // {
-  //   title: "Life Sciences",
-  //   image: "/lifesciences_12.png",
-  // },
-  // {
-  //   title: "Accounting",
-  //   image: "/accounting_12.png",
-  // },
-]
-
 const HomePage = () => {
   const router = useRouter()
   // logged in people come in here.... paid or not!

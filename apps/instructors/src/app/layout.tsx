@@ -4,6 +4,7 @@ import "@workspace/ui/styles/globals.css"
 import Providers from "@/app/providers"
 import React from "react"
 import { chillax } from "@/lib/fonts"
+import InstructorGuard from "@/app/(auth)/InstructorGuard"
 
 
 const raleway = Raleway({ subsets: ["latin"], variable: "--font-sans" });
@@ -31,9 +32,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${chillax.variable}  flex w-full flex-col items-center ${geistMono.variable} ${raleway.variable} antialiased`}
+        className={`${geistSans.variable} ${chillax.variable}  flex w-full flex-col items-center ${geistMono.variable} antialiased`}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <InstructorGuard>
+            {children}
+          </InstructorGuard>
+        </Providers>
       </body>
     </html>
   )

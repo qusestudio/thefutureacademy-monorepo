@@ -9,6 +9,24 @@ interface Admin {
   phoneNumber: string
 }
 
+interface Instructor {
+  id: number
+  cognitoId: string
+  name: string
+  email: string
+  phoneNumber: string
+}
+
+interface Student {
+  id: number
+  cognitoId: string
+  name: string
+  email: string
+  phoneNumber: string
+}
+/**
+ * CONTENT RELATED DATA
+ * */
 interface Subject {
   id: string
   title: string
@@ -33,6 +51,16 @@ interface Lesson {
   description: string
 }
 
+interface TeachingAllocation {
+  instructorId: string
+  instructorName: string
+  subjectId: string
+  subjectTitle: string
+  subjectImage: string
+  grade: number
+  term: number
+}
+
 interface Allocation {
   id: string
   instructorId: string
@@ -40,4 +68,4 @@ interface Allocation {
   createdAt?: Date
 }
 
-export { Admin, Allocation, Subject, Topic, Lesson }
+export { Admin, Instructor, Student, Allocation, TeachingAllocation, Subject, Topic, Lesson }
