@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes"
+import { createContext, useContext } from "react"
 
 function ThemeProvider({
   children,
@@ -47,7 +48,7 @@ function ThemeHotkey() {
         return
       }
 
-      if ( event && event.key && event.key.toLowerCase() !== "d") {
+      if (event && event.key && event.key.toLowerCase() !== "d") {
         return
       }
 
