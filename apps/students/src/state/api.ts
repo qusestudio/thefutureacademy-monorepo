@@ -3,11 +3,14 @@ import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth"
 import {
   Enrollment,
   Lesson,
+  StudentCheckout,
   StudentEnrollment,
   StudentProfile,
   StudentUser,
   Subject,
   Topic,
+  YocoCheckoutRequest,
+  YocoCheckoutResponse,
 } from "@/types/models"
 import { createNewUserInDatabase } from "@/lib/utils"
 import { toast } from "sonner"
@@ -35,6 +38,8 @@ export const api = createApi({
     "TopicDetails",
     "LessonDetails",
     "Lessons",
+    "Payment",
+    "StudentCheckout",
   ],
   endpoints: (build) => ({
     /** User Data*/
@@ -169,6 +174,54 @@ export const api = createApi({
         })
       },
     }),
+    // Billing
+    /** Billing endpoints */
+    createCheckout: build.mutation<YocoCheckoutResponse, YocoCheckoutRequest>({
+      query: (checkout) => {
+        alert("Initiating Payment")
+        return {
+          url: "/payments",
+          method: "POST",
+          body: checkout,
+        }
+      },
+      invalidatesTags: ["Payment", "StudentCheckout"],
+      async onQueryStarted(_, { queryFulfilled }) {
+        toast.promise(queryFulfilled, {
+          loading: "Initiating payment...",
+          success: "You are being redirected to complete payment!",
+          error: "Could not initiate payment.",
+        })
+      },
+    }),
+    getStudentCheckout: build.query<StudentCheckout, void>({
+      queryFn: async (_, _queryApi, _extraOptions, fetchWithBQ) => {
+        try {
+          const user = await getCurrentUser()
+
+          if (!user) {
+            return {
+              error: { status: 401, data: "No authenticated user found" },
+            }
+          }
+
+          const studentId = user.userId
+
+          const result = await fetchWithBQ(`/students/${studentId}/checkout`)
+
+          if (result.error) {
+            return { error: result.error }
+          }
+
+          return { data: result.data as StudentCheckout }
+        } catch (error: any) {
+          return {
+            error: error.message || "Could not fetch student checkout",
+          }
+        }
+      },
+      providesTags: ["StudentCheckout"],
+    }),
 
     // Lessons
     getLessons: build.query<Lesson[], string>({
@@ -221,9 +274,9 @@ export const api = createApi({
           }
 
           const studentId = user.userId // or whatever field contains the student ID
-          const body : Omit<Enrollment, "id"> = {
+          const body: Omit<Enrollment, "id"> = {
             studentId,
-            subjectId
+            subjectId,
           }
           const result = await fetchWithBQ({
             url: "/enrollments",
@@ -288,6 +341,9 @@ export const api = createApi({
 })
 
 export const {
+  // Billing endpoints
+  useCreateCheckoutMutation,
+  useGetStudentCheckoutQuery,
   // User data endpoints
   useGetAuthUserQuery,
   useGetAuthProfileQuery,
