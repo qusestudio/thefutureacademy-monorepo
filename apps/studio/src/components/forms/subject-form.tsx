@@ -95,13 +95,14 @@ export function SubjectForm({initialValues, label, description}: SubjectFormProp
 
     try {
       setUploadStatus("uploading")
-
+      toast.loading("Preparing to upload image...")
       // Request signed URL via RTK Mutation
       const { uploadUrl, fileKey } = await getSignedUrl({
         fileName: file.name,
         fileType: file.type,
       }).unwrap()
 
+      toast.loading("Uploading image...")
       // Upload file directly to S3
       await uploadToS3({ uploadUrl, file }).unwrap()
 
