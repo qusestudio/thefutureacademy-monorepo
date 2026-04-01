@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import {
   Sidebar,
@@ -16,6 +18,7 @@ import {
 } from "@hugeicons/core-free-icons"
 import { CollapsibleTopic, CollapsibleTopicItem } from "@/components/preview/collapsible-content"
 import Link from "next/link"
+import { useGetTopicsBySubjectQuery } from "@/state/api"
 
 const data = {
   user: {
@@ -51,7 +54,8 @@ const data = {
   ],
 }
 
-export function TopicsSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function TopicsSidebar({ subjectId, ...props }: React.ComponentProps<typeof Sidebar> & {subjectId: string}) {
+  const {data: topics, isLoading: topicsLoading} = useGetTopicsBySubjectQuery(subjectId, {skip: !subjectId})
   return (
     <Sidebar
       className="flex flex-col gap-y-10 bg-background"
@@ -65,20 +69,35 @@ export function TopicsSidebar({ ...props }: React.ComponentProps<typeof Sidebar>
           </SidebarMenuItem>
 
           <SidebarMenuItem className="">
-            <Link href={"/dashboard/mylearning"} className={"flex items-center gap-x-3"}>
-              <HugeiconsIcon size={20} icon={ArrowLeftIcon} />
+            <Link
+              href={"/dashboard/mylearning"}
+              className={"flex items-center gap-x-3"}
+            >
+              <div className="rounded-sm border-2 border-foreground bg-[#ffbb00]/60 p-2 dark:border-[#ffbb00] dark:bg-transparent dark:text-[#ffbb00]">
+                <HugeiconsIcon size={20} icon={ArrowLeftIcon} />
+              </div>
               <p className="text-xs">Back to courses</p>
             </Link>
           </SidebarMenuItem>
-
-          <SidebarMenuItem className="flex flex-col gap-x-3">
+          <SidebarMenuItem className="rounded-lg border-2 border-foreground bg-[#ffbb00]/60 p-2 dark:border-[#ffbb00] dark:bg-transparent dark:text-[#ffbb00]">
             <p className="text-xs font-medium text-muted-foreground">Course</p>
-            <p className="font-medium">Mathematics</p>
+            <p className="font-medium text-xl">Mathematics</p>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className="bg-background p-3 py-7 font-chillax">
-        <CollapsibleTopicItem />
+      <SidebarContent className="gap-y-2 bg-background p-3 py-7 font-chillax">
+        {topicsLoading ? (
+          <p>Loading...</p>
+        ) : (
+          topics?.map((topic, index) => (
+            <CollapsibleTopicItem
+              subjectId={subjectId}
+              title={topic.title}
+              topicId={topic?.id}
+              key={index}
+            />
+          ))
+        )}
       </SidebarContent>
     </Sidebar>
   )

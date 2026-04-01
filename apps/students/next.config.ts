@@ -2,7 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  allowedDevOrigins: ["*"]
-};
-
+  images: {
+    remotePatterns: [new URL("https://media.thefutureacademy.co.za/**")],
+  },
+  allowedDevOrigins: ["*"],
+}
 export default nextConfig;

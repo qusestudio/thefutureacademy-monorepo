@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${chillax.variable}  flex w-full flex-col items-center ${geistMono.variable} ${raleway.variable} antialiased`}
+        className={`${geistSans.variable} ${chillax.variable} flex w-full flex-col items-center  ${geistMono.variable} ${raleway.variable} antialiased`}
       >
         <Providers>{children}</Providers>
       </body>

@@ -7,7 +7,7 @@ import {
 } from "@workspace/ui/components/tabs"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Download01Icon } from "@hugeicons/core-free-icons"
-import PdfAttachment from "@/components/pdf-attachment"
+import { PdfAttachment, NoFileCard } from "@/components/pdf-attachment"
 
 const LessonResourcesTab = () => {
   return (
@@ -33,10 +33,9 @@ const LessonResourcesTab = () => {
         {/*</div>*/}
         <div className="flex flex-wrap gap-4">
           {/* Example without a thumbnail (uses the sleek fallback) */}
-          <PdfAttachment
-            fileName="Lesson Notes"
-            fileUrl="/files/dummy_lesson.pdf"
-            thumbnailUrl={"/maths_12.png"}
+          <NoFileCard
+            fileName="No files yet"
+            thumbnailUrl={"/file.svg"}
           />
         </div>
       </TabsContent>
@@ -47,11 +46,7 @@ const LessonResourcesTab = () => {
         {/*</div>*/}
         <div className="flex flex-wrap gap-4">
           {/* Example without a thumbnail (uses the sleek fallback) */}
-          <PdfAttachment
-            fileName="Lesson Notes"
-            fileUrl="/files/dummy_lesson.pdf"
-            thumbnailUrl={"/maths_12.png"}
-          />
+          No Q&As yet
         </div>
       </TabsContent>
     </Tabs>

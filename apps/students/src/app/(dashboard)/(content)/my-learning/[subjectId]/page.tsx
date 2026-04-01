@@ -1,31 +1,44 @@
+"use client"
+
 import React from "react"
 import VideoPlayer from "@/components/VideoPlayer"
 import LessonResourcesTab from "@/components/lesson-resource-tab"
+import { useGetSubjectQuery } from "@/state/api"
+import { usePathname } from "next/navigation"
+import Image from "next/image"
+import { CLOUDFRONT } from "@/lib/constants"
 
 const SubjectPage = () => {
+  const pathname = usePathname();
+  const subjectId = pathname.split("/").pop();
+  const {data: subject, isLoading: subjectLoading} = useGetSubjectQuery(
+    subjectId ?? "", {skip: !subjectId}
+  );
   return (
     <div className="grid w-full grid-cols-[70%_30%] flex-col">
       <div className="flex w-full flex-col items-center space-y-10 rounded-xl p-2">
-        <VideoPlayer
-          src={"/videos/preview_video.mp4"}
-          poster={"/maths_12.png"}
-        />
-        <div className="w-full space-y-5 max-w-4xl">
+        <div className="relative flex aspect-video h-auto w-full flex-col gap-y-4 rounded-xl border-background p-5 font-medium text-background shadow-xl">
+          <Image
+            src={`${CLOUDFRONT}/${subject?.image}`}
+            alt={"/file.svg"}
+            fill
+            className="h-auto w-full rounded-xl object-cover"
+          />
+        </div>
+        <div className="w-full space-y-5">
           <p className="text-xl font-medium tracking-wider uppercase">
-            Introduction
+            {subject?.title}
           </p>
-          <p>
-            In Sequences and Series, learners explore patterns in numbers and
-            how they can be described, extended, and summed. The focus is on
-            understanding arithmetic and geometric sequences, finding general
-            terms, and calculating sums of series, including finite and infinite
-            cases. Students also learn to recognise real life applications,
-            develop formulas, and solve problems that require logical thinking
-            and pattern recognition.
-          </p>
+          {
+            subject?.description.map((p, i)=>(
+              <p key={i}>
+                {p}
+              </p>
+            ))
+          }
         </div>
       </div>
-      <div className="gap-y-2 w-full rounded-xl p-2">
+      <div className="w-full gap-y-2 rounded-xl p-2">
         <LessonResourcesTab />
       </div>
     </div>

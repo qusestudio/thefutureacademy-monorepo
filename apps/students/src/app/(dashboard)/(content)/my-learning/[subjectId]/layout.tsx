@@ -20,13 +20,12 @@ const SubjectLayout = async ({ params, children }: LayoutProps) => {
         } as React.CSSProperties
       }
     >
-      <TopicsSidebar variant="inset" />
+      <TopicsSidebar subjectId={subjectId} variant="inset" />
       <SidebarInset className="rounded-none">
-        <div className="m-2">
+        <div className="m-2 h-full">
           <SiteHeader />
-          <div className="flex flex-1 h-full rounded-lg flex-col">
-
-            <div className="@container/main rounded-lg  flex w-full flex-1 flex-col gap-2 p-5 font-chillax">
+          <div className="flex flex-1 flex-col items-center">
+            <div className="@container/main flex w-full max-w-[90%] flex-1 flex-col gap-2 rounded-lg p-5 font-chillax">
               {children}
             </div>
           </div>

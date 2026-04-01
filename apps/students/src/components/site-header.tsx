@@ -15,15 +15,15 @@ export function SiteHeader() {
         />
         <h1 className="text-base">@thefutureacademy</h1>
       </div>
-      <form className="flex w-full items-center gap-x-2 rounded-full bg-accent p-1.5">
-        <HugeiconsIcon
-          size={20}
-          className="text-gray-400"
-          icon={SearchIcon}
-          strokeWidth={2}
-        />
-        <input className="w-full text-sm outline-none" />
-      </form>
+      {/*<form className="flex w-full items-center gap-x-2 rounded-full bg-accent p-1.5">*/}
+      {/*  <HugeiconsIcon*/}
+      {/*    size={20}*/}
+      {/*    className="text-gray-400"*/}
+      {/*    icon={SearchIcon}*/}
+      {/*    strokeWidth={2}*/}
+      {/*  />*/}
+      {/*  <input className="w-full text-sm outline-none" />*/}
+      {/*</form>*/}
     </header>
   )
 }

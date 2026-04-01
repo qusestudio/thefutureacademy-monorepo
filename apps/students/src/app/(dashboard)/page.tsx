@@ -83,7 +83,7 @@ const HomePage = () => {
           <div className="flex gap-x-4 font-medium">
             <button
               className="flex cursor-pointer items-center rounded-full bg-foreground p-4 font-chillax text-background"
-              onClick={() => router.push("/available-subjects")}
+              onClick={() => router.push("/dashboard/available-subjects")}
             >
               Available Subjects{" "}
               <HugeiconsIcon

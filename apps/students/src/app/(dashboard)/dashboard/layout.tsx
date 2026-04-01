@@ -19,9 +19,6 @@ const DashboardLayout = ({children}: {children: React.ReactNode}) => {
     >
       <AppSidebar variant="inset" />
       <SidebarInset
-        className={
-          "md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:rounded-lg"
-        }
       >
         <SiteHeader />
         <div className="flex flex-1 flex-col">

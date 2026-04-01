@@ -22,6 +22,8 @@ import {
   Book02Icon,
   DashboardSquare02Icon,
   Logout01Icon,
+  Book03Icon,
+  LibraryIcon,
 } from "@hugeicons/core-free-icons"
 import LogoutDialog from "@/components/logout-dialog"
 
@@ -44,6 +46,11 @@ const data = {
       url: "/dashboard/mylearning",
       icon: <HugeiconsIcon size={25} icon={Book02Icon} strokeWidth={2} />,
     },
+    {
+      title: "Available Subjects",
+      url: "/dashboard/available-subjects",
+      icon: <HugeiconsIcon size={25} icon={LibraryIcon} strokeWidth={2} />,
+    },
   ],
   navSecondary: [
     {
@@ -58,30 +65,30 @@ const data = {
     },
   ],
 }
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="offcanvas" {...props}>
-      <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
+    <Sidebar className={"bg-background "} collapsible="offcanvas" {...props}>
+      <SidebarHeader className="bg-background hover:bg-background">
+        <SidebarMenu className="bg-background hover:bg-background">
+          <SidebarMenuItem className="hover:bg-background">
             <SidebarMenuButton
-              className="mb-10 bg-transparent data-[slot=sidebar-menu-button]:p-1.5!"
+              className="mb-10 bg-background hover:bg-background data-[slot=sidebar-menu-button]:p-1.5!"
               render={<a href="/" />}
             >
-              <span className="font-chillax text-xl tracking-wide uppercase">
-                Learning Space
+              <span className="font-chillax text-xl leading-6 font-bold tracking-wider uppercase hover:bg-none">
+                the future
+                <br />
+                learning space
               </span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className="font-chillax">
+      <SidebarContent className="bg-background font-chillax">
         <NavMain items={data.navMain} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
     </Sidebar>
   )
 }
