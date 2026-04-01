@@ -404,6 +404,7 @@ export const s3api = createApi({
       { fileName: string; fileType: string }
     >({
       query: (payload) => {
+        alert("Getting signed URL")
         return {
           url: "/upload",
           method: "POST",
@@ -426,7 +427,7 @@ export const s3api = createApi({
     }),
     uploadToS3: build.mutation<null, { uploadUrl: string; file: File }>({
       queryFn: async ({ uploadUrl, file }) => {
-        console.log("LOGGING upload url")
+        alert("LOGGING upload url")
         console.log(uploadUrl)
         try {
           const response = await fetch(uploadUrl, {
