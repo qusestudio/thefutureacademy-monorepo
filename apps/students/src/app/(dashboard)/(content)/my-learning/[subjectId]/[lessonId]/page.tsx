@@ -5,6 +5,7 @@ import VideoPlayer from "@/components/VideoPlayer"
 import LessonResourcesTab from "@/components/lesson-resource-tab"
 import { useGetLessonQuery } from "@/state/api"
 import { usePathname } from "next/navigation"
+import { CLOUDFRONT } from "@/lib/constants"
 
 const LessonPage = () => {
   const pathname = usePathname();
@@ -16,8 +17,8 @@ const LessonPage = () => {
     <div className="grid w-full grid-cols-[70%_30%] flex-col">
       <div className="flex w-full flex-col items-center space-y-10 rounded-xl p-2">
         <VideoPlayer
-          src={"/videos/preview_video.mp4"}
-          poster={"/maths_12.png"}
+          src={`${CLOUDFRONT}/${lesson?.videoId}`}
+          poster={"/file.svg"}
         />
         <div className="w-full max-w-4xl space-y-5">
           <p className="text-xl font-medium tracking-wider uppercase">
