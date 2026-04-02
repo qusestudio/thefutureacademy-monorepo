@@ -26,7 +26,7 @@ const Home = () => {
               Transforming education through quality and accessible learning, by giving our students a
               structured academic advantage beyond the classroom.
             </p>
-            <Link href={"/signup"}
+            <Link href={"https://space.thefutureacademy.co.za/signup"}
                   className="flex dark:bg-[#FFF] bg-black dark:text-black text-white rounded-xs px-10 font-semibold py-2 text-xs gap-x-5 uppercase">
               Join the academy
             </Link>

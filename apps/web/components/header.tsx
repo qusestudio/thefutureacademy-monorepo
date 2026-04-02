@@ -49,7 +49,7 @@ export function Header() {
           <Link href={"/"}>Plans & Pricing</Link>
         </nav>
         <Link
-          href={"/signin"}
+          href={"https://space.thefutureacademy.co.za/signin"}
           className="flex gap-x-5 rounded-xs bg-primary px-10 py-2 text-xs font-medium text-white uppercase"
         >
           Log in
@@ -89,9 +89,12 @@ export function Header() {
                 <HugeiconsIcon icon={link.icon} size={40} />
               </div>
             ))}
-            <button className="flex justify-center gap-x-5 rounded-xs bg-[#942D00] px-10 py-2 font-medium text-white uppercase">
+            <Link
+              href={"https://space.thefutureacademy.co.za/signin"}
+              className="flex justify-center gap-x-5 rounded-xs bg-[#942D00] px-10 py-2 font-medium text-white uppercase"
+            >
               Log in
-            </button>
+            </Link>
           </nav>
         )}
       </div>
