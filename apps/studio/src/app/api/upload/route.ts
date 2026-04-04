@@ -13,12 +13,8 @@ export async function POST(request: NextRequest) {
         const {fileName, fileType}: UploadRequest = await request.json();
         const s3Client = new S3Client({
           region: "af-south-1",
-          credentials: {
-            accessKeyId: process.env.TFA_AWS_ACCESS_KEY!,
-            secretAccessKey: process.env.TFA_AWS_SECRET_KEY!,
-          },
         })
-        const fileKey = `blobs/${Date.now()}-${fileName}`;
+        const fileKey = `lessons/${Date.now()}-${fileName}`;
 
         const command = new PutObjectCommand({
             Bucket: "the-future-academy-bucket",
