@@ -2,9 +2,16 @@
 
 import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
-import { ArrowUpRight01Icon, Menu01Icon, X } from "@hugeicons/core-free-icons"
+import {
+  ArrowUpRight01Icon,
+  Call02Icon,
+  Mail01Icon,
+  MenuTwoLineIcon,
+  X,
+} from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import Link from "next/link"
+import { Separator } from "@workspace/ui/components/separator"
 
 type Icon = readonly (readonly [
   string,
@@ -37,47 +44,49 @@ export function Header() {
   ]
 
   return (
-    <header className="fixed top-0 left-0 z-40 flex w-full justify-center backdrop-blur-2xl dark:text-[#e1e1e1]">
-      {/* Desktop nav */}
-      <header className="hidden w-full max-w-400 items-center justify-between px-10 py-10 lg:flex">
-        <p className="text-[20px] font-medium">The Future Academy</p>
-        <nav className="flex gap-x-5 text-xs font-medium uppercase">
-          <Link href={"/"}>Home</Link>
-          <Link href={"/"}>Features</Link>
-          <Link href={"/"}>Subjects</Link>
-          <Link href={"/"}>For Students</Link>
-          <Link href={"/"}>Plans & Pricing</Link>
-        </nav>
-        <Link
-          href={"https://space.thefutureacademy.co.za/signin"}
-          className="flex gap-x-5 rounded-xs bg-primary px-10 py-2 text-xs font-medium text-white uppercase"
-        >
-          Log in
-        </Link>
-      </header>
+    <header className=" z-40 flex w-full justify-center border-b-2 border-foreground backdrop-blur-2xl dark:text-[#e1e1e1]">
+      <div className="w-full max-w-[92%] border-[#2c2c2c] backdrop-blur-2xl">
+        <div className="flex w-full items-center justify-between gap-x-2 px-10 py-5 text-black backdrop-blur-2xl max-sm:px-2 dark:text-white">
+          <div className="flex items-center gap-x-2">
+            <button
+              type="button"
+              aria-label={open ? "Close menu" : "Open menu"}
+              onClick={() => setOpen((v) => !v)}
+            >
+              {open ? (
+                <HugeiconsIcon icon={X} className="stroke-1" size={60} />
+              ) : (
+                <HugeiconsIcon
+                  icon={MenuTwoLineIcon}
+                  className="stroke-1"
+                  strokeWidth={1}
+                  size={70}
+                />
+              )}
+            </button>
+            <Link href={"/"}>
+              <p className="text-2xl leading-6 font-semibold uppercase">
+                The Future Academy
+              </p>
+            </Link>
+          </div>
 
-      {/* Mobile header */}
-      <div className="w-full border-[#2c2c2c] backdrop-blur-2xl lg:hidden">
-        <div className="flex w-full items-center gap-x-2 px-10 py-5 text-black backdrop-blur-2xl max-sm:px-5 dark:text-white">
-          <button
-            type="button"
-            aria-label={open ? "Close menu" : "Open menu"}
-            onClick={() => setOpen((v) => !v)}
-            className=""
-          >
-            {open ? (
-              <HugeiconsIcon icon={X} className="stroke-1" size={60} />
-            ) : (
-              <HugeiconsIcon icon={Menu01Icon} className="stroke-1" size={60} />
-            )}
-          </button>
-          <Link href={"/"}>
-            <p className="font text-2xl leading-6">
-              The <br /> Future <br /> Academy
-            </p>
-          </Link>
+          <div className="flex items-center gap-x-5">
+            <div className="cursor-pointer rounded-full bg-foreground p-2 text-background hover:text-[#ffbb00] dark:hover:bg-[#ffbb00] dark:hover:text-background">
+              <HugeiconsIcon size={35} icon={Call02Icon} />
+            </div>
+            <div className="cursor-pointer rounded-full bg-foreground p-2 text-background hover:text-[#ffbb00] dark:hover:bg-[#ffbb00] dark:hover:text-background">
+              <HugeiconsIcon size={35} icon={Mail01Icon} />
+            </div>
+            <Separator orientation="vertical" />
+            <Link
+              href={"https://space.thefutureacademy.co.za/signin"}
+              className="hidden justify-center gap-x-5 rounded-full bg-foreground px-10 py-4 font-archivo text-xl font-medium text-background md:flex"
+            >
+              Sign In
+            </Link>
+          </div>
         </div>
-
         {/* Collapsible menu */}
         {open && (
           <nav className="font-space flex flex-col gap-x-5 gap-y-5 border-b border-white px-10 py-5 pt-10 text-4xl font-normal text-black uppercase max-sm:px-5 dark:text-white">
@@ -89,12 +98,6 @@ export function Header() {
                 <HugeiconsIcon icon={link.icon} size={40} />
               </div>
             ))}
-            <Link
-              href={"https://space.thefutureacademy.co.za/signin"}
-              className="flex justify-center gap-x-5 rounded-xs bg-[#942D00] px-10 py-2 font-medium text-white uppercase"
-            >
-              Log in
-            </Link>
           </nav>
         )}
       </div>

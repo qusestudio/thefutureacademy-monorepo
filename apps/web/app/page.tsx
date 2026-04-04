@@ -1,83 +1,96 @@
 import Link from "next/link";
 import { Header } from "@/components/header"
-import { HugeiconsIcon } from "@hugeicons/react"
-import { CircleArrowRight01Icon } from "@hugeicons/core-free-icons"
 import { Separator } from "@workspace/ui/components/separator"
+import {
+  ArrowUpRight01Icon,
+  CircleArrowRight01Icon,
+} from "@hugeicons/core-free-icons"
+import {HugeiconsIcon} from "@hugeicons/react";
+import Image from "next/image";
 
 const Home = () => {
   return (
-    <div className="w-full font-chillax flex flex-col items-center">
-      <div className="w-full fixed flex-col flex items-center">
+    <div className="flex w-full flex-col items-center font-chillax">
+      <div className="fixed flex w-full flex-col items-center">
         <Header />
       </div>
-      <main className="max-w-400 px-10 max-sm:px-5 w-full">
-        <section className="w-full min-h-screen justify-between gap-y-10 pt-50 pb-20 items-center flex flex-col">
-          <div className="gap-y-10 py-10 justify-center items-center flex flex-col">
-            <div className="dark:bg-[#111] bg-[#afafaf]/30 flex items-center gap-x-2 rounded-full text-sm pl-2 px-1.5 py-0.5">
-              <p className="text-[13px] font-[450] dark:text-white">
-                New version is out! Read More
-              </p>
-              <HugeiconsIcon icon={CircleArrowRight01Icon} className="stroke-[2px] bg-[#942D00] text-[#dfdfdf] rounded-full"/>
-            </div>
-            <h1 className="sm:text-7xl text-5xl text-center font-normal">
-              Education Reimagined
-            </h1>
-            <p className="text-[14px] max-w-3xl text-center leading-tight">
-              Transforming education through quality and accessible learning, by giving our students a
-              structured academic advantage beyond the classroom.
+      <main className="w-full max-w-[90%] space-y-5 px-10 max-sm:px-2">
+        <section className="flex w-full flex-col items-center pt-50">
+          <div className="flex w-full items-end justify-between self-start text-4xl max-sm:text-3xl">
+            <p className="bg-[#1F329D] p-5 text-white max-md:p-3 max-md:text-2xl">
+              12
             </p>
-            <Link href={"https://space.thefutureacademy.co.za/signup"}
-                  className="flex dark:bg-[#FFF] bg-black dark:text-black text-white rounded-xs px-10 font-semibold py-2 text-xs gap-x-5 uppercase">
-              Join the academy
+            <Link
+              href={"#"}
+              className="mb-2 flex h-fit items-center gap-x-2 rounded-full bg-[#afafaf]/30 px-1.5 py-0.5 pl-2 text-sm dark:bg-accent/60"
+            >
+              <p className="font-archivo text-[13px] font-[450] tracking-wide dark:text-white">
+                Release notes! Read More
+              </p>
+              <HugeiconsIcon
+                icon={CircleArrowRight01Icon}
+                className="rounded-full bg-[#1F329D] stroke-[2px] text-white"
+              />
             </Link>
-            <div className="text-sm w-full grid grid-cols-3 max-w-xl text-center gap-x-1 items-center flex h-5 leading-tight">
-              <span className="">CAPS-Aligned Curriculum</span>
-
-              <span className="border-x">Grade 10 - 12</span>
-
-              <span className="">University Readiness</span>
+          </div>
+          <div className="flex w-full border max-md:h-[50vh] max-md:flex-col">
+            <h1 className="w-full pt-5 pr-5 text-6xl font-semibold uppercase max-md:h-[40vh] max-md:border-b sm:text-[10em] md:border-r">
+              STUD
+              <span className="bg-[#ffbb00]/60 dark:text-background">
+                y <br /> Any
+              </span>
+              <span className="bg-[#ffbb00]/60 dark:text-background">
+                time
+                <br />A
+              </span>
+              nywhere
+            </h1>
+            <div className="flex w-full flex-col items-start gap-y-5 p-5 px-[5%] font-archivo max-md:h-full max-md:justify-end md:justify-center">
+              <div className="w-full">
+                <p className="max-w-sm text-sm text-foreground/90 max-md:text-xs dark:text-primary-foreground/90">
+                  A refined learning experience built for Grade 12 success. We
+                  combine expert teaching with structured support to help your
+                  child truly understand each subject. With the flexibility to
+                  learn anytime, they can build confidence and perform at their
+                  best when it matters most.
+                </p>
+              </div>
+              <Link
+                href={"https://space.thefutureacademy.co.za/signup"}
+                className="bg-[#1F329D] p-3 px-5 font-medium tracking-wide text-white max-md:text-sm"
+              >
+                Join the academy
+              </Link>
             </div>
           </div>
-          {/*    */}
-          <div className="w-full self-end">
-            <p className="max-w-5xl lg:max-w-2xl xl:max-w-5xl font-space text-3xl sm:text-3xl  lg:text-4xl xl:text-5xl">
-              Transforming education through structured, high-performance learning, giving students an academic advantage beyond the classroom.
-            </p>
+          <div className="flex w-full flex-col justify-center gap-y-10 py-10">
+            <div className="flex h-5 w-full max-w-xl flex-wrap items-center gap-x-2 gap-y-2 font-archivo text-lg leading-tight tracking-wide text-foreground/90 max-md:text-sm">
+              <span className="w-fit rounded-full border p-2">
+                CAPS-Aligned Curriculum
+              </span>
+              <span className="rounded-full border p-2">Grade 12</span>
+              <span className="rounded-full border p-2">
+                University Readiness
+              </span>
+            </div>
+          </div>
+        </section>
+        <section className="mb-20 flex w-full items-center gap-x-3 md:h-[50vh]">
+          <div className="flex h-full w-full flex-1 flex-col justify-end bg-foreground p-5 font-archivo text-xl font-light tracking-wide text-background">
+            <Link
+              className="flex items-center justify-between border-b border-background"
+              href={"#"}
+            >
+              Plans & Pricing{" "}
+              <HugeiconsIcon size={30} icon={ArrowUpRight01Icon} />
+            </Link>
+          </div>
+          <div className="flex h-full w-full flex-1 flex-col bg-[#1F329D]"></div>
+          <div className="flex h-full w-full flex-3 flex-col bg-[#ffbb00]">
+            <Link href={"#"}>Plans & Pricing</Link>
           </div>
         </section>
       </main>
-      <section
-        className="w-full bg-linear-150 max-sm:h-screen from-[#9E9E9E] via-[#9E9E9E] to-primary justify-between items-center gap-y-5 py-15  flex flex-col">
-        <div className="px-10 max-sm:px-5 max-w-400 w-full">
-          <p className="gap-y-10 font-space text-7xl text-black py-10  w-full  flex flex-col">
-            We invest in the potential of our students.
-          </p>
-
-          <button className="text-black cursor-pointer p-5 font-medium border rounded-full">
-            Get started
-          </button>
-        </div>
-      </section>
-      <section
-        className="w-full h-[60vh] dark:bg-black justify-between items-center gap-y-20 pt-10 pb-10 flex flex-col">
-        <div className="px-10 max-sm:px-5 max-w-400 w-full">
-          <p className="gap-y-10 text-6xl  py-10  w-full  flex flex-col">
-            Features
-          </p>
-        </div>
-        <div className="px-10 max-sm:px-5 gap-x-3 xl:gap-x-10 pb-10 gap-y-5 font-space grid max-md:grid-cols-1 grid-cols-3 max-w-400 w-full">
-          <div className="border-4 dark:border-white flex items-end  pt-20 rounded-xl p-5 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl">
-            24/7 Access to On-Demand Video Lessons
-          </div>
-          <div className="border-4 dark:border-white flex items-end pt-20  rounded-xl p-5 text-2xl sm:text-3xl  lg:text-4xl xl:text-5xl">
-            CAPS-Aligned, Grade-Specific Content
-          </div>
-          <div className="border-4 dark:border-white flex items-end pt-20 rounded-xl p-5 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl">
-            Instructor-Created Subjects & Lessons
-          </div>
-
-        </div>
-      </section>
     </div>
   )
 }

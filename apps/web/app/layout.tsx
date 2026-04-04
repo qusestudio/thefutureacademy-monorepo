@@ -4,7 +4,8 @@ import "@workspace/ui/globals.css"
 import { cn } from "@workspace/ui/lib/utils";
 import { ThemeProvider } from "@workspace/ui/providers/theme-provider"
 import React from "react"
-import { chillax } from "@thefutureacademy/students/src/lib/fonts"
+import { archivo, chillax } from "@thefutureacademy/students/src/lib/fonts"
+
 
 const raleway = Raleway({subsets:['latin'],variable:'--font-sans'})
 
@@ -22,7 +23,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, chillax.variable, "font-sans", raleway.variable)}
+      className={cn("antialiased", fontMono.variable, chillax.variable,  `font-sans ${archivo.variable}`, raleway.variable)}
     >
       <body>
         <ThemeProvider>{children}</ThemeProvider>

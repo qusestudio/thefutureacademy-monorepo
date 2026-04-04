@@ -10,3 +10,14 @@ export const chillax = localFont({
   ],
   variable: "--font-chillax",
 })
+
+export const archivo = localFont({
+  src: [
+    {
+      path: "../../../../packages/ui/src/styles/fonts/archivo/Archivo-Variable.woff2",
+      weight: "200 700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-archivo",
+})

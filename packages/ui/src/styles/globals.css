@@ -117,6 +117,7 @@
     --color-sidebar-ring: var(--sidebar-ring);
     --font-geist-sans: var(--font-geist-sans);
     --font-chillax: var(--font-chillax);
+    --font-archivo: var(--font-archivo);
 }
 
 @layer base {

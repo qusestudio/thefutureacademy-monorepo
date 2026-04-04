@@ -102,7 +102,6 @@ export function SubjectForm({initialValues, label, description}: SubjectFormProp
         fileType: file.type,
       }).unwrap()
 
-      toast.loading("Uploading image...")
       // Upload file directly to S3
       await uploadToS3({ uploadUrl, file }).unwrap()
 
