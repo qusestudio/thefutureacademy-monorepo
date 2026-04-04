@@ -76,19 +76,17 @@ const Home = () => {
           </div>
         </section>
         <section className="mb-20 flex w-full items-center gap-x-3 md:h-[50vh]">
-          <div className="flex h-full w-full flex-1 flex-col justify-end bg-foreground p-5 font-archivo text-xl font-light tracking-wide text-background">
+          <div className="flex h-full w-full flex-1 flex-col justify-end bg-[#1F329D] p-5 font-archivo text-2xl font-light tracking-wide text-white">
             <Link
-              className="flex items-center justify-between border-b border-background"
+              className="flex items-center justify-between border-b border-white"
               href={"#"}
             >
               Plans & Pricing{" "}
-              <HugeiconsIcon size={30} icon={ArrowUpRight01Icon} />
+              <HugeiconsIcon size={45} icon={ArrowUpRight01Icon} />
             </Link>
           </div>
-          <div className="flex h-full w-full flex-1 flex-col bg-[#1F329D]"></div>
-          <div className="flex h-full w-full flex-3 flex-col bg-[#ffbb00]">
-            <Link href={"#"}>Plans & Pricing</Link>
-          </div>
+          <div className="flex h-full w-full flex-1 flex-col bg-[#ffbb00]"></div>
+          <div className="relative flex h-full w-full flex-3 flex-col bg-accent"></div>
         </section>
       </main>
     </div>
