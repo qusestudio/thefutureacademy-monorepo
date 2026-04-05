@@ -1,15 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth"
 
-import {
-  Admin,
-  Allocation,
-  Instructor,
-  Lesson,
-  Subject,
-  TeachingAllocation,
-  Topic,
-} from "@/types/models"
+import { Admin, Allocation, Instructor, Lesson, Subject, TeachingAllocation, Topic, } from "@/types/models"
 import { toast } from "sonner"
 import { createNewUserInDatabase } from "@/lib/utils"
 
@@ -421,8 +413,20 @@ export const s3api = createApi({
         toast.promise(queryFulfilled, {
           loading: "Getting signed url...",
           success: `Received signed url! ${data.uploadUrl}`,
-          error: `Failed getting signed url. ${meta?.response}`,
-        })
+          error: (err) => {
+            // RTK Query wraps the server response in an 'error' or 'data' field
+            // depending on the structure, usually err.error.data
+
+            return err?.error?.data?.error || "Failed getting signed url."
+          },
+        });
+
+        try {
+          await queryFulfilled
+        } catch (err) {
+          // Optional: Log it here if you need to
+          console.error("Upload error details:", err)
+        }
       },
     }),
     uploadToS3: build.mutation<null, { uploadUrl: string; file: File }>({
