@@ -361,10 +361,7 @@ export const api = createApi({
         body: lessonData,
       }),
 
-      invalidatesTags: (result, error, { topicId }) => [
-        { type: "Lessons", id: topicId },
-        { type: "Lessons", id: "LIST" },
-      ],
+      invalidatesTags: ["Lessons"],
 
       async onQueryStarted(_, { queryFulfilled }) {
         toast.promise(queryFulfilled, {
@@ -396,7 +393,6 @@ export const s3api = createApi({
       { fileName: string; fileType: string }
     >({
       query: (payload) => {
-        alert("Getting signed URL")
         return {
           url: "/upload",
           method: "POST",
@@ -408,8 +404,6 @@ export const s3api = createApi({
 
       async onQueryStarted(_, { queryFulfilled }) {
         const { data, meta } = await queryFulfilled
-        console.log("LOGGING upload url")
-        console.log(data.uploadUrl)
         toast.promise(queryFulfilled, {
           loading: "Getting signed url...",
           success: `Received signed url! ${data.uploadUrl}`,
@@ -431,8 +425,6 @@ export const s3api = createApi({
     }),
     uploadToS3: build.mutation<null, { uploadUrl: string; file: File }>({
       queryFn: async ({ uploadUrl, file }) => {
-        alert("LOGGING upload url")
-        console.log(uploadUrl)
         try {
           const response = await fetch(uploadUrl, {
             method: "PUT",
