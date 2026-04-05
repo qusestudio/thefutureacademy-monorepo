@@ -69,6 +69,8 @@ export function CreateLessonForm(props: {
     try {
       setUploadStatus("uploading")
       setVideoError("")
+      alert(file.name)
+      alert(file.type)
 
       const { uploadUrl, fileKey } = await getSignedUrl({
         fileName: file.name,
@@ -85,7 +87,6 @@ export function CreateLessonForm(props: {
     } catch (error) {
       setUploadStatus("error")
       setVideoError("Error uploading video")
-      toast.error("Error uploading video")
       console.error(error)
     }
   }
