@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
 import {
   ArrowUpRight01Icon,
@@ -44,9 +44,9 @@ export function Header() {
   ]
 
   return (
-    <header className=" z-40 flex w-full justify-center border-b-2 border-foreground backdrop-blur-2xl dark:text-[#e1e1e1]">
-      <div className="w-full max-w-[92%] border-[#2c2c2c] backdrop-blur-2xl">
-        <div className="flex w-full items-center justify-between gap-x-2 px-10 py-5 text-black backdrop-blur-2xl max-sm:px-2 dark:text-white">
+    <header className="z-40 flex w-full justify-center border-b-2 border-foreground backdrop-blur-2xl dark:text-[#e1e1e1]">
+      <div className="w-full border-[#2c2c2c] px-2 backdrop-blur-2xl xl:max-w-[92%]">
+        <div className="flex w-full items-center justify-between gap-x-2 px-10 py-5 text-black backdrop-blur-2xl max-sm:px-0 dark:text-white">
           <div className="flex items-center gap-x-2">
             <button
               type="button"
@@ -64,14 +64,16 @@ export function Header() {
                 />
               )}
             </button>
-            <Link href={"/"}>
-              <p className="text-2xl leading-6 font-semibold uppercase">
-                The Future Academy
+            <Link className="hidden max-md:flex" href={"/"}>
+              <p className="text-3xl leading-6 font-semibold uppercase">
+                The
+                <br /> Future
+                <br /> Academy
               </p>
             </Link>
           </div>
 
-          <div className="flex items-center gap-x-5">
+          <div className="flex items-center gap-x-5 max-md:hidden">
             <div className="cursor-pointer rounded-full bg-foreground p-2 text-background hover:text-[#ffbb00] dark:hover:bg-[#ffbb00] dark:hover:text-background">
               <HugeiconsIcon size={35} icon={Call02Icon} />
             </div>
@@ -89,7 +91,7 @@ export function Header() {
         </div>
         {/* Collapsible menu */}
         {open && (
-          <nav className="font-space flex flex-col gap-x-5 gap-y-5 border-b border-white px-10 py-5 pt-10 text-4xl font-normal text-black uppercase max-sm:px-5 dark:text-white">
+          <nav className="font-space flex flex-col gap-x-5 gap-y-5 border-b border-white px-10 py-5 pt-10 text-4xl font-normal text-black uppercase max-md:text-3xl max-sm:px-0 dark:text-white">
             {linkList.map((link, index) => (
               <div className="flex items-center underline" key={index}>
                 <Link onClick={handleNavClick} href={link.link}>
@@ -98,6 +100,21 @@ export function Header() {
                 <HugeiconsIcon icon={link.icon} size={40} />
               </div>
             ))}
+            <div className="hidden items-center justify-between gap-x-2 max-md:flex">
+              <div className="cursor-pointer rounded-full bg-foreground p-2 text-background hover:text-[#ffbb00] dark:hover:bg-[#ffbb00] dark:hover:text-background">
+                <HugeiconsIcon size={35} icon={Call02Icon} />
+              </div>
+              <div className="cursor-pointer rounded-full bg-foreground p-2 text-background hover:text-[#ffbb00] dark:hover:bg-[#ffbb00] dark:hover:text-background">
+                <HugeiconsIcon size={35} icon={Mail01Icon} />
+              </div>
+              <Separator orientation="vertical" />
+              <Link
+                href={"https://space.thefutureacademy.co.za/signin"}
+                className="w-full justify-center gap-x-5 rounded-full bg-foreground px-10 py-4 text-center font-archivo text-lg font-medium text-background capitalize md:flex"
+              >
+                Sign In
+              </Link>
+            </div>
           </nav>
         )}
       </div>

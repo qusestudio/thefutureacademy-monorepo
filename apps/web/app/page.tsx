@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { Header } from "@/components/header"
-import { Separator } from "@workspace/ui/components/separator"
+
 import {
   ArrowUpRight01Icon,
   CircleArrowRight01Icon,
 } from "@hugeicons/core-free-icons"
 import {HugeiconsIcon} from "@hugeicons/react";
-import Image from "next/image";
 
 const Home = () => {
   return (
@@ -14,8 +13,8 @@ const Home = () => {
       <div className="fixed flex w-full flex-col items-center">
         <Header />
       </div>
-      <main className="w-full max-w-[90%] space-y-5 px-10 max-sm:px-2">
-        <section className="flex w-full flex-col items-center pt-50">
+      <main className="w-full max-w-[90%] space-y-5 xl:px-10  max-sm:px-0">
+        <section className="flex w-full flex-col  items-center pt-50">
           <div className="flex w-full items-end justify-between self-start text-4xl max-sm:text-3xl">
             <p className="bg-[#1F329D] p-5 text-white max-md:p-3 max-md:text-2xl">
               12
@@ -33,8 +32,8 @@ const Home = () => {
               />
             </Link>
           </div>
-          <div className="flex w-full border max-md:h-[50vh] max-md:flex-col">
-            <h1 className="w-full pt-5 pr-5 text-6xl font-semibold uppercase max-md:h-[40vh] max-md:border-b sm:text-[10em] md:border-r">
+          <div className="flex w-full border  max-xl:flex-col">
+            <h1 className="w-full pt-5 pr-5 text-6xl lg:text-[8em] xl:text-[11em] font-semibold uppercase max-md:h-[40vh] max-xl:border-b sm:text-[7em] xl:border-r">
               STUD
               <span className="bg-[#ffbb00]/60 dark:text-background">
                 y <br /> Any
@@ -43,11 +42,11 @@ const Home = () => {
                 time
                 <br />A
               </span>
-              nywhere
+              ny<br className="hidden max-sm:inline" />where
             </h1>
-            <div className="flex w-full flex-col items-start gap-y-5 p-5 px-[5%] font-archivo max-md:h-full max-md:justify-end md:justify-center">
+            <div className="flex w-full lg:py-[4%] flex-col items-start gap-y-5 p-5 px-[5%] font-archivo max-xl:h-full max-md:justify-end md:justify-center">
               <div className="w-full">
-                <p className="max-w-sm text-sm text-foreground/90 max-md:text-xs dark:text-primary-foreground/90">
+                <p className="max-w-sm max-xl:text-lg text-sm text-foreground/90 max-md:text-xs dark:text-primary-foreground/90">
                   A refined learning experience built for Grade 12 success. We
                   combine expert teaching with structured support to help your
                   child truly understand each subject. With the flexibility to
@@ -75,11 +74,11 @@ const Home = () => {
             </div>
           </div>
         </section>
-        <section className="mb-20 flex w-full items-center gap-x-3 md:h-[50vh]">
+        <section className="mb-20 flex w-full flex-col lg:flex-row max-md:pt-5 items-center gap-x-3 md:h-[50vh]">
           <div className="flex h-full w-full flex-1 flex-col justify-end bg-[#1F329D] p-5 font-archivo text-2xl font-light tracking-wide text-white">
             <Link
               className="flex items-center justify-between border-b border-white"
-              href={"#"}
+              href={"/plans-and-pricing"}
             >
               Plans & Pricing{" "}
               <HugeiconsIcon size={45} icon={ArrowUpRight01Icon} />

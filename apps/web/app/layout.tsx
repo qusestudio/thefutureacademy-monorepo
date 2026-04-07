@@ -26,7 +26,10 @@ export default function RootLayout({
       className={cn("antialiased", fontMono.variable, chillax.variable,  `font-sans ${archivo.variable}`, raleway.variable)}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )
