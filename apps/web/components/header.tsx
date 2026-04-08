@@ -91,7 +91,7 @@ export function Header() {
         </div>
         {/* Collapsible menu */}
         {open && (
-          <nav className="font-space flex flex-col gap-x-5 gap-y-5 border-b border-white px-10 py-5 pt-10 text-4xl font-normal text-black uppercase max-md:text-3xl max-sm:px-0 dark:text-white">
+          <nav className="font-space flex flex-col  gap-x-5 gap-y-5 border-b border-white px-10 py-5 pt-10 text-4xl font-normal text-black uppercase max-md:text-3xl max-sm:px-2 dark:text-white">
             {linkList.map((link, index) => (
               <div className="flex items-center underline" key={index}>
                 <Link onClick={handleNavClick} href={link.link}>

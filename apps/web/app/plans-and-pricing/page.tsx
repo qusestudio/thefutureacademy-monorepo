@@ -52,7 +52,6 @@ const PricingPage = () => {
               <span className="bg-[#ffbb00]/60 dark:text-background">
                 an <br /> that fit
               </span>
-              <br className="lg:hidden" />
               <span className="bg-[#ffbb00]/60 dark:text-background">
                 s you
               </span>
