@@ -87,7 +87,7 @@ const PricingPage = () => {
                 <ul className="flex list-disc flex-col p-5">
                   {planItems.map((item, index) => (
                     <li
-                      className="flex items-center gap-x-2 py-2 text-sm font-medium lg:text-xs xl:text-sm"
+                      className="flex items-center gap-x-2 py-2 text-sm font-medium"
                       key={index}
                     >
                       {item}
@@ -114,7 +114,7 @@ const PricingPage = () => {
                 <ul className="flex flex-col p-5">
                   {planItems.map((item, index) => (
                     <li
-                      className="flex items-center gap-x-2 py-2 font-medium lg:text-xs xl:text-sm"
+                      className="flex items-center gap-x-2 py-2 font-medium text-sm"
                       key={index}
                     >
                       {item}
@@ -141,7 +141,7 @@ const PricingPage = () => {
                 <ul className="flex flex-col p-5">
                   {planItems.map((item, index) => (
                     <li
-                      className="flex items-center gap-x-2 py-2 font-medium lg:text-xs xl:text-sm"
+                      className="flex items-center gap-x-2 py-2 font-medium text-sm"
                       key={index}
                     >
                       {item}
