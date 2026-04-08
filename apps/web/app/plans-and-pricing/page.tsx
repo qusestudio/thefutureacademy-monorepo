@@ -28,7 +28,7 @@ const PricingPage = () => {
       <div className="fixed flex w-full flex-col items-center">
         <Header />
       </div>
-      <main className="w-full max-w-[80%] space-y-5 max-md:max-w-[90%] max-sm:px-0 xl:px-10">
+      <main className="w-full max-w-[75%] space-y-5 max-md:max-w-[90%] max-sm:px-0">
         <section className="flex w-full flex-col items-center pt-50">
           <div className="flex w-full items-center gap-x-5 self-start p-5 text-4xl max-md:gap-x-1 max-md:p-1 max-md:text-3xl max-sm:text-3xl">
             <Image
@@ -84,7 +84,7 @@ const PricingPage = () => {
                 <p className="max-md:text-text-6xl font-chillax text-8xl font-semibold text-foreground">
                   R400<span className="text-lg font-normal">/ month</span>
                 </p>
-                <p className="self-start px-3 text-sm">
+                <p className="self-start font-medium px-3 text-sm">
                   one simple plan for all Grade 12 students
                 </p>
                 <ul className="flex list-disc flex-col p-5">
@@ -102,7 +102,7 @@ const PricingPage = () => {
                 Get Started
                 <HugeiconsIcon
                   strokeWidth={2}
-                  size={40}
+                  size={30}
                   icon={ArrowUpRight01Icon}
                 />
               </button>
@@ -114,7 +114,7 @@ const PricingPage = () => {
                 <p className="max-md:text-text-6xl font-chillax text-8xl font-semibold text-foreground">
                   R350<span className="text-lg font-normal">/ month</span>
                 </p>
-                <p className="self-start px-3 text-sm">
+                <p className="self-start font-medium px-3 text-sm">
                   one simple plan for all Grade 11 students
                 </p>
                 <ul className="flex list-disc flex-col p-5">
@@ -139,7 +139,7 @@ const PricingPage = () => {
                 <p className="max-md:text-text-6xl font-chillax text-8xl font-semibold text-foreground">
                   R300<span className="text-lg font-normal">/ month</span>
                 </p>
-                <p className="self-start px-3 text-sm">
+                <p className="self-start font-medium px-3 text-sm">
                   one simple plan for all Grade 10 students
                 </p>
                 <ul className="flex list-disc flex-col p-5">

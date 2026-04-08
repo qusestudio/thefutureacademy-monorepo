@@ -37,15 +37,15 @@ export function Header() {
     label: string
   }[] = [
     { link: "/", icon: ArrowUpRight01Icon, label: "Home" },
-    { link: "/", icon: ArrowUpRight01Icon, label: "Features" },
-    { link: "/", icon: ArrowUpRight01Icon, label: "Subjects" },
+    // { link: "/", icon: ArrowUpRight01Icon, label: "Features" },
+    // { link: "/", icon: ArrowUpRight01Icon, label: "Subjects" },
     { link: "/", icon: ArrowUpRight01Icon, label: "For Students" },
-    { link: "/", icon: ArrowUpRight01Icon, label: "Plans & Pricing" },
+    { link: "/plans-and-pricing", icon: ArrowUpRight01Icon, label: "Plans & Pricing" },
   ]
 
   return (
     <header className="z-40 flex w-full justify-center border-b-2 border-foreground backdrop-blur-2xl dark:text-[#e1e1e1]">
-      <div className="w-full border-[#2c2c2c] px-2 backdrop-blur-2xl xl:max-w-[80%]">
+      <div className="w-full border-[#2c2c2c] max-md:px-2 backdrop-blur-2xl xl:max-w-[81%]">
         <div className="flex w-full items-center justify-between gap-x-2 px-10 py-5 text-black backdrop-blur-2xl max-sm:px-0 dark:text-white">
           <div className="flex items-center gap-x-2">
             <button
