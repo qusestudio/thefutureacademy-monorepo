@@ -8,11 +8,10 @@ import {
   CircleCheck,
 } from "@hugeicons/core-free-icons"
 import Image from "next/image"
-import {Separator} from "@workspace/ui/components/separator";
+import { Separator } from "@workspace/ui/components/separator"
 import { Button } from "@workspace/ui/components/button"
 
 const PricingPage = () => {
-
   const planItems = [
     "Access to all supported subject content",
     "Structured lessons and guided learning paths",
@@ -30,23 +29,21 @@ const PricingPage = () => {
       </div>
       <main className="w-full max-w-[75%] space-y-5 max-md:max-w-[90%] max-sm:px-0">
         <section className="flex w-full flex-col items-center pt-50">
-          <div className="flex justify-between">
-            <div className="flex w-full items-center gap-x-5 self-start p-5 text-4xl max-md:gap-x-1 max-md:p-1 max-md:text-3xl max-sm:text-3xl">
-              <Image
-                alt={"/globe.svg"}
-                src={"/logo-image.svg"}
-                height={100}
-                width={100}
-                className="text-white max-md:p-3 max-md:text-2xl"
-              />
-              <Link className="flex max-md:hidden" href={"/"}>
-                <p className="text-3xl leading-6 font-semibold uppercase">
-                  The
-                  <br /> Future
-                  <br /> Academy
-                </p>
-              </Link>
-            </div>
+          <div className="flex w-full items-center gap-x-5 self-start p-5 text-4xl max-md:gap-x-1 max-md:p-1 max-md:text-3xl max-sm:text-3xl">
+            <Image
+              alt={"/globe.svg"}
+              src={"/logo-image.svg"}
+              height={100}
+              width={100}
+              className="text-white max-md:p-3 max-md:text-2xl"
+            />
+            <Link className="flex max-md:hidden" href={"/"}>
+              <p className="text-3xl leading-6 font-semibold uppercase">
+                The
+                <br /> Future
+                <br /> Academy
+              </p>
+            </Link>
           </div>
           <div className="flex w-full flex-col border">
             <h1 className="w-full border-b pt-5 pr-5 text-center text-5xl font-semibold uppercase sm:text-[7em] lg:text-[7em]">
@@ -77,11 +74,15 @@ const PricingPage = () => {
             </div>
           </div>
         </section>
-        <p className={"p-2 font-archivo max-md:text-sm text-center tracking-wide"}>
-          Here&apos;s a plan that gives you the structure, support, and consistency
-          needed to succeed your grade. Everything is designed to help you stay
-          on track, understand your work, and improve your results with
-          confidence.
+        <p
+          className={
+            "p-2 text-center text-foreground/80 font-archivo tracking-wide max-md:text-sm"
+          }
+        >
+          Here&apos;s a plan that gives you the structure, support, and
+          consistency needed to succeed your grade. Everything is designed to
+          help you stay on track, understand your work, and improve your results
+          with confidence.
         </p>
         <section className="flex w-full flex-col items-center">
           <section className="mb-20 flex w-full flex-col items-center border max-md:pt-5 lg:flex-row">
