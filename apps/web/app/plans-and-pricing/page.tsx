@@ -8,17 +8,18 @@ import {
   CircleCheck,
 } from "@hugeicons/core-free-icons"
 import Image from "next/image"
+import {Separator} from "@workspace/ui/components/separator";
 
 const PricingPage = () => {
 
   const planItems = [
-    "Access to all Grade 12 subject content",
+    "Access to all supported subject content",
     "Structured lessons and guided learning paths",
-    "Practice questions and exams packages",
+    "Progress tracking and feedback",
     "Step-by-step explanations for clear understanding",
     "Study notes designed for effective revision",
-    "Progress tracking and feedback to improve your performance",
     "Support to keep you consistent and on track",
+    "24/7 access to on-demand lectures",
   ]
 
   return (
@@ -26,7 +27,7 @@ const PricingPage = () => {
       <div className="fixed flex w-full flex-col items-center">
         <Header />
       </div>
-      <main className="w-full max-w-[90%] space-y-5 max-sm:px-0 xl:px-10">
+      <main className="w-full max-w-[80%] space-y-5 max-sm:px-0 xl:px-10">
         <section className="flex w-full flex-col items-center pt-50">
           <div className="flex w-full items-center gap-x-5 self-start p-5 text-4xl max-md:gap-x-1 max-md:p-1 max-md:text-3xl max-sm:text-3xl">
             <Image
@@ -44,17 +45,17 @@ const PricingPage = () => {
               </p>
             </Link>
           </div>
-          <div className="flex w-full border max-xl:flex-col">
-            <h1 className="w-full pt-5 pr-5 text-7xl font-semibold uppercase max-xl:border-b sm:text-[7em] lg:text-[8em] xl:border-r xl:text-[11em]">
-              Plan
+          <div className="flex w-full flex-col border">
+            <h1 className="w-full border-b pt-5 pr-5 text-center text-5xl font-semibold uppercase sm:text-[7em] lg:text-[8em]">
+              Find a pl
               <span className="bg-[#ffbb00]/60 dark:text-background">
-                s <br /> &
+                an <br /> that fit
               </span>
               <br className="lg:hidden" />
               <span className="bg-[#ffbb00]/60 dark:text-background">
-                Prici
+                s you
               </span>
-              ng
+              r needs
             </h1>
             <div className="flex w-full flex-col items-start gap-y-5 p-5 px-[5%] font-archivo max-xl:h-full max-md:justify-end md:justify-center lg:py-[4%]">
               <div className="w-full">
@@ -65,94 +66,28 @@ const PricingPage = () => {
                 {/*  yourself the best chance to succeed.*/}
                 {/*</p>*/}
               </div>
-              <Link
-                href={"https://space.thefutureacademy.co.za/signup"}
-                className="bg-[#1F329D] p-3 px-5 font-medium tracking-wide text-white max-md:text-sm"
-              >
-                Join the academy
-              </Link>
+              {/*<Link*/}
+              {/*  href={"https://space.thefutureacademy.co.za/signup"}*/}
+              {/*  className="bg-[#1F329D] p-3 px-5 font-medium tracking-wide text-white max-md:text-sm"*/}
+              {/*>*/}
+              {/*  Join the academy*/}
+              {/*</Link>*/}
             </div>
           </div>
-          {/*<div className="flex w-full flex-col justify-center gap-y-10 py-10">*/}
-          {/*  <div className="flex h-5 w-full max-w-xl flex-wrap items-center gap-x-2 gap-y-2 font-archivo text-lg leading-tight tracking-wide text-foreground/90 max-md:text-sm">*/}
-          {/*    <span className="w-fit rounded-full border p-2">*/}
-          {/*      CAPS-Aligned Curriculum*/}
-          {/*    </span>*/}
-          {/*    <span className="rounded-full border p-2">Grade 12</span>*/}
-          {/*    <span className="rounded-full border p-2">*/}
-          {/*      University Readiness*/}
-          {/*    </span>*/}
-          {/*  </div>*/}
-          {/*</div>*/}
         </section>
-        <section className="flex w-full flex-col items-center gap-x-3 py-20 font-archivo max-md:pt-5">
-          <p
-            className={
-              "mb-4  border-b border-foreground pb-1 text-3xl max-md:text-2xl"
-            }
-          >
-            Supported subjects
-          </p>
-          <article className="w-full  space-y-1 py-2">
-            <p className={"text-2xl font-medium max-md:text-lg"}>Mathematics</p>
-            <p className={"text-sm"}>
-              Mathematics builds the foundation for problem-solving, logical
-              thinking, and analytical skills that are essential in almost every
-              career. Mastering Maths opens doors to fields like engineering,
-              finance, data science, architecture, and technology. With strong
-              mathematical skills, students gain the ability to think
-              critically, approach challenges with confidence, and unlock some
-              of the most in-demand career opportunities in the world.
-            </p>
-          </article>
-          <article className="w-full  space-y-1 py-2">
-            <p className="text-2xl font-medium max-md:text-lg">Physics</p>
-            <p className="text-sm">
-              Physics helps students understand how the world works—from motion
-              and energy to forces and matter. It develops deep analytical and
-              reasoning skills that are highly valued in technical and
-              scientific careers. Studying Physics can lead to pathways in
-              engineering, aviation, research, robotics, and even space
-              sciences, giving students the tools to innovate and solve
-              real-world problems.
-            </p>
-          </article>
-          <article className="w-full  space-y-1 py-2">
-            <p className="text-2xl font-medium max-md:text-lg">Chemistry</p>
-            <p className="text-xm">
-              Chemistry explores the building blocks of matter and how
-              substances interact and transform. It is essential for
-              understanding everything from medicines to materials and
-              environmental processes. This subject opens pathways into careers
-              such as medicine, pharmacy, chemical engineering, biochemistry,
-              and environmental science, making it a powerful subject for
-              students interested in science and healthcare.
-            </p>
-          </article>
 
-          <article className="w-full space-y-1 py-2">
-            <p className="text-2xl font-medium max-md:text-lg">Accounting</p>
-            <p className="text-sm">
-              Accounting teaches students how to manage, record, and interpret
-              financial information—an essential skill in both business and
-              everyday life. It builds a strong foundation in financial
-              literacy, critical thinking, and decision-making. This subject
-              leads to career opportunities in accounting, auditing, business
-              management, finance, and entrepreneurship, empowering students to
-              understand and control financial success.
-            </p>
-          </article>
-        </section>
         <section className="flex w-full flex-col items-center">
-          <section className="mb-20 flex w-full max-w-6xl flex-col items-center gap-x-3 max-md:pt-5 lg:flex-row">
-            <div className="flex h-full w-full flex-col justify-between rounded-l-xl border border-black bg-[#ffbb00] p-5 font-archivo text-2xl font-light tracking-wide text-black">
+          <section className="mb-20 flex w-full flex-col items-center gap-x-3 border max-md:pt-5 lg:flex-row">
+            <div className="flex h-full w-full flex-col justify-between p-5 font-archivo text-2xl font-light tracking-wide text-muted-foreground">
               <div>
-                <p className="font-chillax text-[7em] font-semibold">R400</p>
-                <p className="px-3 text-sm">one simple plan for all students</p>
-                <ul className="flex flex-col p-5">
+                <p className="font-chillax text-[6em] font-semibold">R400</p>
+                <p className="px-3 text-sm">
+                  one simple plan for all Grade 12 students
+                </p>
+                <ul className="flex list-disc flex-col p-5">
                   {planItems.map((item, index) => (
                     <li
-                      className="flex items-center gap-x-2 py-2 font-chillax font-medium lg:text-xs xl:text-sm"
+                      className="flex items-center gap-x-2 py-2 font-medium text-sm lg:text-xs xl:text-sm"
                       key={index}
                     >
                       {item}
@@ -168,8 +103,58 @@ const PricingPage = () => {
                 <HugeiconsIcon size={45} icon={ArrowUpRight01Icon} />
               </Link>
             </div>
-            <div className="flex h-full w-full flex-col border"></div>
-            <div className="relative flex h-full w-full flex-col rounded-r-xl border"></div>
+            <Separator orientation={"vertical"} />
+            <div className="flex h-full w-full flex-col justify-between p-5 font-archivo text-2xl font-light tracking-wide text-muted-foreground">
+              <div>
+                <p className="font-chillax text-[6em] font-semibold">R350</p>
+                <p className="px-3 text-sm">
+                  one simple plan for all Grade 11 students
+                </p>
+                <ul className="flex flex-col p-5">
+                  {planItems.map((item, index) => (
+                    <li
+                      className="flex items-center gap-x-2 py-2 font-medium lg:text-xs xl:text-sm"
+                      key={index}
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <Link
+                className="flex items-center justify-between rounded-lg bg-white px-2 text-black"
+                href={"#"}
+              >
+                Select plan
+                <HugeiconsIcon size={45} icon={ArrowUpRight01Icon} />
+              </Link>
+            </div>
+            <Separator orientation={"vertical"} />
+            <div className="flex h-full w-full flex-col justify-between p-5 font-archivo text-2xl font-light tracking-wide text-muted-foreground">
+              <div>
+                <p className="font-chillax text-[6em] font-semibold">R300</p>
+                <p className="px-3 text-sm">
+                  one simple plan for all Grade 10 students
+                </p>
+                <ul className="flex flex-col p-5">
+                  {planItems.map((item, index) => (
+                    <li
+                      className="flex items-center gap-x-2 py-2 font-medium lg:text-xs xl:text-sm"
+                      key={index}
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <Link
+                className="flex items-center justify-between rounded-lg bg-white px-2 text-black"
+                href={"#"}
+              >
+                Select plan
+                <HugeiconsIcon size={45} icon={ArrowUpRight01Icon} />
+              </Link>
+            </div>
           </section>
         </section>
       </main>
