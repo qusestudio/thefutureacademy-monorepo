@@ -47,7 +47,7 @@ const PricingPage = () => {
             </Link>
           </div>
           <div className="flex w-full flex-col border">
-            <h1 className="w-full border-b pt-5 pr-5 text-center text-5xl font-semibold uppercase sm:text-[7em] lg:text-[8em]">
+            <h1 className="w-full border-b pt-5 pr-5 text-center text-5xl font-semibold uppercase sm:text-[7em] lg:text-[7em]">
               Find a pl
               <span className="bg-[#ffbb00]/60 dark:text-background">
                 an <br /> that fit
@@ -78,13 +78,13 @@ const PricingPage = () => {
         </section>
 
         <section className="flex w-full flex-col items-center">
-          <section className="mb-20 flex w-full flex-col items-center gap-x-3 border max-md:pt-5 lg:flex-row">
-            <div className="flex h-full w-full flex-col justify-between p-5 font-archivo text-2xl font-light tracking-wide text-muted-foreground">
-              <div className="flex flex-col items-center gap-y-2">
-                <p className="font-chillax text-[6em] font-semibold text-foreground max-md:text-[5em]">
-                  R400
+          <section className="mb-20 flex w-full flex-col items-center border max-md:pt-5 lg:flex-row">
+            <div className="flex h-full w-full py-5 flex-col justify-between px-5 font-archivo text-2xl font-light tracking-wide text-foreground/80">
+              <div className="flex flex-col items-start gap-y-2 ">
+                <p className="max-md:text-text-6xl font-chillax text-8xl font-semibold text-foreground">
+                  R400<span className="text-lg font-normal">/ month</span>
                 </p>
-                <p className="px-3 text-sm">
+                <p className="self-start px-3 text-sm">
                   one simple plan for all Grade 12 students
                 </p>
                 <ul className="flex list-disc flex-col p-5">
@@ -98,25 +98,26 @@ const PricingPage = () => {
                   ))}
                 </ul>
               </div>
-              <button
-                className="flex items-center justify-center rounded-full bg-[#1F329D] px-2 py-3 text-white"
-
-              >
-                Select plan
-                <HugeiconsIcon size={30} icon={ArrowUpRight01Icon} />
+              <button className="flex items-center tracking-wider justify-center gap-x-2 rounded-full bg-[#1F329D] px-2 py-3  text-white">
+                Get Started
+                <HugeiconsIcon
+                  strokeWidth={2}
+                  size={40}
+                  icon={ArrowUpRight01Icon}
+                />
               </button>
             </div>
             <Separator className={"hidden lg:block"} orientation={"vertical"} />
             <Separator className={"lg:hidden"} orientation={"horizontal"} />
-            <div className="flex h-full w-full flex-col justify-between p-5 font-archivo text-2xl font-light tracking-wide text-muted-foreground">
-              <div className="flex flex-col items-center gap-y-2">
-                <p className="font-chillax text-[6em] font-semibold text-foreground max-md:text-[5em]">
-                  R350
+            <div className="flex h-full w-full flex-col justify-between px-5 max-md:px-2 py-5 font-archivo text-2xl font-light tracking-wide text-foreground/70">
+              <div className="flex flex-col items-start gap-y-2 p-2">
+                <p className="max-md:text-text-6xl font-chillax text-8xl font-semibold text-foreground">
+                  R350<span className="text-lg font-normal">/ month</span>
                 </p>
-                <p className="px-3 text-sm">
+                <p className="self-start px-3 text-sm">
                   one simple plan for all Grade 11 students
                 </p>
-                <ul className="flex flex-col p-5">
+                <ul className="flex list-disc flex-col p-5">
                   {planItems.map((item, index) => (
                     <li
                       className="flex items-center gap-x-2 py-2 text-sm font-medium"
@@ -127,25 +128,21 @@ const PricingPage = () => {
                   ))}
                 </ul>
               </div>
-              <button
-                className="flex items-center justify-center rounded-full bg-muted-foreground px-2 py-2 text-lg font-medium text-black"
-                disabled={true}
-              >
+              <button disabled={true} className="flex tracking-wider items-center justify-center gap-x-2 rounded-full bg-accent px-2 py-3 font-medium text-foreground">
                 Coming soon
-                {/*<HugeiconsIcon size={45} icon={ArrowUpRight01Icon} />*/}
               </button>
             </div>
             <Separator className={"hidden lg:block"} orientation={"vertical"} />
             <Separator className={"lg:hidden"} orientation={"horizontal"} />
-            <div className="flex h-full w-full flex-col justify-between p-5 font-archivo text-2xl font-light tracking-wide text-muted-foreground">
-              <div className={"flex flex-col items-center gap-y-2"}>
-                <p className="font-chillax text-[6em] font-semibold text-foreground max-md:text-[5em]">
-                  R300
+            <div className="flex h-full w-full flex-col justify-between px-5 font-archivo py-5 text-2xl font-light tracking-wide text-foreground/80">
+              <div className="flex flex-col items-start gap-y-2 p-2">
+                <p className="max-md:text-text-6xl font-chillax text-8xl font-semibold text-foreground">
+                  R300<span className="text-lg font-normal">/ month</span>
                 </p>
-                <p className="px-3 text-sm">
+                <p className="self-start px-3 text-sm">
                   one simple plan for all Grade 10 students
                 </p>
-                <ul className="flex flex-col p-5">
+                <ul className="flex list-disc flex-col p-5">
                   {planItems.map((item, index) => (
                     <li
                       className="flex items-center gap-x-2 py-2 text-sm font-medium"
@@ -156,12 +153,8 @@ const PricingPage = () => {
                   ))}
                 </ul>
               </div>
-              <button
-                className="flex items-center justify-center rounded-full bg-muted-foreground px-2 py-2 text-lg font-medium text-black"
-                disabled={true}
-              >
+              <button disabled className="flex items-center justify-center gap-x-2 rounded-full bg-accent px-2 py-3 font-medium text-accent-foreground">
                 Coming soon
-                {/*<HugeiconsIcon size={45} icon={ArrowUpRight01Icon} />*/}
               </button>
             </div>
           </section>

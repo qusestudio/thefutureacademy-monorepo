@@ -65,7 +65,7 @@ export function Header() {
               )}
             </button>
             <Link className="hidden max-md:flex" href={"/"}>
-              <p className="text-3xl leading-6 font-semibold uppercase">
+              <p className="text-xl leading-5 font-semibold uppercase">
                 The
                 <br /> Future
                 <br /> Academy
