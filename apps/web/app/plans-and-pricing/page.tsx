@@ -9,6 +9,7 @@ import {
 } from "@hugeicons/core-free-icons"
 import Image from "next/image"
 import {Separator} from "@workspace/ui/components/separator";
+import { Button } from "@workspace/ui/components/button"
 
 const PricingPage = () => {
 
@@ -27,7 +28,7 @@ const PricingPage = () => {
       <div className="fixed flex w-full flex-col items-center">
         <Header />
       </div>
-      <main className="w-full max-w-[80%] space-y-5 max-sm:px-0 xl:px-10">
+      <main className="w-full max-w-[80%] space-y-5 max-md:max-w-[90%] max-sm:px-0 xl:px-10">
         <section className="flex w-full flex-col items-center pt-50">
           <div className="flex w-full items-center gap-x-5 self-start p-5 text-4xl max-md:gap-x-1 max-md:p-1 max-md:text-3xl max-sm:text-3xl">
             <Image
@@ -79,8 +80,10 @@ const PricingPage = () => {
         <section className="flex w-full flex-col items-center">
           <section className="mb-20 flex w-full flex-col items-center gap-x-3 border max-md:pt-5 lg:flex-row">
             <div className="flex h-full w-full flex-col justify-between p-5 font-archivo text-2xl font-light tracking-wide text-muted-foreground">
-              <div>
-                <p className="font-chillax text-[6em] font-semibold">R400</p>
+              <div className="flex flex-col items-center gap-y-2">
+                <p className="font-chillax text-[6em] font-semibold text-foreground max-md:text-[5em]">
+                  R400
+                </p>
                 <p className="px-3 text-sm">
                   one simple plan for all Grade 12 students
                 </p>
@@ -95,26 +98,28 @@ const PricingPage = () => {
                   ))}
                 </ul>
               </div>
-              <Link
-                className="flex items-center justify-between rounded-lg bg-white px-2 text-black"
-                href={"#"}
+              <button
+                className="flex items-center justify-center rounded-full bg-[#1F329D] px-2 py-3 text-white"
+
               >
                 Select plan
-                <HugeiconsIcon size={45} icon={ArrowUpRight01Icon} />
-              </Link>
+                <HugeiconsIcon size={30} icon={ArrowUpRight01Icon} />
+              </button>
             </div>
-            <Separator className={"lg:block hidden"} orientation={"vertical"} />
+            <Separator className={"hidden lg:block"} orientation={"vertical"} />
             <Separator className={"lg:hidden"} orientation={"horizontal"} />
             <div className="flex h-full w-full flex-col justify-between p-5 font-archivo text-2xl font-light tracking-wide text-muted-foreground">
-              <div>
-                <p className="font-chillax text-[6em] font-semibold">R350</p>
+              <div className="flex flex-col items-center gap-y-2">
+                <p className="font-chillax text-[6em] font-semibold text-foreground max-md:text-[5em]">
+                  R350
+                </p>
                 <p className="px-3 text-sm">
                   one simple plan for all Grade 11 students
                 </p>
                 <ul className="flex flex-col p-5">
                   {planItems.map((item, index) => (
                     <li
-                      className="flex items-center gap-x-2 py-2 font-medium text-sm"
+                      className="flex items-center gap-x-2 py-2 text-sm font-medium"
                       key={index}
                     >
                       {item}
@@ -122,26 +127,28 @@ const PricingPage = () => {
                   ))}
                 </ul>
               </div>
-              <Link
-                className="flex items-center justify-between rounded-lg bg-white px-2 text-black"
-                href={"#"}
+              <button
+                className="flex items-center justify-center rounded-full bg-muted-foreground px-2 py-2 text-lg font-medium text-black"
+                disabled={true}
               >
-                Select plan
-                <HugeiconsIcon size={45} icon={ArrowUpRight01Icon} />
-              </Link>
+                Coming soon
+                {/*<HugeiconsIcon size={45} icon={ArrowUpRight01Icon} />*/}
+              </button>
             </div>
-            <Separator className={"lg:block hidden"} orientation={"vertical"} />
+            <Separator className={"hidden lg:block"} orientation={"vertical"} />
             <Separator className={"lg:hidden"} orientation={"horizontal"} />
             <div className="flex h-full w-full flex-col justify-between p-5 font-archivo text-2xl font-light tracking-wide text-muted-foreground">
-              <div>
-                <p className="font-chillax text-[6em] font-semibold">R300</p>
+              <div className={"flex flex-col items-center gap-y-2"}>
+                <p className="font-chillax text-[6em] font-semibold text-foreground max-md:text-[5em]">
+                  R300
+                </p>
                 <p className="px-3 text-sm">
                   one simple plan for all Grade 10 students
                 </p>
                 <ul className="flex flex-col p-5">
                   {planItems.map((item, index) => (
                     <li
-                      className="flex items-center gap-x-2 py-2 font-medium text-sm"
+                      className="flex items-center gap-x-2 py-2 text-sm font-medium"
                       key={index}
                     >
                       {item}
@@ -149,13 +156,13 @@ const PricingPage = () => {
                   ))}
                 </ul>
               </div>
-              <Link
-                className="flex items-center justify-between rounded-lg bg-white px-2 text-black"
-                href={"#"}
+              <button
+                className="flex items-center justify-center rounded-full bg-muted-foreground px-2 py-2 text-lg font-medium text-black"
+                disabled={true}
               >
-                Select plan
-                <HugeiconsIcon size={45} icon={ArrowUpRight01Icon} />
-              </Link>
+                Coming soon
+                {/*<HugeiconsIcon size={45} icon={ArrowUpRight01Icon} />*/}
+              </button>
             </div>
           </section>
         </section>

@@ -13,7 +13,7 @@ const Home = () => {
       <div className="fixed flex w-full flex-col items-center">
         <Header />
       </div>
-      <main className="w-full max-w-[90%] space-y-5 xl:px-10  max-sm:px-0">
+      <main className="w-full max-md:max-w-[90%] max-w-[80%] space-y-5 xl:px-10  max-sm:px-0">
         <section className="flex w-full flex-col  items-center pt-50">
           <div className="flex w-full items-end justify-between self-start text-4xl max-sm:text-3xl">
             <p className="bg-[#1F329D] p-5 text-white max-md:p-3 max-md:text-2xl">
@@ -33,7 +33,7 @@ const Home = () => {
             </Link>
           </div>
           <div className="flex w-full border  max-xl:flex-col">
-            <h1 className="w-full pt-5 pr-5 text-6xl lg:text-[8em] xl:text-[11em] font-semibold uppercase max-md:h-[40vh] max-xl:border-b sm:text-[7em] xl:border-r">
+            <h1 className="w-full pt-5 pr-5 text-6xl lg:text-[8em] xl:text-[10em] font-semibold uppercase max-md:h-[40vh] max-xl:border-b sm:text-[7em] xl:border-r">
               STUD
               <span className="bg-[#ffbb00]/60 dark:text-background">
                 y <br /> Any
@@ -42,7 +42,7 @@ const Home = () => {
                 time
                 <br />A
               </span>
-              ny<br className="hidden max-sm:inline" />where
+              nywhere
             </h1>
             <div className="flex w-full lg:py-[4%] flex-col items-start gap-y-5 p-5 px-[5%] font-archivo max-xl:h-full max-md:justify-end md:justify-center">
               <div className="w-full">
