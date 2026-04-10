@@ -38,8 +38,8 @@ const AvailableSubjects = () => {
 
   return (
     <div className="flex w-full flex-col justify-center  p-5 dark:bg-background">
-      <section className="flex w-full flex-7 flex-col gap-y-5  ">
-        <h1 className="font-chillax text-center  text-4xl max-sm:text-3xl">
+      <section className="flex w-full flex-col gap-y-5  ">
+        <h1 className="font-chillax w-full   text-4xl max-sm:text-3xl">
           Your future starts here. Explore the subjects designed to get you
           there.
         </h1>

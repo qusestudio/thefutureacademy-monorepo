@@ -39,7 +39,7 @@ export function Header() {
     { link: "/", icon: ArrowUpRight01Icon, label: "Home" },
     // { link: "/", icon: ArrowUpRight01Icon, label: "Features" },
     // { link: "/", icon: ArrowUpRight01Icon, label: "Subjects" },
-    { link: "/", icon: ArrowUpRight01Icon, label: "For Students" },
+    { link: "/what-to-expect", icon: ArrowUpRight01Icon, label: "What to expect" },
     { link: "/plans-and-pricing", icon: ArrowUpRight01Icon, label: "Plans & Pricing" },
   ]
 

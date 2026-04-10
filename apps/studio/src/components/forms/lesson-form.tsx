@@ -69,14 +69,11 @@ export function CreateLessonForm(props: {
     try {
       setUploadStatus("uploading")
       setVideoError("")
-      alert(file.name)
-      alert(file.type)
 
       const { uploadUrl, fileKey } = await getSignedUrl({
         fileName: file.name,
         fileType: file.type,
       }).unwrap();
-      alert(uploadUrl);
 
       await uploadToS3({ uploadUrl, file }).unwrap();
 

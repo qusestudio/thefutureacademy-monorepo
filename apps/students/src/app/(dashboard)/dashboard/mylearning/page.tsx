@@ -72,7 +72,7 @@ const MyLearning = () => {
       </div>
       <Separator />
       {subjectsLoading ? (
-        <div className="grid w-full grid-cols-3 flex-col gap-5 gap-y-5 p-5">
+        <div className="grid w-full grid-cols-4 flex-col gap-5 gap-y-5 p-5">
           {Array.from({ length: 3 }).map((_, i) => (
             <div key={i}>
               <div className="grid w-full gap-x-5 gap-y-2 rounded-xl bg-accent/50 p-2">
@@ -86,7 +86,7 @@ const MyLearning = () => {
           ))}
         </div>
       ) : (
-        <div className="no-scrollbar grid w-full grid-cols-3 flex-col gap-5 overflow-y-auto p-5">
+        <div className="no-scrollbar grid w-full grid-cols-4 flex-col gap-5 overflow-y-auto p-5">
           {subjects?.length === 0 && (<>None</>)}
           {subjects?.map(
             ({ subjectTitle, subjectId, subjectImage, term, grade }, i) => (

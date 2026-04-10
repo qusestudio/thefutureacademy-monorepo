@@ -4,12 +4,9 @@ import Link from "next/link"
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
   ArrowUpRight01Icon,
-  Check,
-  CircleCheck,
 } from "@hugeicons/core-free-icons"
 import Image from "next/image"
 import { Separator } from "@workspace/ui/components/separator"
-import { Button } from "@workspace/ui/components/button"
 
 const PricingPage = () => {
   const planItems = [
