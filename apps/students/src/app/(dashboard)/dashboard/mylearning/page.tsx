@@ -61,6 +61,27 @@ const SubjectCard = (props: SubjectCardProps) => {
 const MyLearning = () => {
   const router = useRouter();
   const {data: subjects, isLoading: subjectsLoading} = useGetStudentEnrollmentsQuery();
+
+  if (subjectsLoading) {
+    return <div className="grid w-full grid-cols-4 flex-col gap-5 gap-y-5 p-5">
+      {Array.from({ length: 3 }).map((_, i) => (
+        <div key={i}>
+          <div className="grid w-full gap-x-5 gap-y-2 rounded-xl bg-accent/50 p-2">
+            <Skeleton className="aspect-video w-full rounded-lg" />
+            <div className="flex flex-col gap-y-2">
+              <Skeleton className="h-8 w-2/5 rounded-sm" />
+              <Skeleton className="h-8 w-2/9 rounded-sm" />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  }
+
+  if (subjects?.length === 0) {
+    return <div>No available subjects yet.</div>
+  }
+
   return (
     <div>
       <div className="@container/main flex flex-1 flex-col gap-5 p-5 pb-10 font-chillax max-md:px-0">
@@ -71,21 +92,6 @@ const MyLearning = () => {
         </p>
       </div>
       <Separator />
-      {subjectsLoading ? (
-        <div className="grid w-full grid-cols-4 flex-col gap-5 gap-y-5 p-5">
-          {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i}>
-              <div className="grid w-full gap-x-5 gap-y-2 rounded-xl bg-accent/50 p-2">
-                <Skeleton className="aspect-video w-full rounded-lg" />
-                <div className="flex flex-col gap-y-2">
-                  <Skeleton className="h-8 w-2/5 rounded-sm" />
-                  <Skeleton className="h-8 w-2/9 rounded-sm" />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      ) : (
         <div className="no-scrollbar grid w-full grid-cols-4 flex-col gap-5 overflow-y-auto p-5">
           {subjects?.map(
             ({ subjectTitle, subjectId, subjectImage, term, grade }, i) => (
@@ -100,7 +106,6 @@ const MyLearning = () => {
             )
           )}
         </div>
-      )}
     </div>
   )
 }
