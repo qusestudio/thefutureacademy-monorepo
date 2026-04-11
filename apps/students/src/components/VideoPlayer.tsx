@@ -128,7 +128,7 @@ const VideoPlayer = ({src, poster}: VideoPlayerProps) => {
 
     return (
       <div
-        className="group relative w-full overflow-hidden rounded-3xl bg-black"
+        className="group  relative w-full overflow-hidden rounded-3xl bg-black"
         onMouseEnter={() => setShowControls(true)}
         onMouseLeave={() => setShowControls(!isPlaying)}
       >
@@ -136,7 +136,7 @@ const VideoPlayer = ({src, poster}: VideoPlayerProps) => {
           ref={videoRef}
           src={src}
           poster={poster}
-          className={"h-full w-full"}
+          className={"h-auto aspect-video w-full"}
         />
 
         {/*PLAY / PAUSE BUTTON*/}

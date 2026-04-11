@@ -16,9 +16,13 @@ import {
   HelpCircleIcon,
   Settings05Icon,
 } from "@hugeicons/core-free-icons"
-import { CollapsibleTopic, CollapsibleTopicItem } from "@/components/preview/collapsible-content"
+import {
+  CollapsibleTopic,
+  CollapsibleTopicItem,
+} from "@/components/preview/collapsible-content"
 import Link from "next/link"
-import { useGetTopicsBySubjectQuery } from "@/state/api"
+import { useGetSubjectQuery, useGetTopicsBySubjectQuery } from "@/state/api"
+import { Skeleton } from "@workspace/ui/components/skeleton"
 
 const data = {
   user: {
@@ -54,8 +58,18 @@ const data = {
   ],
 }
 
-export function TopicsSidebar({ subjectId, ...props }: React.ComponentProps<typeof Sidebar> & {subjectId: string}) {
-  const {data: topics, isLoading: topicsLoading} = useGetTopicsBySubjectQuery(subjectId, {skip: !subjectId})
+export function TopicsSidebar({
+  subjectId,
+  ...props
+}: React.ComponentProps<typeof Sidebar> & { subjectId: string }) {
+  const { data: subject, isLoading: subjectLoading } = useGetSubjectQuery(
+    subjectId,
+    { skip: !subjectId }
+  )
+  const { data: topics, isLoading: topicsLoading } = useGetTopicsBySubjectQuery(
+    subjectId,
+    { skip: !subjectId }
+  )
   return (
     <Sidebar
       className="flex flex-col gap-y-10 bg-background"
@@ -81,7 +95,7 @@ export function TopicsSidebar({ subjectId, ...props }: React.ComponentProps<type
           </SidebarMenuItem>
           <SidebarMenuItem className="rounded-lg border-2 border-foreground bg-[#ffbb00]/60 p-2 dark:border-[#ffbb00] dark:bg-transparent dark:text-[#ffbb00]">
             <p className="text-xs font-medium text-muted-foreground">Course</p>
-            <p className="font-medium text-xl">Mathematics</p>
+            <div className="text-xl font-medium">{ subjectLoading ? <Skeleton className={"h-6 w-full rounded-lg"} /> : subject?.title}</div>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
