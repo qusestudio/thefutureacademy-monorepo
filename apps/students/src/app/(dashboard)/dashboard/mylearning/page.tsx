@@ -87,7 +87,6 @@ const MyLearning = () => {
         </div>
       ) : (
         <div className="no-scrollbar grid w-full grid-cols-4 flex-col gap-5 overflow-y-auto p-5">
-          {subjects?.length === 0 && (<>None</>)}
           {subjects?.map(
             ({ subjectTitle, subjectId, subjectImage, term, grade }, i) => (
               <SubjectCard
