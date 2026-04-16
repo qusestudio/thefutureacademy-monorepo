@@ -138,9 +138,18 @@ interface StudentSubscription {
   studentId: string
   planId: string
   status: string
-  currentPeriodStart: Date
-  currentPeriodEnd: Date
+  currentPeriodStart: string
+  currentPeriodEnd: string
   cancelAtPeriodEnd: boolean
+}
+
+interface Plan {
+  id: string
+  name: string
+  price: number
+  duration: number
+  isActive: boolean
+  grade: number
 }
 
 export {
@@ -160,5 +169,6 @@ export {
   PricingDetails,
   YocoCheckoutResponse,
   StudentCheckout,
-  StudentSubscription
+  StudentSubscription,
+  Plan
 }

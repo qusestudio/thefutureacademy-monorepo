@@ -3,6 +3,7 @@ import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth"
 import {
   Enrollment,
   Lesson,
+  Plan,
   StudentCheckout,
   StudentEnrollment,
   StudentProfile,
@@ -15,6 +16,7 @@ import {
 } from "@/types/models"
 import { createNewUserInDatabase } from "@/lib/utils"
 import { toast } from "sonner"
+import { Subscription } from "react-redux"
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
@@ -42,6 +44,7 @@ export const api = createApi({
     "Payment",
     "StudentCheckout",
     "StudentSubscription",
+    "Plan",
   ],
   endpoints: (build) => ({
     /** User Data*/
@@ -180,9 +183,8 @@ export const api = createApi({
     /** Billing endpoints */
     createCheckout: build.mutation<YocoCheckoutResponse, YocoCheckoutRequest>({
       query: (checkout) => {
-        alert("Initiating Payment")
         return {
-          url: "/payments",
+          url: "/checkouts",
           method: "POST",
           body: checkout,
         }
@@ -224,6 +226,7 @@ export const api = createApi({
       },
       providesTags: ["StudentCheckout"],
     }),
+
     getStudentSubscription: build.query<StudentSubscription, void>({
       queryFn: async (_, _queryApi, _extraOptions, fetchWithBQ) => {
         try {
@@ -253,6 +256,27 @@ export const api = createApi({
         }
       },
       providesTags: ["StudentSubscription"],
+    }),
+    createSubscription: build.mutation<void, Omit<StudentSubscription, "id">>({
+      query: (subscription) => {
+        console.log(subscription)
+        return {
+          url: "/subscriptions",
+          method: "POST",
+          body: subscription,
+        }
+      },
+      invalidatesTags: ["StudentSubscription"],
+      async onQueryStarted(_, { queryFulfilled }) {
+        toast.promise(queryFulfilled, {
+          error: "Could not create subscription.",
+        })
+      },
+    }),
+
+    getPlanByGrade: build.query<Plan, number>({
+      query: (grade) => `/grades/${grade}/plan`,
+      providesTags: ["Plan"],
     }),
 
     // Lessons
@@ -377,6 +401,8 @@ export const {
   useCreateCheckoutMutation,
   useGetStudentCheckoutQuery,
   useGetStudentSubscriptionQuery,
+  useCreateSubscriptionMutation,
+  useGetPlanByGradeQuery,
   // User data endpoints
   useGetAuthUserQuery,
   useGetAuthProfileQuery,

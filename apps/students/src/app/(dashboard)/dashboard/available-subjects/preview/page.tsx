@@ -218,8 +218,6 @@ const SubjectPreview = () => {
                   </button>
                 ) : (
                   <button
-                    disabled={enrolling || enrolled}
-                    onClick={handleEnroll}
                     className={`${enrolled ? "border-green-400 bg-green-400 text-black" : "bg-foreground"} flex w-full cursor-pointer items-center justify-center gap-x-2 rounded-md border border-foreground p-3 px-5 text-sm font-medium text-background`}
                   >
                     <HugeiconsIcon icon={LockedIcon} /> Activate plan

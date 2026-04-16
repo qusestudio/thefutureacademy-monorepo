@@ -11,11 +11,16 @@ import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { CLOUDFRONT } from "@thefutureacademy/instructors/src/lib/constants"
 import {
+  useGetAuthProfileQuery,
+  useGetAuthUserQuery,
   useGetStudentEnrollmentsQuery,
   useGetStudentSubscriptionQuery,
 } from "@/state/api"
 import { Skeleton } from "@workspace/ui/components/skeleton"
 import AnimatedLogo from "@/components/animated-logo"
+import { DialogClose } from "@workspace/ui/components/dialog"
+import { PlanDialog } from "@/components/dialogs/plan-dialog"
+import { Spinner } from "@workspace/ui/components/spinner"
 
 interface SubjectCardProps {
   id: string
@@ -68,10 +73,7 @@ const MyLearning = () => {
     useGetStudentSubscriptionQuery()
   const { data: subjects, isLoading: subjectsLoading } =
     useGetStudentEnrollmentsQuery();
-
-  const handleActivatePlan = async () => {
-
-  }
+  const {data: user, isLoading: userLoading} = useGetAuthUserQuery();
 
   if (subjectsLoading || subLoading) {
     return (
@@ -107,12 +109,12 @@ const MyLearning = () => {
               src={"/logo-image.svg"}
               alt={"logo"}
             />
-            <button
-                onClick={handleActivatePlan}
-                className="rounded-full bg-[#1F329D] p-2 px-5 text-sm font-medium text-white"
-            >
-              Activate plan
-            </button>
+            {
+              userLoading ?
+                <Spinner />
+                :
+                <PlanDialog studentId={user?.cognitoInfo.userId!} />
+            }
           </span>
         </div>
       </div>
