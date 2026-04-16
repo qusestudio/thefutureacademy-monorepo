@@ -6,6 +6,7 @@ import {
   StudentCheckout,
   StudentEnrollment,
   StudentProfile,
+  StudentSubscription,
   StudentUser,
   Subject,
   Topic,
@@ -40,6 +41,7 @@ export const api = createApi({
     "Lessons",
     "Payment",
     "StudentCheckout",
+    "StudentSubscription",
   ],
   endpoints: (build) => ({
     /** User Data*/
@@ -222,6 +224,36 @@ export const api = createApi({
       },
       providesTags: ["StudentCheckout"],
     }),
+    getStudentSubscription: build.query<StudentSubscription, void>({
+      queryFn: async (_, _queryApi, _extraOptions, fetchWithBQ) => {
+        try {
+          const user = await getCurrentUser()
+
+          if (!user) {
+            return {
+              error: { status: 401, data: "No authenticated user found" },
+            }
+          }
+
+          const studentId = user.userId
+
+          const result = await fetchWithBQ(
+            `/students/${studentId}/subscription`
+          )
+
+          if (result.error) {
+            return { error: result.error }
+          }
+
+          return { data: result.data as StudentSubscription }
+        } catch (error: any) {
+          return {
+            error: error.message || "Could not fetch student subscription",
+          }
+        }
+      },
+      providesTags: ["StudentSubscription"],
+    }),
 
     // Lessons
     getLessons: build.query<Lesson[], string>({
@@ -344,6 +376,7 @@ export const {
   // Billing endpoints
   useCreateCheckoutMutation,
   useGetStudentCheckoutQuery,
+  useGetStudentSubscriptionQuery,
   // User data endpoints
   useGetAuthUserQuery,
   useGetAuthProfileQuery,

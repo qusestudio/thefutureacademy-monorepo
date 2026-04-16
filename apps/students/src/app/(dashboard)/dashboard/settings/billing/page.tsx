@@ -2,7 +2,11 @@
 
 import React from 'react';
 import Image from "next/image";
-import {useCreateCheckoutMutation, useGetStudentCheckoutQuery} from "@/state/api";
+import {
+  useCreateCheckoutMutation,
+  useGetStudentCheckoutQuery,
+  useGetStudentSubscriptionQuery,
+} from "@/state/api"
 import {redirect} from "next/navigation";
 import ProfilePageSkeleton from "@/components/skeletons/skeletons";
 import { Button } from "@workspace/ui/components/button"
@@ -15,6 +19,7 @@ import {
 import { Separator } from "@workspace/ui/components/separator"
 
 const BillingSettings = () => {
+    const {data: subscription, isLoading: subLoading} = useGetStudentSubscriptionQuery();
     const [createCheckout] = useCreateCheckoutMutation();
     const {data: checkout, isLoading} = useGetStudentCheckoutQuery();
 

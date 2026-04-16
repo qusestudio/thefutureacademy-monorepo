@@ -10,8 +10,12 @@ import { Card } from "@workspace/ui/components/card"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { CLOUDFRONT } from "@thefutureacademy/instructors/src/lib/constants"
-import { useGetStudentEnrollmentsQuery } from "@/state/api"
+import {
+  useGetStudentEnrollmentsQuery,
+  useGetStudentSubscriptionQuery,
+} from "@/state/api"
 import { Skeleton } from "@workspace/ui/components/skeleton"
+import AnimatedLogo from "@/components/animated-logo"
 
 interface SubjectCardProps {
   id: string
@@ -59,23 +63,60 @@ const SubjectCard = (props: SubjectCardProps) => {
 }
 
 const MyLearning = () => {
-  const router = useRouter();
-  const {data: subjects, isLoading: subjectsLoading} = useGetStudentEnrollmentsQuery();
+  const router = useRouter()
+  const { data: subscription, isLoading: subLoading } =
+    useGetStudentSubscriptionQuery()
+  const { data: subjects, isLoading: subjectsLoading } =
+    useGetStudentEnrollmentsQuery();
 
-  if (subjectsLoading) {
-    return <div className="grid w-full grid-cols-4 flex-col gap-5 gap-y-5 p-5">
-      {Array.from({ length: 3 }).map((_, i) => (
-        <div key={i}>
-          <div className="grid w-full gap-x-5 gap-y-2 rounded-xl bg-accent/50 p-2">
-            <Skeleton className="aspect-video w-full rounded-lg" />
-            <div className="flex flex-col gap-y-2">
-              <Skeleton className="h-8 w-2/5 rounded-sm" />
-              <Skeleton className="h-8 w-2/9 rounded-sm" />
+  const handleActivatePlan = async () => {
+
+  }
+
+  if (subjectsLoading || subLoading) {
+    return (
+      <div className="grid w-full grid-cols-4 flex-col gap-5 gap-y-5 p-5">
+        {Array.from({ length: 3 }).map((_, i) => (
+          <div key={i}>
+            <div className="grid w-full gap-x-5 gap-y-2 rounded-xl bg-accent/50 p-2">
+              <Skeleton className="aspect-video w-full rounded-lg" />
+              <div className="flex flex-col gap-y-2">
+                <Skeleton className="h-8 w-2/5 rounded-sm" />
+                <Skeleton className="h-8 w-2/9 rounded-sm" />
+              </div>
             </div>
           </div>
+        ))}
+      </div>
+    )
+  }
+
+  if (subscription?.status !== "active") {
+    return (
+      <div className="flex h-full w-full flex-col items-center justify-center">
+        <div className="@container/main flex w-full flex-1 flex-col gap-5 p-5 font-chillax max-md:px-0">
+          <h1 className="text-4xl md:text-5xl">My Learning</h1>
+          <p className="text-sm">Activate your plan to start learning</p>
         </div>
-      ))}
-    </div>
+        <Separator />
+        <div className="flex h-full w-full items-center justify-center">
+          <span className="flex flex-col items-center gap-y-4">
+            <Image
+              width={150}
+              height={150}
+              src={"/logo-image.svg"}
+              alt={"logo"}
+            />
+            <button
+                onClick={handleActivatePlan}
+                className="rounded-full bg-[#1F329D] p-2 px-5 text-sm font-medium text-white"
+            >
+              Activate plan
+            </button>
+          </span>
+        </div>
+      </div>
+    )
   }
 
   if (subjects?.length === 0) {
@@ -92,20 +133,20 @@ const MyLearning = () => {
         </p>
       </div>
       <Separator />
-        <div className="no-scrollbar grid w-full grid-cols-4 flex-col gap-5 overflow-y-auto p-5">
-          {subjects?.map(
-            ({ subjectTitle, subjectId, subjectImage, term, grade }, i) => (
-              <SubjectCard
-                key={i}
-                id={subjectId}
-                src={subjectImage}
-                title={subjectTitle}
-                term={term}
-                grade={grade}
-              />
-            )
-          )}
-        </div>
+      <div className="no-scrollbar grid w-full grid-cols-4 flex-col gap-5 overflow-y-auto p-5">
+        {subjects?.map(
+          ({ subjectTitle, subjectId, subjectImage, term, grade }, i) => (
+            <SubjectCard
+              key={i}
+              id={subjectId}
+              src={subjectImage}
+              title={subjectTitle}
+              term={term}
+              grade={grade}
+            />
+          )
+        )}
+      </div>
     </div>
   )
 }

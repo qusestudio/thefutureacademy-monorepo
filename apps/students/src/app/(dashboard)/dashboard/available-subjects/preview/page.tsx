@@ -6,6 +6,8 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import {
   Book02Icon,
   Check,
+  Lock,
+  LockedIcon,
   ShoppingBag01Icon,
 } from "@hugeicons/core-free-icons"
 
@@ -14,6 +16,7 @@ import { IconlyGraph } from "@workspace/ui/components/iconly-icons"
 import { useSearchParams } from "next/navigation"
 import {
   useEnrollStudentMutation,
+  useGetStudentSubscriptionQuery,
   useGetSubjectQuery,
   useGetTopicsBySubjectQuery,
 } from "@/state/api"
@@ -26,6 +29,8 @@ const SubjectPreview = () => {
   const searchParams = useSearchParams()
   const subjectId = searchParams.get("subjectId")
   const [enrolled, setEnrolled] = React.useState<boolean>(false)
+  const { data: subscription, isLoading: subLoading } =
+    useGetStudentSubscriptionQuery()
   const { data: subject, isLoading: subjectLoading } = useGetSubjectQuery(
     subjectId ?? "",
     { skip: !subjectId }
@@ -54,7 +59,7 @@ const SubjectPreview = () => {
 
   return (
     <div className="flex w-full flex-col items-center justify-center gap-y-5 p-5">
-      {subjectLoading ? (
+      {subjectLoading || subLoading ? (
         <div className="flex w-full gap-x-10">
           {/*TODO: Refactor to a component*/}
           <section className="flex flex-2 flex-col items-center gap-y-4">
@@ -193,23 +198,33 @@ const SubjectPreview = () => {
               {/*  </li>*/}
               {/*</ul>*/}
               <div className="border-b pb-5">
-                <button
-                  disabled={enrolling || enrolled}
-                  onClick={handleEnroll}
-                  className={`${enrolled ? "bg-green-400 text-black border-green-400" : "bg-foreground"} flex w-full cursor-pointer items-center justify-center gap-x-2 rounded-md border border-foreground p-3 px-5 text-sm font-medium text-background`}
-                >
-                  {enrolling ? (
-                    <Spinner />
-                  ) : enrolled ? (
-                    <>
-                      <HugeiconsIcon icon={Check} /> Enrolled
-                    </>
-                  ) : (
-                    <>
-                      <HugeiconsIcon icon={ShoppingBag01Icon} /> Enroll Now
-                    </>
-                  )}
-                </button>
+                {subscription && subscription.status === "active" ? (
+                  <button
+                    disabled={enrolling || enrolled}
+                    onClick={handleEnroll}
+                    className={`${enrolled ? "border-green-400 bg-green-400 text-black" : "bg-foreground"} flex w-full cursor-pointer items-center justify-center gap-x-2 rounded-md border border-foreground p-3 px-5 text-sm font-medium text-background`}
+                  >
+                    {enrolling ? (
+                      <Spinner />
+                    ) : enrolled ? (
+                      <>
+                        <HugeiconsIcon icon={Check} /> Enrolled
+                      </>
+                    ) : (
+                      <>
+                        <HugeiconsIcon icon={ShoppingBag01Icon} /> Enroll Now
+                      </>
+                    )}
+                  </button>
+                ) : (
+                  <button
+                    disabled={enrolling || enrolled}
+                    onClick={handleEnroll}
+                    className={`${enrolled ? "border-green-400 bg-green-400 text-black" : "bg-foreground"} flex w-full cursor-pointer items-center justify-center gap-x-2 rounded-md border border-foreground p-3 px-5 text-sm font-medium text-background`}
+                  >
+                    <HugeiconsIcon icon={LockedIcon} /> Activate plan
+                  </button>
+                )}
               </div>
               <div className="flex flex-col gap-y-4">
                 <p className="text-xs font-medium tracking-wider text-muted-foreground uppercase">

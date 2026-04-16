@@ -4,13 +4,14 @@ import React from "react"
 import Image from "next/image"
 import Link from "next/link"
 import {
-  useGetAuthProfileQuery,
+  useGetAuthProfileQuery, useGetStudentSubscriptionQuery,
   useGetSubjectsByGradeQuery,
 } from "@/state/api"
 import { SubjectPreviewCard } from "@/components/cards/SubjectCard"
 
 const AvailableSubjects = () => {
   // const {data: profile, isLoading: pLoading} = useGetAuthProfileQuery();
+
   const { data: availableSubjects, isLoading } = useGetSubjectsByGradeQuery(12)
   /** todo: -------------------
    *
