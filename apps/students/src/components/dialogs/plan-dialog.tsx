@@ -19,6 +19,8 @@ import { Skeleton } from "@workspace/ui/components/skeleton"
 import { StudentSubscription } from "@/types/models"
 import { Spinner } from "@workspace/ui/components/spinner"
 import { redirect } from "next/navigation"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { CircleDot } from "@hugeicons/core-free-icons"
 
 const MS_PER_DAY = 1000 * 60 * 60 * 24
 
@@ -83,7 +85,16 @@ export function PlanDialog({ studentId }: { studentId: string }) {
             <Skeleton className="h-10 w-full rounded-sm" />
           ) : (
             <div className="flex flex-1 justify-center gap-2 rounded-sm font-medium ring ring-muted-foreground">
-              <p className="w-full flex-1 p-2 text-center">{plan?.name}</p>
+              <p className="flex w-full flex-1 items-center justify-center gap-x-2 p-2 text-center">
+                {plan?.name}
+              </p>
+              <Separator
+                orientation="vertical"
+                className="bg-muted-foreground"
+              />
+              <span className="px-5 text-lg flex items-center">
+                R {plan!.price / 100}
+              </span>
               <Separator
                 orientation="vertical"
                 className="bg-muted-foreground"
