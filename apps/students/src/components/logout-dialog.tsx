@@ -27,18 +27,14 @@ const LogoutDialog = () => {
       <DialogContent className="font-chillax">
         <DialogHeader>
           <DialogTitle>Are you sure you want to logout?</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </DialogDescription>
         </DialogHeader>
         <div>
-          <Button
+          <button
             onClick={handleLogout}
-            className="tracking-wider w-full cursor-pointer text-lg font-normal py-2 rounded-xs px-5"
+            className="w-full rounded-full cursor-pointer bg-red-700 px-5 py-2 text-lg font-normal tracking-wider"
           >
             Logout
-          </Button>
+          </button>
         </div>
       </DialogContent>
     </Dialog>
