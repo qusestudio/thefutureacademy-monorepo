@@ -21,7 +21,7 @@ import { Separator } from "@workspace/ui/components/separator"
 const BillingSettings = () => {
     const {data: subscription, isLoading: subLoading} = useGetStudentSubscriptionQuery();
     const [createCheckout] = useCreateCheckoutMutation();
-    const {data: checkout, isLoading} = useGetStudentCheckoutQuery();
+    // const {data: checkout, isLoading} = useGetStudentCheckoutQuery();
 
     const handlePay = async () => {
         const result = await createCheckout(
@@ -36,10 +36,9 @@ const BillingSettings = () => {
         redirect(`${result.data!.redirectUrl}`);
     }
 
-    const isNoCheckout = !checkout || checkout?.status !== "Completed";
+    const activeSubscription = subscription?.status.toLowerCase() === "active";
 
-
-    if (isLoading) {
+    if (subLoading) {
         return (
             <ProfilePageSkeleton />
         )
@@ -49,7 +48,7 @@ const BillingSettings = () => {
       <main className="flex w-full flex-col gap-y-5 rounded-sm border p-4">
         <p className="font-medium">Billing & Payments</p>
         <div
-          className={` ${isNoCheckout ? "bg-red-700/30 dark:bg-yellow-500/30" : "bg-green-500/40 dark:bg-green-500/10"} flex w-full items-center justify-between rounded-md border p-5`}
+          className={` ${subscription?.status === "pending" ? "bg-red-700/30 dark:bg-yellow-500/30" : "bg-green-500/40 dark:bg-green-500/10"} flex w-full items-center justify-between rounded-md border p-5`}
         >
           <p className="flex items-center gap-x-3 text-lg font-medium">
             <Image
@@ -62,19 +61,19 @@ const BillingSettings = () => {
             Pay with YOCO
           </p>
           <p className="flex max-w-50 flex-wrap justify-center text-center text-sm">
-            {isNoCheckout ? "Your payment is due" : "Thank you!"}
+            { !activeSubscription ? "Your payment is due" : "Thank you!"}
           </p>
           <Button
             variant={"outline"}
-            disabled={!isNoCheckout}
+            disabled={activeSubscription}
             className="text-xs shadow-none hover:cursor-pointer"
             onClick={handlePay}
           >
-            {isNoCheckout ? "Pay with Card" : "Paid"}
+            {!activeSubscription ? "Pay with Card" : "Paid"}
           </Button>
         </div>
         <p className="flex items-center gap-x-3 text-xs">
-          {isNoCheckout && (
+          {!activeSubscription && (
             <>
               {" "}
               <HugeiconsIcon icon={Alert01Icon} />
@@ -83,7 +82,7 @@ const BillingSettings = () => {
               payment at your earliest convenience.{" "}
             </>
           )}
-          {!isNoCheckout && (
+          {activeSubscription && (
             <>
               {" "}
               <HugeiconsIcon
