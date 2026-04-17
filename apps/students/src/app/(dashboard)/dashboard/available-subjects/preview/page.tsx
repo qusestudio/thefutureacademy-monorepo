@@ -43,6 +43,8 @@ const SubjectPreview = () => {
   const [enrollStudent, { isLoading: enrolling, isError }] =
     useEnrollStudentMutation()
 
+  const activeSubscription = subscription?.status.toLowerCase() === "active";
+
   const handleEnroll = async () => {
     if (!subjectId) {
       toast.error("Subject ID is missing")
@@ -198,7 +200,7 @@ const SubjectPreview = () => {
               {/*  </li>*/}
               {/*</ul>*/}
               <div className="border-b pb-5">
-                {subscription && subscription.status === "active" ? (
+                {activeSubscription ? (
                   <button
                     disabled={enrolling || enrolled}
                     onClick={handleEnroll}
