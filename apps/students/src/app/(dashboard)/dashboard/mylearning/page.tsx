@@ -77,7 +77,7 @@ const MyLearning = () => {
 
   if (subjectsLoading || subLoading) {
     return (
-      <div className="grid w-full grid-cols-4 flex-col gap-5 gap-y-5 p-5">
+      <div className="grid w-full xl:grid-cols-4 md:grid-cols-3  flex-col gap-5 gap-y-5 p-5">
         {Array.from({ length: 3 }).map((_, i) => (
           <div key={i}>
             <div className="grid w-full gap-x-5 gap-y-2 rounded-xl bg-accent/50 p-2">
@@ -93,7 +93,7 @@ const MyLearning = () => {
     )
   }
 
-  if (subscription?.status.toLowerCase() !== "active") {
+  if (subscription?.status.toLowerCase() !== "pending") {
     return (
       <div className="flex h-full w-full flex-col items-center justify-center">
         <div className="@container/main flex w-full flex-1 flex-col gap-5 p-5 font-chillax max-md:px-0">
@@ -122,12 +122,19 @@ const MyLearning = () => {
   }
 
   if (subjects?.length === 0) {
-    return <div>No available subjects yet.</div>
+    return (
+      <div className="flex h-full gap-y-5 w-full flex-col items-center justify-center">
+        <p className="text-center">Browse available subjects and start enrolling</p>
+        <Link href={"/dashboard/available-subjects"} className="bg-[#1F329D] text-white rounded-full p-2">
+          Available subjects
+        </Link>
+      </div>
+    )
   }
 
   return (
     <div>
-      <div className="@container/main flex flex-1 flex-col gap-5 p-5 pb-10 font-chillax max-md:px-0">
+      <div className="@container/main flex flex-1 flex-col gap-5 pb-10 font-chillax max-md:px-0">
         <h1 className="text-4xl md:text-5xl">My Learning</h1>
         <p className="font-medium max-md:text-sm">
           View your active subjects and track your learning journey. Stay
@@ -135,7 +142,7 @@ const MyLearning = () => {
         </p>
       </div>
       <Separator />
-      <div className="no-scrollbar grid w-full grid-cols-4 flex-col gap-5 overflow-y-auto p-5">
+      <div className="no-scrollbar grid w-full sm:grid-cols-2 xl:grid-cols-4 flex-col gap-5 overflow-y-auto p-5">
         {subjects?.map(
           ({ subjectTitle, subjectId, subjectImage, term, grade }, i) => (
             <SubjectCard
