@@ -48,7 +48,7 @@ const BillingSettings = () => {
       <main className="flex w-full flex-col gap-y-5 rounded-sm border p-4">
         <p className="font-medium">Billing & Payments</p>
         <div
-          className={` ${subscription?.status === "pending" ? "bg-red-700/30 dark:bg-yellow-500/30" : "bg-green-500/40 dark:bg-green-500/10"} flex w-full items-center justify-between rounded-md border p-5`}
+          className={` ${ !activeSubscription ?  "bg-red-700/30 dark:bg-yellow-500/30" : "bg-green-500/40 dark:bg-green-500/10"} flex w-full items-center justify-between rounded-md border p-5`}
         >
           <p className="flex items-center gap-x-3 text-lg font-medium">
             <Image
