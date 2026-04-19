@@ -60,9 +60,9 @@ const SubjectPreview = () => {
   }
 
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-y-5 p-5">
+    <div className="flex w-full flex-col items-center justify-center gap-y-5 max-md:p-1 p-5">
       {subjectLoading || subLoading ? (
-        <div className="flex w-full gap-x-10">
+        <div className="flex max-md:flex-col w-full gap-x-10">
           {/*TODO: Refactor to a component*/}
           <section className="flex flex-2 flex-col items-center gap-y-4">
             <div className="relative flex aspect-video h-auto w-full flex-col gap-y-4 rounded-xl border-background p-5 font-medium text-background shadow-xl">
@@ -98,6 +98,7 @@ const SubjectPreview = () => {
                 <Skeleton className="h-6 w-1/5 self-start rounded-lg" />
                 <Skeleton className="h-6 w-2/5 self-start rounded-lg" />
                 <Skeleton className="h-6 w-4/5 self-start rounded-lg" />
+
               </ul>
               <div className="border-b pb-5">
                 <Skeleton className="h-15 w-full self-start rounded-lg" />
@@ -110,10 +111,10 @@ const SubjectPreview = () => {
           </section>
         </div>
       ) : (
-        <div className="flex w-full gap-x-10">
+        <div className="flex max-md:flex-col w-full gap-x-10">
           {/*TODO: Refactor to a component*/}
           <section className="flex flex-2 flex-col items-center gap-y-4">
-            <div className="relative flex aspect-video h-auto w-full flex-col gap-y-4 rounded-xl border-background p-5 font-medium text-background shadow-xl">
+            <div className="relative flex aspect-video h-auto w-full flex-col gap-y-4 rounded-xl border-background max-md:p-1 p-5 font-medium text-background shadow-xl">
               <Image
                 src={`${CLOUDFRONT}/${subject?.image}`}
                 alt={"/file.svg"}
@@ -135,7 +136,7 @@ const SubjectPreview = () => {
               <p className="w-full font-medium text-muted-foreground uppercase lg:text-sm">
                 COURSE TABLE OF CONTENT
               </p>
-              <section className="flex w-full flex-col gap-y-8 rounded-md bg-accent px-5 py-10">
+              <section className="flex w-full  flex-col gap-y-8 rounded-md bg-accent max-md:px-1 px-5 py-10">
                 {topicsLoading
                   ? Array.from({ length: 3 }).map((_, index) => (
                       <Skeleton

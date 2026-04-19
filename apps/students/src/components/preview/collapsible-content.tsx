@@ -37,7 +37,7 @@ export function CollapsibleTopic({ title, description }: Props) {
             onClick={() => setOpen(!open)}
             className="flex w-full"
           >
-            <span className="group flex w-full justify-between text-xl font-normal uppercase">
+            <span className="group flex w-full text-left items-center justify-between max-md:text-lg text-xl font-normal uppercase">
               {title}
               <HugeiconsIcon
                 icon={open ? Cancel01Icon : PlusSignIcon}
