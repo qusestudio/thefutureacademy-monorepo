@@ -7,6 +7,8 @@ import {
   Call02Icon,
   Mail01Icon,
   MenuTwoLineIcon,
+  TiktokFreeIcons,
+  TiktokIcon,
   X,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
@@ -45,7 +47,7 @@ export function Header() {
 
   return (
     <header className="z-40 flex w-full justify-center border-b-2 border-foreground backdrop-blur-2xl dark:text-[#e1e1e1]">
-      <div className="w-full border-[#2c2c2c] max-md:px-2 backdrop-blur-2xl xl:max-w-[81%]">
+      <div className="w-full border-[#2c2c2c] backdrop-blur-2xl max-md:px-2 xl:max-w-[81%]">
         <div className="flex w-full items-center justify-between gap-x-2 px-10 py-5 text-black backdrop-blur-2xl max-sm:px-0 dark:text-white">
           <div className="flex items-center gap-x-2">
             <button
@@ -74,12 +76,19 @@ export function Header() {
           </div>
 
           <div className="flex items-center gap-x-5 max-md:hidden">
-            <div className="cursor-pointer rounded-full bg-foreground p-2 text-background hover:text-[#ffbb00] dark:hover:bg-[#ffbb00] dark:hover:text-background">
-              <HugeiconsIcon size={35} icon={Call02Icon} />
-            </div>
-            <div className="cursor-pointer rounded-full bg-foreground p-2 text-background hover:text-[#ffbb00] dark:hover:bg-[#ffbb00] dark:hover:text-background">
+            <Link
+              target="_blank"
+              href="https://www.tiktok.com/@thefutureacademysa"
+              className="cursor-pointer rounded-full bg-foreground p-2 text-background hover:text-[#ffbb00] dark:hover:bg-[#ffbb00] dark:hover:text-background"
+            >
+              <HugeiconsIcon size={35} icon={TiktokFreeIcons} />
+            </Link>
+            <Link
+              href="mailto:info@thefutureacademy.co.za?subject=Enquiry&body=Hi Future Academy"
+              className="cursor-pointer rounded-full bg-foreground p-2 text-background hover:text-[#ffbb00] dark:hover:bg-[#ffbb00] dark:hover:text-background"
+            >
               <HugeiconsIcon size={35} icon={Mail01Icon} />
-            </div>
+            </Link>
             <Separator orientation="vertical" />
             <Link
               href={"https://space.thefutureacademy.co.za/signin"}
@@ -91,7 +100,7 @@ export function Header() {
         </div>
         {/* Collapsible menu */}
         {open && (
-          <nav className="font-space flex flex-col  gap-x-5 gap-y-5 border-b border-white px-10 py-5 pt-10 text-4xl font-normal text-black uppercase max-md:text-3xl max-sm:px-2 dark:text-white">
+          <nav className="font-space flex flex-col gap-x-5 gap-y-5 border-b border-white px-10 py-5 pt-10 text-4xl font-normal text-black uppercase max-md:text-3xl max-sm:px-2 dark:text-white">
             {linkList.map((link, index) => (
               <div className="flex items-center underline" key={index}>
                 <Link onClick={handleNavClick} href={link.link}>

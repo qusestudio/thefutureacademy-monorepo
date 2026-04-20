@@ -7,11 +7,11 @@ const SubjectsOffered = () => {
       <div className="flex w-full flex-3 flex-col gap-y-7">
         <div className="flex w-full flex-col border">
           <h1 className="w-full border-b pt-5 pr-5 text-center font-chillax text-5xl text-[5em] font-semibold uppercase">
-            Lear
+            Sub
             <span className="bg-[#ffbb00]/60 dark:text-background">
-              ning sys
+              jects {" "}
             </span>
-            tem
+            offered
           </h1>
         </div>
         <p className="px-15 tracking-wider max-md:px-2">
