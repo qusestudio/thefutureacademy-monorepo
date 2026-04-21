@@ -120,7 +120,7 @@ const Home = () => {
               <HugeiconsIcon size={30} icon={ArrowUpRight01Icon} />
             </Link>
           </div>
-          <div className="relative flex h-full w-full flex-3 flex-col justify-between bg-accent p-5">
+          <div className="flex h-full w-full flex-3 flex-col justify-between bg-accent p-5">
             <div className="flex flex-col items-start gap-y-5">
               <p className="font-archivo text-xs tracking-widest text-muted-foreground">
                 HOW IT WORKS
