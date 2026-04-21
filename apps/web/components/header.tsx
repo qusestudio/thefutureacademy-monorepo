@@ -8,7 +8,6 @@ import {
   Mail01Icon,
   MenuTwoLineIcon,
   TiktokFreeIcons,
-  TiktokIcon,
   X,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"

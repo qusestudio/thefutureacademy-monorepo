@@ -6,6 +6,7 @@ import {
   CircleArrowRight01Icon,
 } from "@hugeicons/core-free-icons"
 import {HugeiconsIcon} from "@hugeicons/react";
+import Footer from "@/components/footer"
 
 const Home = () => {
   return (
@@ -113,9 +114,9 @@ const Home = () => {
             </div>
             <Link
               className="flex items-center justify-between justify-self-end border-t border-black/70 py-2 text-sm text-black/90"
-              href={"/plans-and-pricing"}
+              href={"https://space.thefutureacademy.co.za/dashboard/mylearning"}
             >
-              Start Learning
+              Start learning
               <HugeiconsIcon size={30} icon={ArrowUpRight01Icon} />
             </Link>
           </div>
@@ -165,7 +166,7 @@ const Home = () => {
             </div>
             <Link
               className="flex items-center justify-between justify-self-end border-t border-white/60 py-2 font-archivo text-sm text-white/70"
-              href={"/plans-and-pricing"}
+              href={"https://space.thefutureacademy.co.za/signup"}
             >
               Join the academy
               <HugeiconsIcon size={30} icon={ArrowUpRight01Icon} />
@@ -173,6 +174,7 @@ const Home = () => {
           </div>
         </section>
       </main>
+      <Footer />
     </div>
   )
 }
