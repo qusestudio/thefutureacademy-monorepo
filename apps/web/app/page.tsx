@@ -24,8 +24,8 @@ const Home = () => {
               href={"#"}
               className="mb-2 flex h-fit items-center gap-x-2 rounded-full bg-[#afafaf]/30 px-1.5 py-0.5 pl-2 text-sm dark:bg-accent/60"
             >
-              <p className="font-archivo text-[13px] font-[450] tracking-wide dark:text-white">
-                Release notes! Read More
+              <p className="  text-[13px] font-[450] tracking-wide dark:text-white/80">
+                Now live — Grade 12 STEM
               </p>
               <HugeiconsIcon
                 icon={CircleArrowRight01Icon}
@@ -76,7 +76,7 @@ const Home = () => {
             </div>
           </div>
         </section>
-        <section className="mb-20 gap-y-4 flex w-full flex-col items-center gap-x-3 max-md:pt-5 md:h-[50vh] lg:flex-row">
+        <section className="mb-20 flex w-full flex-col items-center gap-x-3 gap-y-4 max-md:pt-5 md:h-[50vh] lg:flex-row">
           <div className="flex h-full w-full flex-1 flex-col justify-between gap-y-4 bg-[#1F329D] p-5 font-archivo text-2xl font-light tracking-wide text-white">
             <div className="flex flex-col items-start gap-y-5">
               <p className="text-xs tracking-widest text-white/70">PRICING</p>
@@ -125,15 +125,15 @@ const Home = () => {
               <p className="font-archivo text-xs tracking-widest text-muted-foreground">
                 HOW IT WORKS
               </p>
-              <p className="items-end font-chillax max-md:text-3xl text-5xl font-semibold uppercase">
+              <p className="items-end font-chillax text-5xl font-semibold uppercase max-md:text-3xl">
                 THREE STEPS <br /> TO START.
               </p>
-              <section className="flex flex-col pb-5 gap-y-5">
+              <section className="flex flex-col gap-y-5 pb-5">
                 <div className="flex gap-x-4">
                   <p className="flex h-7 w-7 items-center justify-center rounded-full border font-medium text-muted-foreground">
                     1
                   </p>
-                  <p className="flex font-medium flex-col">
+                  <p className="flex flex-col font-medium">
                     Create your account
                     <span className="font-archivo text-sm text-muted-foreground">
                       Sign up in under a minute. No setup needed.
@@ -144,7 +144,7 @@ const Home = () => {
                   <p className="flex h-7 w-7 items-center justify-center rounded-full border font-medium text-muted-foreground">
                     2
                   </p>
-                  <p className="flex font-medium flex-col">
+                  <p className="flex flex-col font-medium">
                     Pick your subjects
                     <span className="font-archivo text-sm text-muted-foreground">
                       Choose from all four STEM subjects or start with one.
@@ -155,13 +155,28 @@ const Home = () => {
                   <p className="flex h-7 w-7 items-center justify-center rounded-full border font-medium text-muted-foreground">
                     3
                   </p>
-                  <p className="flex font-medium flex-col">
+                  <p className="flex flex-col font-medium">
                     Watch, learn, repeat
                     <span className="font-archivo text-sm text-muted-foreground">
                       Structured video lessons. Study at your own pace, anytime.
                     </span>
                   </p>
                 </div>
+                {/*<div className="flex gap-x-4">*/}
+                {/*  <p className="flex h-7 w-7 items-center justify-center rounded-full border font-medium text-muted-foreground">*/}
+                {/*    B*/}
+                {/*  </p>*/}
+                {/*  <p className="flex flex-col font-medium">*/}
+                {/*    Bonus*/}
+                {/*    <Link*/}
+                {/*      target={"_blank"}*/}
+                {/*      href={"https://chat.whatsapp.com/Iply69XJzfOI55Pvgy9m9R"}*/}
+                {/*      className="font-archivo text-xs tracking-wider italic text-blue-400"*/}
+                {/*    >*/}
+                {/*      Click here to join our whatsapp community for any enquiries.*/}
+                {/*    </Link>*/}
+                {/*  </p>*/}
+                {/*</div>*/}
               </section>
             </div>
             <Link
