@@ -110,7 +110,7 @@ export function Header() {
             ))}
             <div className="hidden items-center justify-between gap-x-2 max-md:flex">
               <div className="cursor-pointer rounded-full bg-foreground p-2 text-background hover:text-[#ffbb00] dark:hover:bg-[#ffbb00] dark:hover:text-background">
-                <HugeiconsIcon size={35} icon={Call02Icon} />
+                  <HugeiconsIcon size={35} icon={TiktokFreeIcons} />
               </div>
               <div className="cursor-pointer rounded-full bg-foreground p-2 text-background hover:text-[#ffbb00] dark:hover:bg-[#ffbb00] dark:hover:text-background">
                 <HugeiconsIcon size={35} icon={Mail01Icon} />
