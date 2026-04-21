@@ -19,7 +19,7 @@ const Footer = () => {
 
       </section>
       <section className="flex w-full justify-center border-t border-border dark:text-[#e1e1e1]">
-        <div className="w-full flex items-center justify-between gap-x-10 border-[#2c2c2c] py-5 max-md:px-2 xl:max-w-[77%]">
+        <div className="w-full flex max-md:flex-col gap-y-4 max-md:items-start items-center justify-between gap-x-10 border-[#2c2c2c] py-5 max-md:px-2 xl:max-w-[77%]">
           <p className="hidden items-center gap-x-4 px-5 font-medium max-lg:flex">
             <Image
               src={"/logo-image.svg"}
@@ -46,7 +46,7 @@ const Footer = () => {
               Academy <br />
             </span>
           </p>
-          <p className="flex max-md:flex-col items-center gap-x-2 text-xs">
+          <p className="flex items-center gap-x-2 px-5 text-xs">
             <HugeiconsIcon size={15} icon={CopyrightIcon} />
             {new Date().getFullYear()} The Future Academy. All rights reserved.
           </p>
