@@ -125,7 +125,7 @@ const Home = () => {
               <p className="font-archivo text-xs tracking-widest text-muted-foreground">
                 HOW IT WORKS
               </p>
-              <p className="items-end font-chillax text-5xl font-semibold uppercase">
+              <p className="items-end font-chillax max-md:text-3xl text-5xl font-semibold uppercase">
                 THREE STEPS <br /> TO START.
               </p>
               <section className="flex flex-col pb-5 gap-y-5">
