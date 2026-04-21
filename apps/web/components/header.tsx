@@ -109,12 +109,19 @@ export function Header() {
               </div>
             ))}
             <div className="hidden items-center justify-between gap-x-2 max-md:flex">
-              <div className="cursor-pointer rounded-full bg-foreground p-2 text-background hover:text-[#ffbb00] dark:hover:bg-[#ffbb00] dark:hover:text-background">
-                  <HugeiconsIcon size={35} icon={TiktokFreeIcons} />
-              </div>
-              <div className="cursor-pointer rounded-full bg-foreground p-2 text-background hover:text-[#ffbb00] dark:hover:bg-[#ffbb00] dark:hover:text-background">
+              <Link
+                target="_blank"
+                href="https://www.tiktok.com/@thefutureacademysa"
+                className="cursor-pointer rounded-full bg-foreground p-2 text-background hover:text-[#ffbb00] dark:hover:bg-[#ffbb00] dark:hover:text-background"
+              >
+                <HugeiconsIcon size={35} icon={TiktokFreeIcons} />
+              </Link>
+              <Link
+                href="mailto:info@thefutureacademy.co.za?subject=Enquiry&body=Hi Future Academy"
+                className="cursor-pointer rounded-full bg-foreground p-2 text-background hover:text-[#ffbb00] dark:hover:bg-[#ffbb00] dark:hover:text-background"
+              >
                 <HugeiconsIcon size={35} icon={Mail01Icon} />
-              </div>
+              </Link>
               <Separator orientation="vertical" />
               <Link
                 href={"https://space.thefutureacademy.co.za/signin"}
