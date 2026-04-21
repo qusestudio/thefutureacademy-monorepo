@@ -7,6 +7,7 @@ import {
 } from "@hugeicons/core-free-icons"
 import {HugeiconsIcon} from "@hugeicons/react";
 import Footer from "@/components/footer"
+import { Separator } from "@workspace/ui/components/separator"
 
 const Home = () => {
   return (
@@ -14,7 +15,7 @@ const Home = () => {
       <div className="fixed flex w-full flex-col items-center">
         <Header />
       </div>
-      <main className="w-full max-w-[80%] space-y-5 max-md:max-w-[90%] max-sm:px-0 xl:px-10">
+      <main className="w-full max-w-[80%] space-y-[15vh] max-md:max-w-[90%] max-sm:px-0 xl:px-10">
         <section className="flex w-full flex-col items-center pt-50">
           <div className="flex w-full items-end justify-between self-start text-4xl max-sm:text-3xl">
             <p className="bg-[#1F329D] p-5 text-white max-md:p-3 max-md:text-2xl">
@@ -76,7 +77,7 @@ const Home = () => {
             </div>
           </div>
         </section>
-        <section className="mb-20 flex w-full flex-col items-center gap-x-3 gap-y-4 max-md:pt-5 md:h-[50vh] lg:flex-row">
+        <section className="flex w-full flex-col items-center gap-x-3 gap-y-4 max-md:pt-5 md:h-[50vh] lg:flex-row">
           <div className="flex h-full w-full flex-1 flex-col justify-between gap-y-4 bg-[#1F329D] p-5 font-archivo text-2xl font-light tracking-wide text-white">
             <div className="flex flex-col items-start gap-y-5">
               <p className="text-xs tracking-widest text-white/70">PRICING</p>
@@ -96,7 +97,7 @@ const Home = () => {
               <HugeiconsIcon size={30} icon={ArrowUpRight01Icon} />
             </Link>
           </div>
-          <div className="flex h-full w-full flex-1 flex-col justify-between gap-y-4 bg-[#ffbb00] p-5 font-archivo text-black">
+          <div className="flex h-full w-full flex-1 flex-col justify-between gap-y-4 bg-[#ffbb00]/70 p-5 font-archivo text-black">
             <div className="flex flex-col items-start gap-y-5">
               <p className="text-xs tracking-widest text-black/70">
                 WHAT&apos;S INCLUDED
@@ -187,6 +188,64 @@ const Home = () => {
               <HugeiconsIcon size={30} icon={ArrowUpRight01Icon} />
             </Link>
           </div>
+        </section>
+        <section className="flex w-full flex-col gap-y-[5vh] pb-10">
+          <p className="font-archivo text-xs tracking-wide text-muted-foreground uppercase">
+            Early traction
+          </p>
+          <div className="space-y-2">
+            <h3 className="text-6xl font-semibold uppercase">
+              Built with <span className="text-[#ffbb00]">real</span> <br />{" "}
+              students.
+            </h3>
+            <p className="max max-w-2xl p-2 text-sm font-medium tracking-wide text-muted-foreground max-sm:text-xs">
+              Before launch, 10 students helped shape The Future Academy with
+              testing the UI, breaking things, and telling us what actually
+              worked.
+            </p>
+          </div>
+          <div className="flex flex-col border bg-accent/20 max-sm:items-center md:flex-row">
+            <p className="flex flex-1 flex-col items-center p-20 text-8xl font-medium">
+              <span>
+                10<span className="text-[#ffbb00]">+</span>
+              </span>
+              <span className="text-center font-archivo text-sm font-light text-muted-foreground">
+                Beta students who shaped the product
+              </span>
+            </p>
+            <Separator orientation={"vertical"} className="hidden md:block" />
+            <Separator orientation={"horizontal"} className={"md:hidden"} />
+            <p className="flex flex-1 flex-col items-center p-20 text-8xl font-medium">
+              <span>4</span>
+              <span className="text-center font-archivo text-sm font-light text-muted-foreground">
+                STEM subjects available from day one
+              </span>
+            </p>
+            <Separator orientation={"vertical"} className="hidden md:block" />
+            <Separator orientation={"horizontal"} className={"md:hidden"} />
+            <p className="flex flex-1 flex-col items-center p-20 text-8xl font-semibold">
+              <span>
+                <span className="text-[#ffbb00]">R</span>400
+              </span>
+              <span className="text-center font-archivo text-sm font-light text-muted-foreground">
+                Per month. Everything included. No contracts.
+              </span>
+            </p>
+          </div>
+          {/*<div className="flex gap-x-5 border-l-3 border border-l-[#1F329D] rounded-r-xl p-5 font-archivo">*/}
+          {/*  <p className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1F329D] px-5">*/}
+          {/*    S*/}
+          {/*  </p>*/}
+          {/*  <p className=" font-light tracking-wide text-muted-foreground">*/}
+          {/*    <span className="font-medium text-foreground">*/}
+          {/*      A note from the founder <br />*/}
+          {/*    </span>{" "}*/}
+          {/*    We&apos;re early. These 10 students didn&apos;t just test the*/}
+          {/*    product, they made it better. Every piece of feedback shaped what*/}
+          {/*    you see today. We&apos;re building this the right way — with the*/}
+          {/*    people it&apos;s actually for.*/}
+          {/*  </p>*/}
+          {/*</div>*/}
         </section>
       </main>
       <Footer />
