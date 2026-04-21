@@ -24,7 +24,7 @@ const Home = () => {
               href={"#"}
               className="mb-2 flex h-fit items-center gap-x-2 rounded-full bg-[#afafaf]/30 px-1.5 py-0.5 pl-2 text-sm dark:bg-accent/60"
             >
-              <p className="  text-[13px] font-[450] tracking-wide dark:text-white/80">
+              <p className="text-[13px] font-[450] tracking-wide dark:text-white/80">
                 Now live — Grade 12 STEM
               </p>
               <HugeiconsIcon
@@ -128,34 +128,34 @@ const Home = () => {
               <p className="items-end font-chillax text-5xl font-semibold uppercase max-md:text-3xl">
                 THREE STEPS <br /> TO START.
               </p>
-              <section className="flex flex-col gap-y-5 pb-5">
-                <div className="flex gap-x-4">
+              <section className="flex flex-col gap-y-5 pb-5 max-sm:items-center">
+                <div className="flex gap-x-4 max-sm:flex-col max-sm:items-center">
                   <p className="flex h-7 w-7 items-center justify-center rounded-full border font-medium text-muted-foreground">
                     1
                   </p>
-                  <p className="flex flex-col font-medium">
+                  <p className="flex flex-col font-medium max-sm:items-center">
                     Create your account
                     <span className="font-archivo text-sm text-muted-foreground">
                       Sign up in under a minute. No setup needed.
                     </span>
                   </p>
                 </div>
-                <div className="flex gap-x-4">
+                <div className="flex gap-x-4 max-sm:flex-col max-sm:items-center">
                   <p className="flex h-7 w-7 items-center justify-center rounded-full border font-medium text-muted-foreground">
                     2
                   </p>
-                  <p className="flex flex-col font-medium">
+                  <p className="flex flex-col font-medium max-sm:items-center">
                     Pick your subjects
                     <span className="font-archivo text-sm text-muted-foreground">
                       Choose from all four STEM subjects or start with one.
                     </span>
                   </p>
                 </div>
-                <div className="flex gap-x-4">
+                <div className="flex gap-x-4 max-sm:flex-col max-sm:items-center">
                   <p className="flex h-7 w-7 items-center justify-center rounded-full border font-medium text-muted-foreground">
                     3
                   </p>
-                  <p className="flex flex-col font-medium">
+                  <p className="flex flex-col font-medium max-sm:items-center">
                     Watch, learn, repeat
                     <span className="font-archivo text-sm text-muted-foreground">
                       Structured video lessons. Study at your own pace, anytime.

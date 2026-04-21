@@ -12,7 +12,7 @@ const PricingPage = () => {
   const planItems = [
     "Access to all supported subject content",
     "Structured lessons and guided learning paths",
-    "Progress tracking and feedback",
+    // "Progress tracking and feedback",
     "Step-by-step explanations for clear understanding",
     "Study notes designed for effective revision",
     "Support to keep you consistent and on track",
