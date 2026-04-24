@@ -35,7 +35,7 @@ const SubjectCard = (props: SubjectCardProps) => {
   return (
     <Link
       href={`/my-learning/${id}`}
-      className="flex w-full flex-col gap-x-5 gap-y-2 rounded-xl border border-none bg-accent p-2"
+      className="flex w-full flex-col gap-x-5 gap-y-2 rounded-xl border border-none  py-2"
     >
       {/* Subject Image */}
       <div className="relative flex aspect-video h-full w-full flex-col gap-y-4 rounded p-5 font-medium text-background">
@@ -48,7 +48,7 @@ const SubjectCard = (props: SubjectCardProps) => {
       </div>
       {/* Subject Title and Term*/}
       <div className="flex flex-col justify-between">
-        <div className="flex flex-col gap-y-1 px-3">
+        <div className="flex flex-col gap-y-1 py-3">
           <div className="flex w-full items-center justify-between">
             <p className="text-xl capitalize">{title}</p>
           </div>
@@ -93,10 +93,10 @@ const MyLearning = () => {
     )
   }
 
-  if (subscription?.status.toLowerCase() !== "active") {
+  if (subscription?.status.toLowerCase() !== "pending") {
     return (
       <div className="flex h-full w-full flex-col items-center justify-center">
-        <div className="@container/main flex w-full flex-1 flex-col gap-5 p-5 font-chillax max-md:px-0">
+        <div className="@container/main flex w-full flex-1 flex-col gap-5 p-5 font-chillax max-md:px-1">
           <h1 className="text-4xl md:text-5xl">My Learning</h1>
           <p className="text-sm">Activate your plan to start learning</p>
         </div>
@@ -134,15 +134,14 @@ const MyLearning = () => {
 
   return (
     <div>
-      <div className="@container/main flex flex-1 flex-col gap-5 pb-10 font-chillax max-md:px-0">
-        <h1 className="text-4xl md:text-5xl">My Learning</h1>
-        <p className="font-medium max-md:text-sm">
-          View your active subjects and track your learning journey. Stay
-          focused as you progress through lessons and materials
+      <div className="@container/main flex flex-1 flex-col gap-5 pb-10 font-chillax max-md:px-2">
+        <h1 className="text-3xl md:text-5xl">My Learning</h1>
+        <p className="font-medium text-muted-foreground max-md:text-sm">
+          Stay focused as you progress through lessons and materials
         </p>
       </div>
       <Separator />
-      <div className="no-scrollbar grid w-full sm:grid-cols-2 xl:grid-cols-4 flex-col gap-5 overflow-y-auto p-5">
+      <div className="grid grid-cols-1  w-full sm:grid-cols-2 xl:grid-cols-4 flex-col gap-5 overflow-y-auto max-md:p-2 p-5">
         {subjects?.map(
           ({ subjectTitle, subjectId, subjectImage, term, grade }, i) => (
             <SubjectCard

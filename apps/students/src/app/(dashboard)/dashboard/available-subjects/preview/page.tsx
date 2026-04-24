@@ -201,7 +201,7 @@ const SubjectPreview = () => {
               {/*  </li>*/}
               {/*</ul>*/}
               <div className="border-b pb-5">
-                {activeSubscription ? (
+                {!activeSubscription ? (
                   <button
                     disabled={enrolling || enrolled}
                     onClick={handleEnroll}

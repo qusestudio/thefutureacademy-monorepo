@@ -11,16 +11,19 @@ import { PdfAttachment, NoFileCard } from "@/components/pdf-attachment"
 
 const LessonResourcesTab = () => {
   return (
-    <Tabs defaultValue="account" className="w-full">
+    <Tabs
+      defaultValue="account"
+      className="w-full rounded-xl border-2 border-foreground px-2 py-5"
+    >
       <TabsList className="rounded-xl bg-transparent">
         <TabsTrigger
-          className="rounded-xl border-none p-3 text-sm tracking-wider data-active:bg-accent"
+          className="rounded-xl border-none p-3 text-sm tracking-wider data-active:bg-[#ffbb00]/60 dark:data-active:bg-[#ffbb00] dark:data-active:text-black"
           value="account"
         >
           Files
         </TabsTrigger>
         <TabsTrigger
-          className="rounded-xl border-none p-3 text-sm tracking-wider data-active:bg-accent"
+          className="rounded-xl border-none p-3 text-sm tracking-wider data-active:bg-[#ffbb00]/60 dark:data-active:bg-[#ffbb00] dark:data-active:text-black"
           value="q-and-a"
         >
           Q&A
@@ -33,10 +36,7 @@ const LessonResourcesTab = () => {
         {/*</div>*/}
         <div className="flex flex-wrap gap-4">
           {/* Example without a thumbnail (uses the sleek fallback) */}
-          <NoFileCard
-            fileName="No files yet"
-            thumbnailUrl={"/file.svg"}
-          />
+          <NoFileCard fileName="No files yet" thumbnailUrl={"/file.svg"} />
         </div>
       </TabsContent>
       <TabsContent value="q-and-a" className="p-5">

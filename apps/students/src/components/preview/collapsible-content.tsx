@@ -21,6 +21,8 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Topic } from "@/types/models"
 import { useGetLessonsQuery } from "@/state/api"
+import { Skeleton } from "@workspace/ui/components/skeleton"
+import * as React from "react"
 
 interface Props {
   title: string
@@ -72,16 +74,16 @@ export function CollapsibleTopicItem({ title, topicId, subjectId }: itemProps) {
       <CardContent className="cursor-pointer border-none px-0">
         <Collapsible
           open={open}
-          className={`w-full space-y-2 pb-2 rounded-md border-foreground font-medium border-2 data-[state=open]:bg-muted`}
+          className={`flex h-full w-full flex-col space-y-2 rounded-lg border-2 border-foreground py-2 font-medium data-[state=open]:bg-muted`}
         >
           <CollapsibleTrigger
             onClick={() => setOpen(!open)}
-            className="flex w-full p-2 min-w-0 justify-self-start"
+            className="flex w-full items-center justify-between gap-2 px-4 text-[20px]"
           >
             <span
-              className={`group flex w-full min-w-0 items-center justify-between gap-2 text-sm transition-all duration-200`}
+              className={`group flex w-full items-center justify-between gap-2 transition-all duration-200`}
             >
-              <span className="min-w-0 flex-1 truncate">{title}</span>
+              <span className="min-w-0 flex-1 truncate text-left">{title}</span>
 
               <HugeiconsIcon
                 icon={open ? ArrowUp : ArrowDown}
@@ -90,21 +92,39 @@ export function CollapsibleTopicItem({ title, topicId, subjectId }: itemProps) {
               />
             </span>
           </CollapsibleTrigger>
-          <CollapsibleContent className="flex flex-col items-start gap-2 border-none text-sm text-muted-foreground">
-            {lessonsLoading ? (
-              <>Loading...</>
-            ) : (
-              lessons?.map((lesson, idx) => (
-                <Link
-                  key={idx}
-                  href={`/my-learning/${subjectId}/${lesson.id}`}
-                  className={`flex ${pathname == `/my-learning/${subjectId}/${lesson.id}` ? "dark:text-[#ffbb00] border-foreground dark:bg-transparent bg-[#ffbb00]/60 dark:border-[#ffbb00]" : "border-foreground"} w-full border-y-2 py-1 text-foreground items-center gap-x-5 text-sm font-medium`}
-                >
-                  <HugeiconsIcon icon={PlayIcon} />
-                  {lesson?.title}
-                </Link>
-              ))
-            )}
+          <CollapsibleContent className="flex w-full flex-col items-start gap-2 border-none pb-2 text-muted-foreground">
+            {
+              !lessonsLoading && lessons?.length == 0 && (
+                <div className="flex w-full items-center bg-accent py-4 justify-center gap-2">
+                  <span className="text-sm">No lessons yet</span>
+                </div>
+              )
+            }
+            {lessonsLoading
+              ? Array.from({ length: 5 }, (_, index) => {
+                  return (
+                    <div key={index} className="px-2 w-full">
+                      <Skeleton className="h-8 w-full bg-accent rounded-lg" />
+                    </div>
+                  )
+                })
+              : lessons?.map((lesson, idx) => (
+                  <Link
+                    key={idx}
+                    href={`/my-learning/${subjectId}/${lesson.id}`}
+                    className={`flex justify-between px-15 text-[18px] ${pathname == `/my-learning/${subjectId}/${lesson.id}` ? "border-foreground bg-[#ffbb00]/60 dark:bg-[#ffbb00] dark:text-black" : "border-foreground"} w-full items-center gap-x-5 dark:border-none border-y-2 py-1 font-normal text-foreground`}
+                  >
+                    <span>
+                      {idx + 1}.{"  "}
+                      <span className="underline">{lesson?.title}</span>
+                    </span>
+                    <HugeiconsIcon
+                      className="fill-black"
+                      size={20}
+                      icon={PlayIcon}
+                    />
+                  </Link>
+                ))}
           </CollapsibleContent>
         </Collapsible>
       </CardContent>

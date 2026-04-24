@@ -77,9 +77,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               render={<a href="/" />}
             >
               <span className="font-chillax text-xl leading-6 font-bold tracking-wider uppercase hover:bg-none">
-                the future
-                <br />
-                learning space
+                space
               </span>
             </SidebarMenuButton>
           </SidebarMenuItem>

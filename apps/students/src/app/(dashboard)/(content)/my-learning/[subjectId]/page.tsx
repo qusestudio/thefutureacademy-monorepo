@@ -7,6 +7,7 @@ import { useGetSubjectQuery } from "@/state/api"
 import { usePathname } from "next/navigation"
 import Image from "next/image"
 import { CLOUDFRONT } from "@/lib/constants"
+import ReadMore from "@/components/ReadMore"
 
 const SubjectPage = () => {
   const pathname = usePathname();
@@ -15,9 +16,9 @@ const SubjectPage = () => {
     subjectId ?? "", {skip: !subjectId}
   );
   return (
-    <div className="grid w-full grid-cols-[70%_30%] flex-col">
-      <div className="flex w-full flex-col items-center space-y-10 rounded-xl p-2">
-        <div className="relative flex aspect-video h-auto w-full flex-col gap-y-4 rounded-xl border-background p-5 font-medium text-background shadow-xl">
+    <div className="grid w-full flex-col overflow-y-hidden gap-y-4 md:grid-cols-[70%_30%]">
+      <div className="flex w-full flex-col items-center space-y-10 rounded-xl">
+        <div className="relative flex aspect-video h-auto w-full flex-col gap-y-4 rounded-xl border-background font-medium text-background shadow-xl">
           <Image
             src={`${CLOUDFRONT}/${subject?.image}`}
             alt={"/file.svg"}
@@ -29,16 +30,16 @@ const SubjectPage = () => {
           <p className="text-xl font-medium tracking-wider uppercase">
             {subject?.title}
           </p>
-          {
-            subject?.description.map((p, i)=>(
-              <p key={i}>
-                {p}
-              </p>
-            ))
-          }
+          <ReadMore previewLines={3}>
+            <div className="space-y-5">
+              {subject?.description.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+          </ReadMore>
         </div>
       </div>
-      <div className="w-full gap-y-2 rounded-xl p-2">
+      <div className="w-full gap-y-2 rounded-xl pl-10 max-md:pl-0">
         <LessonResourcesTab />
       </div>
     </div>

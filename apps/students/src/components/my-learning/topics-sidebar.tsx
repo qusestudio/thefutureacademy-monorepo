@@ -10,10 +10,13 @@ import {
 } from "@workspace/ui/components/sidebar"
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
+  ArrowLeft02Icon,
   ArrowLeftIcon,
   Book02Icon,
   DashboardSquare02Icon,
   HelpCircleIcon,
+  Menu02Icon,
+  MenuTwoLineIcon,
   Settings05Icon,
 } from "@hugeicons/core-free-icons"
 import {
@@ -62,24 +65,20 @@ export function TopicsSidebar({
   subjectId,
   ...props
 }: React.ComponentProps<typeof Sidebar> & { subjectId: string }) {
-  const { data: subject, isLoading: subjectLoading } = useGetSubjectQuery(
-    subjectId,
-    { skip: !subjectId }
-  )
   const { data: topics, isLoading: topicsLoading } = useGetTopicsBySubjectQuery(
     subjectId,
     { skip: !subjectId }
   )
   return (
     <Sidebar
-      className="flex flex-col gap-y-10 bg-background"
+      className="flex w-(--sidebar-width) flex-col bg-background gap-y-10"
       collapsible="offcanvas"
       {...props}
     >
-      <SidebarHeader className="bg-background p-3">
-        <SidebarMenu className="space-y-10">
-          <SidebarMenuItem className="text-xs font-medium uppercase">
-            The Future Academy
+      <SidebarHeader className="bg-background py-1 px-3">
+        <SidebarMenu className="space-y-5">
+          <SidebarMenuItem className="text-sm flex font-semibold uppercase">
+            <HugeiconsIcon size={50} icon={MenuTwoLineIcon} />
           </SidebarMenuItem>
 
           <SidebarMenuItem className="">
@@ -87,22 +86,21 @@ export function TopicsSidebar({
               href={"/dashboard/mylearning"}
               className={"flex items-center gap-x-3"}
             >
-              <div className="rounded-sm border-2 border-foreground bg-[#ffbb00]/60 p-2 dark:border-[#ffbb00] dark:bg-transparent dark:text-[#ffbb00]">
-                <HugeiconsIcon size={20} icon={ArrowLeftIcon} />
+              <div className="rounded-full border-2 border-foreground  p-2 dark:bg-transparent ">
+                <HugeiconsIcon size={20} icon={ArrowLeft02Icon} />
               </div>
-              <p className="text-xs">Back to courses</p>
+              <p className="text-sm font-medium">Back to courses</p>
             </Link>
-          </SidebarMenuItem>
-          <SidebarMenuItem className="rounded-lg border-2 border-foreground bg-[#ffbb00]/60 p-2 dark:border-[#ffbb00] dark:bg-transparent dark:text-[#ffbb00]">
-            <p className="text-xs font-medium text-muted-foreground">Course</p>
-            <div className="text-xl font-medium">{ subjectLoading ? <Skeleton className={"h-6 w-full rounded-lg"} /> : subject?.title}</div>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent className="gap-y-2 bg-background p-3 py-7 font-chillax">
-        {topicsLoading ? (
-          <p>Loading...</p>
-        ) : (
+        {topicsLoading ?
+            Array.from({length: 5}, (_, index) => {
+              return <Skeleton key={index} className="h-10 w-full rounded-lg" />
+            })
+
+            : (
           topics?.map((topic, index) => (
             <CollapsibleTopicItem
               subjectId={subjectId}

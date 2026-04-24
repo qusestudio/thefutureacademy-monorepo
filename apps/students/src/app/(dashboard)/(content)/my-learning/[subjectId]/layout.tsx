@@ -15,7 +15,7 @@ const SubjectLayout = async ({ params, children }: LayoutProps) => {
     <SidebarProvider
       style={
         {
-          "--sidebar-width": "calc(var(--spacing) * 72)",
+          "--sidebar-width": "calc(var(--spacing) * 120)",
           "--header-height": "calc(var(--spacing) * 12)",
         } as React.CSSProperties
       }
@@ -23,9 +23,9 @@ const SubjectLayout = async ({ params, children }: LayoutProps) => {
       <TopicsSidebar subjectId={subjectId} variant="inset" />
       <SidebarInset className="rounded-none">
         <div className="m-2 h-full">
-          <SiteHeader />
+          <SiteHeader subjectId={subjectId} />
           <div className="flex flex-1 flex-col items-center">
-            <div className="@container/main flex w-full max-w-[90%] flex-1 flex-col gap-2 rounded-lg p-5 font-chillax">
+            <div className="@container/main flex w-full max-w-full px-[2%] flex-1 flex-col gap-2 rounded-lg font-chillax">
               {children}
             </div>
           </div>

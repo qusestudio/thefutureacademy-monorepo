@@ -128,7 +128,7 @@ const VideoPlayer = ({src, poster}: VideoPlayerProps) => {
 
     return (
       <div
-        className="group  relative w-full overflow-hidden rounded-3xl bg-black"
+        className="group relative w-full overflow-hidden rounded-xl bg-black"
         onMouseEnter={() => setShowControls(true)}
         onMouseLeave={() => setShowControls(!isPlaying)}
       >
@@ -136,61 +136,56 @@ const VideoPlayer = ({src, poster}: VideoPlayerProps) => {
           ref={videoRef}
           src={src}
           poster={poster}
-          className={"h-auto aspect-video w-full"}
+          className={"aspect-video h-auto w-full"}
         />
 
+        {/* Fullscreen */}
+        <button
+          onClick={toggleFullscreen}
+          className="text-white absolute right-5 top-5 z-10 bg-black/20 p-2 rounded-sm transition-colors cursor-pointer hover:text-[#ffbb00]"
+        >
+          {isFullscreen ? (
+            <HugeiconsIcon icon={MinimizeScreenIcon} />
+          ) : (
+            <HugeiconsIcon icon={MaximizeScreenIcon} />
+          )}
+        </button>
         {/*PLAY / PAUSE BUTTON*/}
         <div
-          className={`absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-300 ${
+          className={`absolute inset-0 flex items-center justify-center gap-x-5 bg-black/30 transition-opacity duration-300 ${
             showControls && !isPlaying ? "opacity-100" : "opacity-0"
           }`}
           onClick={togglePlay}
         >
-          <button className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/90 transition-all hover:scale-110 hover:bg-primary">
+          {/* Skip Forward */}
+          <button
+            onClick={() => skip(-10)}
+            className="rounded-2xl bg-[#3d3d3d] p-2 text-white transition-colors hover:scale-110"
+          >
+            <HugeiconsIcon icon={Backward02Icon} />
+          </button>
+          <button className="flex h-15 w-15 items-center justify-center rounded-full bg-[#3d3d3d] text-white transition-all hover:scale-110">
             <HugeiconsIcon icon={PlayIcon} />
+          </button>
+          {/* Skip Forward */}
+          <button
+            onClick={() => skip(10)}
+            className="rounded-2xl bg-[#3d3d3d] p-2 text-white transition-colors hover:scale-110"
+          >
+            <HugeiconsIcon icon={Forward02Icon} />
           </button>
         </div>
 
         <div
-          className={`absolute right-0 bottom-0 left-0 m-2 rounded-2xl border border-muted-foreground bg-linear-to-t p-4 backdrop-blur-2xl transition-opacity duration-300 ${
+          className={`absolute right-0 bottom-0 left-0 m-2 rounded-2xl border-muted-foreground bg-linear-to-t p-4 transition-opacity duration-300 ${
             showControls ? "opacity-100" : "opacity-0"
           }`}
         >
-
           {/* Control Buttons */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              {/* Play/Pause */}
-
-              {/* Skip Backward */}
-              <button
-                onClick={() => skip(-10)}
-                className="text-white transition-colors hover:text-primary"
-              >
-                <HugeiconsIcon icon={Backward02Icon} />
-              </button>
-
-              <button
-                onClick={togglePlay}
-                className="text-white transition-colors hover:text-primary"
-              >
-                {isPlaying ? (
-                  <HugeiconsIcon icon={PauseIcon} />
-                ) : (
-                  <HugeiconsIcon icon={PlayIcon} />
-                )}
-              </button>
-
-              {/* Skip Forward */}
-              <button
-                onClick={() => skip(10)}
-                className="text-white transition-colors hover:text-primary"
-              >
-                <HugeiconsIcon icon={Forward02Icon} />
-              </button>
-
+          <div className="flex items-center justify-between gap-x-4 gap-y-2 max-md:flex-col max-md:items-start">
+            <div className="flex w-fit items-center gap-3">
               {/* Volume */}
-              <div className="group/volume flex items-center gap-2">
+              <div className="group/volume flex items-center justify-center gap-2 rounded-2xl bg-[#3d3d3d] py-2 pl-2">
                 <button
                   onClick={toggleMute}
                   className="text-white transition-colors hover:text-primary"
@@ -208,39 +203,27 @@ const VideoPlayer = ({src, poster}: VideoPlayerProps) => {
                   step="0.1"
                   value={isMuted ? 0 : volume}
                   onChange={handleVolumeChange}
-                  className="w-0 accent-primary opacity-0 transition-all group-hover/volume:w-20 group-hover/volume:opacity-100"
+                  className="group-hover/volume w-0 accent-white opacity-0 transition-all group-hover/volume:mr-2 group-hover/volume:w-20 group-hover/volume:opacity-100"
                 />
               </div>
 
               {/* Time */}
-              <span className="text-sm flex font-normal tracking-wider text-white">
+              <div className="flex w-22 justify-center rounded-2xl bg-[#3d3d3d] px-1 py-1 text-xs font-normal tracking-wider text-white">
                 {formatTime(currentTime)} / {formatTime(duration)}
-              </span>
+              </div>
             </div>
             <div
               ref={progressBarRef}
-              className="group/progress mb-4 h-1.5 w-[60%] cursor-pointer  rounded-full bg-muted-foreground"
+              className="group/progress h-1.5 w-full cursor-pointer rounded-full bg-muted-foreground"
               onClick={handleProgressClick}
             >
               <div
-                className="relative h-full rounded-full bg-primary transition-all group-hover/progress:h-2"
+                className="relative h-full w-full rounded-full bg-[#ffbb00] transition-all group-hover/progress:h-2"
                 style={{ width: `${progress}%` }}
               >
-                <div className="absolute top-1/2 right-0 h-3 w-3 -translate-y-1/2 rounded-full bg-white opacity-0 transition-opacity group-hover/progress:opacity-100" />
+                <div className="absolute top-1/2 right-0 h-3 w-full -translate-y-1/2 rounded-full bg-white opacity-0 transition-opacity group-hover/progress:opacity-100" />
               </div>
             </div>
-
-            {/* Fullscreen */}
-            <button
-              onClick={toggleFullscreen}
-              className="text-white transition-colors hover:text-primary"
-            >
-              {isFullscreen ? (
-                <HugeiconsIcon icon={MinimizeScreenIcon} />
-              ) : (
-                <HugeiconsIcon icon={MaximizeScreenIcon} />
-              )}
-            </button>
           </div>
         </div>
       </div>

@@ -12,7 +12,7 @@ const DashboardLayout = ({children}: {children: React.ReactNode}) => {
     <SidebarProvider
       style={
         {
-          "--sidebar-width": "calc(var(--spacing) * 72)",
+          "--sidebar-width": "calc(var(--spacing) * 120)",
           "--header-height": "calc(var(--spacing) * 12)",
         } as React.CSSProperties
       }
@@ -22,7 +22,7 @@ const DashboardLayout = ({children}: {children: React.ReactNode}) => {
       >
         <SiteHeader />
         <div className="flex flex-1 flex-col">
-          <div className="@container/main flex w-full flex-1 flex-col gap-2 p-5 font-chillax">
+          <div className="@container/main flex w-full flex-1 flex-col gap-2 py-5 font-chillax">
             {children}
           </div>
         </div>
