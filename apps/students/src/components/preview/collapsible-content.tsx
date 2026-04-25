@@ -23,6 +23,8 @@ import { Topic } from "@/types/models"
 import { useGetLessonsQuery } from "@/state/api"
 import { Skeleton } from "@workspace/ui/components/skeleton"
 import * as React from "react"
+import LessonCollapsible from "@/components/LessonsCollapsible"
+import { AnimatePresence, motion } from "framer-motion"
 
 interface Props {
   title: string
@@ -31,6 +33,7 @@ interface Props {
 
 export function CollapsibleTopic({ title, description }: Props) {
   const [open, setOpen] = useState(false)
+
   return (
     <div className="mx-auto w-full border-none bg-transparent">
       <CardContent className="border-none">
@@ -39,18 +42,46 @@ export function CollapsibleTopic({ title, description }: Props) {
             onClick={() => setOpen(!open)}
             className="flex w-full"
           >
-            <span className="group flex w-full text-left items-center justify-between max-md:text-lg text-xl font-normal uppercase">
+            <span className="group flex w-full items-center justify-between text-left text-xl font-normal uppercase max-md:text-lg">
               {title}
-              <HugeiconsIcon
-                icon={open ? Cancel01Icon : PlusSignIcon}
-                size={25}
-                className="ml-auto group-data-[state=open]:rotate-45"
-              />
+              <motion.div
+                animate={{ rotate: open ? 45 : 0 }}
+                transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+                className="ml-auto shrink-0"
+              >
+                <HugeiconsIcon
+                  icon={open ? Cancel01Icon : PlusSignIcon}
+                  size={25}
+                />
+              </motion.div>
             </span>
           </CollapsibleTrigger>
-          <CollapsibleContent className="flex flex-col items-start gap-2 border-none text-sm text-muted-foreground">
-            <div className="text-sm leading-6 font-medium">{description}</div>
-          </CollapsibleContent>
+
+          <AnimatePresence initial={false}>
+            {open && (
+              <motion.div
+                key="content"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{
+                  height: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] },
+                  opacity: { duration: 0.2, ease: "easeOut" },
+                }}
+                style={{ overflow: "hidden" }}
+                className="flex flex-col items-start gap-2 border-none text-sm text-muted-foreground"
+              >
+                <motion.div
+                  initial={{ y: 6, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.1, duration: 0.2, ease: "easeOut" }}
+                  className="text-sm leading-6 font-medium"
+                >
+                  {description}
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </Collapsible>
       </CardContent>
     </div>
@@ -72,61 +103,14 @@ export function CollapsibleTopicItem({ title, topicId, subjectId }: itemProps) {
   return (
     <div className="mx-auto w-full cursor-pointer border-none bg-transparent">
       <CardContent className="cursor-pointer border-none px-0">
-        <Collapsible
+        <LessonCollapsible
           open={open}
-          className={`flex h-full w-full flex-col space-y-2 rounded-lg border-2 border-foreground py-2 font-medium data-[state=open]:bg-muted`}
-        >
-          <CollapsibleTrigger
-            onClick={() => setOpen(!open)}
-            className="flex w-full items-center justify-between gap-2 px-4 text-[20px]"
-          >
-            <span
-              className={`group flex w-full items-center justify-between gap-2 transition-all duration-200`}
-            >
-              <span className="min-w-0 flex-1 truncate text-left">{title}</span>
-
-              <HugeiconsIcon
-                icon={open ? ArrowUp : ArrowDown}
-                size={25}
-                className="shrink-0 group-data-[state=open]:rotate-45"
-              />
-            </span>
-          </CollapsibleTrigger>
-          <CollapsibleContent className="flex w-full flex-col items-start gap-2 border-none pb-2 text-muted-foreground">
-            {
-              !lessonsLoading && lessons?.length == 0 && (
-                <div className="flex w-full items-center bg-accent py-4 justify-center gap-2">
-                  <span className="text-sm">No lessons yet</span>
-                </div>
-              )
-            }
-            {lessonsLoading
-              ? Array.from({ length: 5 }, (_, index) => {
-                  return (
-                    <div key={index} className="px-2 w-full">
-                      <Skeleton className="h-8 w-full bg-accent rounded-lg" />
-                    </div>
-                  )
-                })
-              : lessons?.map((lesson, idx) => (
-                  <Link
-                    key={idx}
-                    href={`/my-learning/${subjectId}/${lesson.id}`}
-                    className={`flex justify-between px-15 text-[18px] ${pathname == `/my-learning/${subjectId}/${lesson.id}` ? "border-foreground bg-[#ffbb00]/60 dark:bg-[#ffbb00] dark:text-black" : "border-foreground"} w-full items-center gap-x-5 dark:border-none border-y-2 py-1 font-normal text-foreground`}
-                  >
-                    <span>
-                      {idx + 1}.{"  "}
-                      <span className="underline">{lesson?.title}</span>
-                    </span>
-                    <HugeiconsIcon
-                      className="fill-black"
-                      size={20}
-                      icon={PlayIcon}
-                    />
-                  </Link>
-                ))}
-          </CollapsibleContent>
-        </Collapsible>
+          setOpen={setOpen}
+          title={title}
+          subjectId={subjectId}
+          lessons={lessons}
+          lessonsLoading={lessonsLoading}
+        />
       </CardContent>
     </div>
   )

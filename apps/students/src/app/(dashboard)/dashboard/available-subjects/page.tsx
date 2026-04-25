@@ -55,9 +55,8 @@ const AvailableSubjects = () => {
   return (
     <div className="flex w-full flex-col justify-center dark:bg-background">
       <section className="flex w-full flex-col gap-y-5  ">
-        <h1 className="font-chillax w-full   text-4xl max-sm:text-3xl">
-          Your future starts here. Explore the subjects designed to get you
-          there.
+        <h1 className="font-chillax w-full  px-2 text-4xl max-sm:text-3xl">
+          Preview & Enroll
         </h1>
         <div className="grid w-full xl:grid-cols-4 sm:grid-cols-2 gap-5 max-sm:grid-cols-1">
           {availableSubjects?.map(({ title, id, image, term, grade }, i) => (

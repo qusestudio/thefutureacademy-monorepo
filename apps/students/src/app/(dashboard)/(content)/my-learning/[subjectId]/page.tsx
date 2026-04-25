@@ -16,14 +16,16 @@ const SubjectPage = () => {
     subjectId ?? "", {skip: !subjectId}
   );
   return (
-    <div className="grid w-full flex-col overflow-y-hidden gap-y-4 md:grid-cols-[70%_30%]">
+    <div className="grid w-full flex-col gap-y-4 overflow-y-hidden md:grid-cols-[70%_30%]">
       <div className="flex w-full flex-col items-center space-y-10 rounded-xl">
         <div className="relative flex aspect-video h-auto w-full flex-col gap-y-4 rounded-xl border-background font-medium text-background shadow-xl">
           <Image
-            src={`${CLOUDFRONT}/${subject?.image}`}
+            src={
+              subjectLoading ? "/image-placeholder.svg" : `${CLOUDFRONT}/${subject?.image}`
+            }
             alt={"/file.svg"}
             fill
-            className="h-auto w-full rounded-xl object-cover"
+            className="h-auto aspect-video w-full rounded-xl object-cover"
           />
         </div>
         <div className="w-full space-y-5">

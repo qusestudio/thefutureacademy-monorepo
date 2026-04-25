@@ -24,17 +24,25 @@ const components = {
   Header() {
     return (
       <div className="flex w-full justify-center">
-        <View className="w-full max-w-sm">
-          <View className={"mt-4 mb-7"}>
-            <Heading level={3} className="text-2xl uppercase font-bold">
+        <View className="w-full gap-y-5 max-w-sm">
+          <View className={"mt-4 w-full flex flex-col items-center mb-4"}>
+            <Image
+              src={"/logo-image.svg"}
+              alt={"logo"}
+              width={80}
+              height={80}
+              className="mb-4"
+            />
+            <Heading level={3} className="text-2xl capitalize font-semibold">
               The Future Academy
             </Heading>
-            <p className="mt-2 text-muted-foreground">
-              <span className="font-bold">Welcome!</span> Please sign in to
-              continue
+            <p className="mt-2 text-foreground/90">
+              Please sign in or sign up to continue.
             </p>
           </View>
+          <Separator />
         </View>
+
       </div>
     )
   },
@@ -44,11 +52,11 @@ const components = {
       const { toSignUp } = useAuthenticator()
       return (
         <View className={"mt-4 text-center"}>
-          <p className="text-muted-foreground">
+          <p className="text-foreground/90">
             Don&apos;t have an account?{" "}
             <button
               onClick={toSignUp}
-              className="border-none bg-transparent p-0 font-medium text-primary hover:underline"
+              className="border-none bg-transparent p-0 font-medium text-[#1F329D] hover:underline"
             >
               Sign up here
             </button>
@@ -144,6 +152,8 @@ const formFields = {
 
 import React, { useEffect } from "react"
 import { usePathname, useRouter } from "next/navigation"
+import Image from "next/image"
+import { Separator } from "@workspace/ui/components/separator"
 
 const Auth = ({children}: {children: React.ReactNode}) => {
   const { user } = useAuthenticator((context) => [context.user]);

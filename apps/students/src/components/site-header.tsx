@@ -16,7 +16,7 @@ export function SiteHeader( {subjectId} : {subjectId?: string}) {
           className="mx-2 h-4 data-vertical:self-auto"
         />
         {
-          isLoading ? <Skeleton className={"h-7 w-1/4 bg-accent rounded-sm"} /> : <p className="text-lg font-semibold">{data?.title}</p>
+          isLoading ? <Skeleton className={"h-7 w-full bg-accent rounded-sm"} /> : <p className="text-lg font-semibold">{data?.title}</p>
         }
       </div>
     </header>

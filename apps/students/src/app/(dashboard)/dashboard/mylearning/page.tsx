@@ -93,7 +93,7 @@ const MyLearning = () => {
     )
   }
 
-  if (subscription?.status.toLowerCase() !== "pending") {
+  if (subscription?.status.toLowerCase() !== "active") {
     return (
       <div className="flex h-full w-full flex-col items-center justify-center">
         <div className="@container/main flex w-full flex-1 flex-col gap-5 p-5 font-chillax max-md:px-1">
@@ -134,14 +134,14 @@ const MyLearning = () => {
 
   return (
     <div>
-      <div className="@container/main flex flex-1 flex-col gap-5 pb-10 font-chillax max-md:px-2">
+      <div className="@container/main flex flex-1 flex-col gap-3 pb-10 font-chillax max-md:px-3">
         <h1 className="text-3xl md:text-5xl">My Learning</h1>
         <p className="font-medium text-muted-foreground max-md:text-sm">
           Stay focused as you progress through lessons and materials
         </p>
       </div>
       <Separator />
-      <div className="grid grid-cols-1  w-full sm:grid-cols-2 xl:grid-cols-4 flex-col gap-5 overflow-y-auto max-md:p-2 p-5">
+      <div className="grid grid-cols-1  w-full sm:grid-cols-2 xl:grid-cols-4 flex-col gap-5 overflow-y-auto max-md:p-3 p-5">
         {subjects?.map(
           ({ subjectTitle, subjectId, subjectImage, term, grade }, i) => (
             <SubjectCard
