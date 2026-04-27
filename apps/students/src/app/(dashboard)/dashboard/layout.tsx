@@ -12,7 +12,7 @@ const DashboardLayout = ({children}: {children: React.ReactNode}) => {
     <SidebarProvider
       style={
         {
-          "--sidebar-width": "calc(var(--spacing) * 120)",
+          "--sidebar-width": "calc(var(--spacing) * 110)",
           "--header-height": "calc(var(--spacing) * 12)",
         } as React.CSSProperties
       }

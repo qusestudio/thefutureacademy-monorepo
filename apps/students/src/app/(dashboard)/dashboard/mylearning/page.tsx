@@ -93,7 +93,7 @@ const MyLearning = () => {
     )
   }
 
-  if (subscription?.status.toLowerCase() !== "active") {
+  if (subscription?.status.toLowerCase() !== "active") { // TODO: MAKE THE STATUS AN ENVIRONMENT VARIABLE
     return (
       <div className="flex h-full w-full flex-col items-center justify-center">
         <div className="@container/main flex w-full flex-1 flex-col gap-5 p-5 font-chillax max-md:px-1">
