@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
-import {  Geist_Mono, Raleway } from "next/font/google"
-import {GeistSans} from "geist/font/sans"
+import { Geist, Geist_Mono, Raleway } from "next/font/google"
 import "@workspace/ui/styles/globals.css"
 import Providers from "@/app/providers"
 import React from "react"
@@ -10,7 +9,10 @@ import AdminGuard from "@/app/(auth)/AdminGuard"
 
 const raleway = Raleway({ subsets: ["latin"], variable: "--font-sans" });
 
-const geistSans = GeistSans;
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+})
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
