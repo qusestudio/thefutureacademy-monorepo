@@ -69,7 +69,7 @@ const AllocationsPage = () => {
   }
 
   return (
-    <div className="flex h-full w-full flex-col gap-y-5 overflow-y-scroll [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    <div className="flex p-5 h-full w-full flex-col gap-y-5 overflow-y-scroll [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       <div className="mx-auto w-full cursor-pointer border-none bg-transparent">
         <CardContent className="cursor-pointer border-none px-0">
           <Collapsible
@@ -79,7 +79,7 @@ const AllocationsPage = () => {
           >
             <CollapsibleTrigger className="flex w-full">
               <header className="flex w-full justify-between px-2 pb-5">
-                <p className="text-3xl font-medium">Instructor allocations</p>
+                <p className="text-xl">Instructor allocations</p>
                 <HugeiconsIcon icon={open ? Cancel01Icon : Plus} size={25} />
               </header>
             </CollapsibleTrigger>

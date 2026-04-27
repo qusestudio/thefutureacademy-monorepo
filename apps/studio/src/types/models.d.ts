@@ -24,6 +24,17 @@ interface Student {
   email: string
   phoneNumber: string
 }
+
+interface StudentSubscription {
+  id: string
+  studentId: string
+  planId: string
+  status: string
+  currentPeriodStart: string
+  currentPeriodEnd: string
+  cancelAtPeriodEnd: boolean
+}
+
 /**
  * CONTENT RELATED DATA
  * */
@@ -68,4 +79,13 @@ interface Allocation {
   createdAt?: Date
 }
 
-export { Admin, Instructor, Student, Allocation, TeachingAllocation, Subject, Topic, Lesson }
+interface Plan {
+  id: string
+  name: string
+  price: number
+  duration: number
+  isActive: boolean
+  grade: number
+}
+
+export { Admin, Instructor, Student, Allocation, TeachingAllocation, Subject, Topic, Lesson, StudentSubscription, Plan }

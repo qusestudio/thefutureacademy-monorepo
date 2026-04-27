@@ -1,7 +1,18 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth"
 
-import { Admin, Allocation, Instructor, Lesson, Subject, TeachingAllocation, Topic, } from "@/types/models"
+import {
+  Admin,
+  Allocation,
+  Instructor,
+  Lesson,
+  Plan,
+  Student,
+  StudentSubscription,
+  Subject,
+  TeachingAllocation,
+  Topic,
+} from "@/types/models"
 import { toast } from "sonner"
 import { createNewUserInDatabase } from "@/lib/utils"
 
@@ -20,6 +31,8 @@ export const api = createApi({
   }),
   reducerPath: "api",
   tagTypes: [
+    "StudentSubscriptions",
+    "Students",
     "Instructors",
     "Allocations",
     "Subjects",
@@ -28,6 +41,7 @@ export const api = createApi({
     "TopicDetails",
     "Lessons",
     "LessonDetails",
+    "Plans",
   ],
   endpoints: (build) => ({
     // Authentication
@@ -49,7 +63,6 @@ export const api = createApi({
           console.log(userDetailsResponse.data)
           console.log(userDetailsResponse.error)
 
-          // If user doesn't exist, create new user
           if (
             userDetailsResponse.error &&
             userDetailsResponse.error.status === 404
@@ -110,6 +123,30 @@ export const api = createApi({
       async onQueryStarted(_, { queryFulfilled }) {
         toast.promise(queryFulfilled, {
           error: "Failed to fetch the number of registered students",
+        })
+      },
+    }),
+
+    /** Student APIs*/
+    getStudent: build.query<Student, string>({
+      query: (studentId) => {
+        return { url: `/students/${studentId}` }
+      },
+      providesTags: ["Students"],
+      async onQueryStarted(_, { queryFulfilled }) {
+        toast.promise(queryFulfilled, {
+          error: "Could not fetch student",
+        })
+      },
+    }),
+    getAllStudents: build.query<Student[], void>({
+      query: () => {
+        return { url: "/students" }
+      },
+      providesTags: ["Students"],
+      async onQueryStarted(_, { queryFulfilled }) {
+        toast.promise(queryFulfilled, {
+          error: "Could not fetch students",
         })
       },
     }),
@@ -371,6 +408,43 @@ export const api = createApi({
         })
       },
     }),
+
+    // Billing
+    getStudentSubscriptions: build.query<StudentSubscription[], string>({
+      query: (studentId) => `/students/${studentId}/subscriptions`,
+      providesTags: ["StudentSubscriptions"],
+      async onQueryStarted(_, { queryFulfilled }) {
+        toast.promise(queryFulfilled, {
+          error: "Failed to fetch subscriptions.",
+        })
+      },
+    }),
+    createSubscription: build.mutation<void, Omit<StudentSubscription, "id">>({
+      query: (subscription) => {
+        console.log(subscription)
+        return {
+          url: "/subscriptions",
+          method: "POST",
+          body: subscription,
+        }
+      },
+      invalidatesTags: ["StudentSubscriptions"],
+      async onQueryStarted(_, { queryFulfilled }) {
+        toast.promise(queryFulfilled, {
+          error: "Could not create subscription.",
+        })
+      },
+    }),
+
+    getPlans: build.query<Plan[], void>({
+      query: () => `/plans`,
+      providesTags: ["Plans"],
+      async onQueryStarted(_, { queryFulfilled }) {
+        toast.promise(queryFulfilled, {
+          error: "Failed to fetch plans.",
+        })
+      },
+    }),
   }),
 })
 
@@ -458,6 +532,10 @@ export const {
   useGetNoOfStudentsQuery,
   useGetNoOfInstructorsQuery,
   useGetAuthUserQuery,
+  useGetStudentQuery,
+  useGetAllStudentsQuery,
+  useGetStudentSubscriptionsQuery,
+  useCreateSubscriptionMutation,
   useGetInstructorQuery,
   useGetAllInstructorsQuery,
   useGetSubjectQuery,
@@ -474,6 +552,7 @@ export const {
   useGetAllocationsQuery,
   useSetTeachingAllocationMutation,
   useDeleteAllocationsMutation,
+  useGetPlansQuery,
 } = api
 
 export const { useGetSignedUrlMutation, useUploadToS3Mutation } = s3api

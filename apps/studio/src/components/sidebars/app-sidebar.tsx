@@ -24,6 +24,7 @@ import {
   Table01Icon,
   DeskIcon,
   Clock03Icon,
+  User03Icon,
 } from "@hugeicons/core-free-icons"
 
 const data = {
@@ -50,6 +51,11 @@ const data = {
       url: "/dashboard/allocations",
       icon: <HugeiconsIcon size={20} icon={Clock03Icon} strokeWidth={2} />,
     },
+    {
+      title: "Students",
+      url: "/dashboard/students",
+      icon: <HugeiconsIcon size={20} icon={User03Icon} strokeWidth={2} />,
+    },
   ],
   navSecondary: [
     {
@@ -72,12 +78,12 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar className={"bg-background"} collapsible="offcanvas" {...props}>
-      <SidebarHeader className="bg-background hover:bg-background">
-        <SidebarMenu className="bg-background hover:bg-background">
-          <SidebarMenuItem className="hover:bg-background">
+    <Sidebar className={"dark:bg-[#050505]"} collapsible="offcanvas" {...props}>
+      <SidebarHeader className="dark:bg-[#050505] hover:dark:bg-[#050505]">
+        <SidebarMenu className="dark:bg-[#050505] hover:dark:bg-[#050505]">
+          <SidebarMenuItem className="hover:dark:bg-[#050505]">
             <SidebarMenuButton
-              className="mb-10 bg-background hover:bg-background data-[slot=sidebar-menu-button]:p-1.5!"
+              className="mb-10 data-[slot=sidebar-menu-button]:p-1.5! dark:bg-[#050505] hover:dark:bg-[#050505]"
               render={<a href="/" />}
             >
               <span className="font-chillax text-xl leading-6 font-bold tracking-wider uppercase hover:bg-none">
@@ -89,7 +95,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className="bg-background font-chillax">
+      <SidebarContent className="font-chillax dark:bg-[#050505]">
         <NavMain items={data.navMain} />
       </SidebarContent>
     </Sidebar>

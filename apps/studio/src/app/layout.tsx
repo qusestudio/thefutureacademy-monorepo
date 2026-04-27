@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
-import { Geist, Geist_Mono, Raleway } from "next/font/google"
+import {  Geist_Mono, Raleway } from "next/font/google"
+import {GeistSans} from "geist/font/sans"
 import "@workspace/ui/styles/globals.css"
 import Providers from "@/app/providers"
 import React from "react"
@@ -9,10 +10,7 @@ import AdminGuard from "@/app/(auth)/AdminGuard"
 
 const raleway = Raleway({ subsets: ["latin"], variable: "--font-sans" });
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-})
+const geistSans = GeistSans;
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -32,12 +30,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${chillax.variable}  flex w-full flex-col items-center ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${chillax.variable} flex w-full flex-col items-center  ${geistMono.variable} antialiased`}
       >
         <Providers>
-          <AdminGuard>
-            {children}
-          </AdminGuard>
+          <AdminGuard>{children}</AdminGuard>
         </Providers>
       </body>
     </html>

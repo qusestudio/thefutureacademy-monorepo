@@ -42,11 +42,11 @@ export function NavMain({
             const isActive = pathname === item.url
             return (
               <SidebarMenuItem
-                className={`${isActive ? "border-2 border-foreground dark:bg-transparent bg-[#ffbb00]/60 dark:border-[#ffbb00] dark:text-[#ffbb00]" : "border-transparent"} text-sm items-center flex rounded-lg border-2`}
+                className={`${isActive ? " border-foreground dark:bg-transparent bg-[#ffbb00]/60 dark:border-none dark:text-[#ffbb00]" : "border-transparent"} text-sm items-center flex rounded-lg`}
                 key={item.title}
               >
                 <button
-                  className="flex cursor-pointer items-center text-lg gap-x-2 py-2 px-4"
+                  className="flex cursor-pointer items-center text-sm gap-x-2 py-2 px-4"
                   onClick={() => router.push(item.url)}
                 >
                   {item.icon}

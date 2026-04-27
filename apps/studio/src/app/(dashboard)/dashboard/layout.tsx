@@ -9,16 +9,16 @@ const DashboardLayout = ({children}: {children: React.ReactNode}) => {
     <SidebarProvider
       style={
         {
-          "--sidebar-width": "calc(var(--spacing) * 72)",
+          "--sidebar-width": "calc(var(--spacing) * 80)",
           "--header-height": "calc(var(--spacing) * 12)",
         } as React.CSSProperties
       }
     >
       <AppSidebar variant="inset" />
-      <SidebarInset>
+      <SidebarInset className="dark:bg-[#050505]">
         <SiteHeader />
         <div className="flex flex-1 flex-col">
-          <div className="@container/main font-chillax p-5 flex flex-1 flex-col gap-2">
+          <div className="@container/main font-chillax  flex flex-1 flex-col gap-2">
             {children}
           </div>
         </div>

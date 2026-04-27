@@ -17,7 +17,7 @@ const HomePage = () => {
   // fetch subscription information from the server
   // display components based on the state
   return (
-    <div className="flex h-screen w-full flex-col items-center bg-accent py-5 dark:bg-background">
+    <div className="flex h-screen w-full flex-col items-center bg-accent py-5 dark:bg-[#050505]">
       <header className="flex w-full max-w-[80%] items-center justify-center gap-x-2 rounded-full bg-background py-1 font-chillax text-xl dark:bg-accent">
         <Link
           href={"/settings/profile"}
